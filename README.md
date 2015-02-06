@@ -1,2 +1,0 @@
-# linkarys.github.io
-blog
