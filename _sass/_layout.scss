@@ -201,7 +201,7 @@
     font-size: 42px;
     letter-spacing: -1px;
     line-height: 1;
-
+    text-transform: capitalize;
     @include media-query($on-laptop) {
         font-size: 36px;
     }
