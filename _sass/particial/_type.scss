@@ -3,4 +3,8 @@ $border-color: #ccc;
 
 h2 {
 	border-bottom: solid 1px $border-color;
+
+	.post-list & {
+		border: 0;
+	}
 }
