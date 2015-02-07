@@ -8,3 +8,7 @@ github_username:  linkarys
 
 # Build settings
 markdown: kramdown
+
+# pagination
+paginate: 1
+
