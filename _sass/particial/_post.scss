@@ -1,0 +1,14 @@
+$post-link: #20b2aa;
+
+a.post-link {
+	text-transform: capitalize;
+	color: $post-link;
+	transition: $transition text-shadow;
+	font-weight: bold;
+
+	&:hover {
+		color: $post-link;
+		text-shadow: 1px 4px 2px rgba(0, 0, 0, 0.3);
+		text-decoration: none;
+	}
+}
