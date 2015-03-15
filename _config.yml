@@ -70,14 +70,6 @@ baseurl: "" # does not include hostname
 # redcarpet:
 #   extensions: [fenced_code_blocks]
 
-# Collections
-collections:
-    javascript:
-      path: "javascripts"
-      output: true
-    styles:
-      output: true
-
 # Default options
 defaults:
   -
