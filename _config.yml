@@ -52,6 +52,9 @@ kramdown:
 
 highlighter: rouge
 
+comments:
+  disqus:
+    shortname: linkarys
 
 # Pagination
 paginate: 3
