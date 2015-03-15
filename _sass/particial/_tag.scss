@@ -1,0 +1,16 @@
+$tag-bg: #6aabb0;
+$tag-hover-bg: #8a2be2;
+$tag-color: #efefef;
+
+.tag {
+	background-color: $tag-bg;
+	padding: 3px 5px;
+	color:$tag-color;
+	border-radius: $border-radius;
+	transition: background-color .2s;
+	&:hover {
+		text-decoration: none;
+		color: $tag-color;
+		background-color: $tag-hover-bg;
+	}
+}

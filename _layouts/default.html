@@ -11,6 +11,16 @@
       <div class="wrapper">
         {{ content }}
       </div>
+
+      <aside class="aside">
+          <head class="title">Recent Posts</head>
+          <ul class="list">
+              {% for rpost in site.posts limit:6  %}
+                  <li><a href="{{ site.url }}{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></li>
+              {% endfor %}
+          </ul>
+      </aside>
+
     </div>
 
     {% include footer.html %}

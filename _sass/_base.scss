@@ -21,6 +21,9 @@ body {
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
+    // background-color: #f2eeec;
+    // background: #92B3A2 url(../images/bg.jpg) repeat 0 0;
+    background: #f5f5f5;
 }
 
 
@@ -103,8 +106,13 @@ blockquote {
 @import "particial/variables";
 @import "particial/normorise";
 @import "particial/type";
-@import "particial/code";
+@import "particial/article";
+// @import "particial/code";
 @import "particial/post";
+@import "particial/tag";
+@import "particial/pagination";
+@import "particial/highlight";
+@import "particial/aside";
 
 
 

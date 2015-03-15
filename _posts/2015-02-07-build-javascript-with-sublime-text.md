@@ -1,12 +1,10 @@
 ---
-layout: post
 title: "build javascript with sublime text"
 description: ""
-category:
-tags: []
+category: "javascript"
+tags: ['javascript', 'nodejs', 'sublime text']
 ---
 
-## 前言
 调试js代码经常是在浏览器中完成的, 如果编辑器也能完成部分的调试工作, 那我相信前端和node的世界将美好很多. OK, 先上图:
 
 ![sublime build demo][1]

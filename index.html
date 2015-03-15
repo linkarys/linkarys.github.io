@@ -2,22 +2,30 @@
 layout: default
 ---
 
-<div class="home">
+<h1 class="page-heading">Posts</h1>
 
-  <h1 class="page-heading">Posts</h1>
+{% for post in paginator.posts %}
+  {% include mixin/excerpt %}
+{% endfor %}
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+<!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+{% if paginator.total_pages > 1 %}
+    <nav class="pagination">
+        <span class="pagination-icon"><i class=" icon-copy"></i></span>
+        <ul class="pagination-list">
+            {% for page in (1..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                    <li class="current"><a href="javascript:void(0);">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="{{ site.url }}/{%if page > 1 %}page/{{ page }}/{% endif %}">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% if paginator.previous_page %}
+             <a href="{{ site.url }}{{ paginator.previous_page_path }}" class="pagination-prev">← 上一页</a>
+         {% endif %}
+        {% if paginator.next_page %}
+             <a href="{{ site.url }}{{ paginator.next_page_path }}" class="pagination-next">下一页 →</a>
+         {% endif %}
+    </nav>
+{% endif %}
