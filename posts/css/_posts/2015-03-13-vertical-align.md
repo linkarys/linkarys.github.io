@@ -1,7 +1,7 @@
 vertical-align只作用于inline, inline-block及table-cell上, 所以注意使用此法的局限性.
 首先介绍一种比较绕的解法方法, 看代码：
 
-{% highlight html%}
+```html
 <div class="center-wrap c1">
   <div class="center-content c2 center-wrap">
     <div class="center-content c3 center-wrap">
@@ -11,7 +11,7 @@ vertical-align只作用于inline, inline-block及table-cell上, 所以注意使�
     </div>
   </div>
 </div>
-{% endhighlight %}
+```
 
 ```css
 .center-wrap {
