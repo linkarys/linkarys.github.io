@@ -10,3 +10,44 @@ permalink: /:categories/:title
 # url: "http://linkarys.github.io/" # the base hostname & protocol for your site
 github_username:  linkarys
 
+# Conversion
+markdown:    kramdown
+# highlighter: pygments
+lsi:         false
+excerpt_separator: "\n\n"
+
+# Markdown Processors
+maruku:
+  use_tex:    false
+  use_divs:   false
+  png_engine: blahtex
+  png_dir:    images/latex
+  png_url:    /images/latex
+  fenced_code_blocks: true
+
+rdiscount:
+  extensions: []
+
+redcarpet:
+  # extensions: [no_fenced_code_blocks]
+  render_options:
+
+kramdown:
+  input: GFM
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+  coderay:
+    coderay_wrap:              div
+    coderay_line_numbers:      inline
+    coderay_line_number_start: 1
+    coderay_tab_width:         4
+    coderay_bold_every:        10
+    coderay_css:               style
+
+
+
