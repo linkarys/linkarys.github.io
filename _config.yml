@@ -29,7 +29,6 @@ rdiscount:
   extensions: []
 
 redcarpet:
-  extensions: [fenced_code_blocks]
   # extensions: [no_fenced_code_blocks]
   render_options:
 
