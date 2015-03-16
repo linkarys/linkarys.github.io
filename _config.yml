@@ -61,6 +61,13 @@ paginate_path: /page/:num
 detach:  false
 baseurl: "" # does not include hostname
 
+# Collections
+# collections:
+#     javascript:
+#       path: "javascripts"
+#       output: true
+#     styles:
+#       output: true
 
 # Default options
 defaults:
