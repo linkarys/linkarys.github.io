@@ -49,5 +49,50 @@ kramdown:
     coderay_bold_every:        10
     coderay_css:               style
 
+comments:
+  disqus:
+    shortname: linkarys
 
+# Pagination
+paginate: 3
+paginate_path: /page/:num
+
+# Serving
+detach:  false
+baseurl: "" # does not include hostname
+
+
+# Default options
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      author: linkarys
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      tags: ['untaged']
+  -
+    scope:
+      path: "javascript"
+    values:
+      layout: "post"
+      tags: ['untaged']
+
+# Navs
+navs:
+  - title: Javascript
+    url: /javascript
+  - title: CSS
+    url: /css
+  # - title: Archives
+  #   url: /archives
+  # - title: 关于我
+  #   url: /contact
+  # - title: 友情链接
+  #   url: /links
 
