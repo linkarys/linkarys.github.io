@@ -44,20 +44,30 @@
         display: none;
     }
 
-    .page-link {
-        color: $text-color;
-        color: $header-color;
+    .page-links {
+        > a {
+            color: $text-color;
+            color: $header-color;
+            line-height: 50px;
+            height: 50px;
+            display: inline-block;
+            padding: 0 8px;
+            transition: color $transition;
 
-        &:hover {
-            color: lighten($header-color, 30%);
-            text-decoration: none;
-        }
+            &:hover {
+                color: lighten($header-color, 30%);
+                text-decoration: none;
+            }
 
-        line-height: $base-line-height;
+            &:not(:first-child) {
+                margin-left: 20px;
+            }
 
-        // Gaps between nav items, but not on the first one
-        &:not(:first-child) {
-            margin-left: 20px;
+            &.active {
+                color: lighten($header-color, 30%);
+                border-bottom: 4px solid #CC7A6F;
+                background: #777;
+            }
         }
     }
 

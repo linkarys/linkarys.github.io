@@ -21,13 +21,13 @@
         {% endfor %}
       </div>
  -->
-       <div class="trigger">
-        {% for nav in site.navs %}
-          {% if nav.title %}
-          <a class="page-link" href="{{ nav.url | prepend: site.baseurl }}">{{ nav.title }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
+       <div class="page-links">
+          {% for nav in site.navs %}
+            {% if nav.title %}
+            <a {% if page.url == nav.url %} class="active"{% endif %} href="{{ nav.url | prepend: site.baseurl }}">{{ nav.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
 
 
     </nav>

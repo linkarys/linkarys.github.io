@@ -21,8 +21,8 @@ maruku:
   use_tex:    false
   use_divs:   false
   png_engine: blahtex
-  png_dir:    images/latex
-  png_url:    /images/latex
+  png_dir:    assets/images/latex
+  png_url:    /assets/images/latex
   fenced_code_blocks: true
 
 rdiscount:
@@ -49,6 +49,13 @@ kramdown:
     coderay_bold_every:        10
     coderay_css:               style
 
+
+# Assets
+images: /assets/images
+scripts: /assets/scripts
+styles: /assets/styles
+
+# Comments
 comments:
   disqus:
     shortname: linkarys
@@ -59,6 +66,8 @@ paginate_path: /page/:num
 
 # Serving
 detach:  false
+port:    4001
+host:    127.0.0.1
 baseurl: "" # does not include hostname
 
 # Collections
@@ -93,9 +102,9 @@ defaults:
 # Navs
 navs:
   - title: Javascript
-    url: /javascript
+    url: /javascript/
   - title: CSS
-    url: /css
+    url: /css/
   # - title: Archives
   #   url: /archives
   # - title: 关于我
