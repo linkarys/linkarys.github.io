@@ -1,0 +1,42 @@
+
+$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-size:   16px;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: #fafafa;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+
+// Colors
+// -------------------------
+
+$text-color: #424242;
+$link-color: #2378cb;
+$header-color: #adadad;
+$border-color: #ccc;
+
+
+// Dimensions
+// -------------------------
+$border-radius: 4px;
+
+
+// Animation
+// -------------------------
+
+$transition: 400ms;
