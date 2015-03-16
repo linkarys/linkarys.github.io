@@ -48,11 +48,12 @@
         > a {
             color: $text-color;
             color: $header-color;
-            line-height: 50px;
-            height: 50px;
+            line-height: 56px;
+            height: 56px;
             display: inline-block;
             padding: 0 8px;
             transition: color $transition;
+            box-sizing: border-box;
 
             &:hover {
                 color: lighten($header-color, 30%);
