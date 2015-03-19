@@ -24,10 +24,12 @@
     margin-bottom: 0;
     float: left;
     color: $header-color;
+    transition: color $transition;
+    font-family: cursive;
 
     &:hover {
         text-decoration: none;
-        color: lighten($header-color, 30%);
+        color: $site-brand;
     }
 
     &:visited {

@@ -11,7 +11,7 @@ permalink: /:categories/:title
 github_username:  linkarys
 
 # Conversion
-markdown:    kramdown
+markdown:    redcarpet
 # highlighter: pygments
 lsi:         false
 excerpt_separator: "\n\n"
@@ -29,7 +29,7 @@ rdiscount:
   extensions: []
 
 redcarpet:
-  # extensions: [no_fenced_code_blocks]
+  extensions: [fenced_code_blocks]
   render_options:
 
 kramdown:
