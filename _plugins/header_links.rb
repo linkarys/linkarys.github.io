@@ -9,9 +9,9 @@ class Redcarpet::Render::HTML
     clean_title = Sanitize.clean(title)
       .downcase
       .gsub(/\s+/, "-")
-      .gsub(/[^A-Za-z0-9\-_.\u4e00-\u9fa5]/, "")
+      .gsub(/[^A-Za-z0-9\-_.]/, "")
 
-    return "<h#{level}><a class=\"hash-link\" href=\"##{clean_title}\">§</a> <a class=\"anchor\" name=\"#{clean_title}\"></a>#{title}</h#{level}>"
+    return "<h#{level}><a class=\"anchor\" name=\"#{clean_title}\"></a>#{title} <a class=\"hash-link\" href=\"##{clean_title}\">#</a></h#{level}>"
   end
 end
 
