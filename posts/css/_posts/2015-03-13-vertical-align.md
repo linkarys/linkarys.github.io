@@ -5,7 +5,9 @@ category: "css"
 tags: ['css']
 ---
 
-纯css垂直居中有若干种方案, 不过我们只会关注**look forward**或者最优的一两种方案。
+纯css垂直居中有若干种方案, 不过我们只会关注**look forward**或者最优的一两种方案,
+并且我们希望这种一两方案具有比较强的普适性, 能满足基本的浏览器兼容需求, 以及允许无限制的嵌套.
+本文将对这一目标进行一些探讨.
 
 ## 使用vertical-align来垂直居中
 
@@ -59,7 +61,7 @@ vertical-align有很多限制, 它只作用于inline, inline-block及table-cell�
 }
 ```
 
-咋眼看一，我去! 这里的`&:after`是干嘛用的？怎么还用这么写？！问题是这样的vertical-align
+咋眼看一，我去! 这里的`&:after`内的元素是干嘛用的？怎么还用这么写？！问题是这样的vertical-align
 的对齐是基于每个 [line box](http://www.w3.org/TR/CSS21/visuren.html#inline-formatting)的，
 而`.center-content`容器并非该行文本的`line box`，因此就算定义了vertical-align: middle也是没有用的。
 **那怎么办呢？**我们知道`line box`元素的高度是由其内容决定，所在就在此处添加一个`&:after`，其作用是把与文本处于同一`line box`的元素撑到和父级元素一样大。

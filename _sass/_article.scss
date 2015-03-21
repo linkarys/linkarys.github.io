@@ -2,6 +2,8 @@
 // -------------------------
 
 $article-title-color: #4a4a4a;
+$article-hover-clor: indianred;
+$article-hover-clor: #C71585;
 
 .article {
   margin-bottom: 20px;
@@ -23,6 +25,6 @@ $article-title-color: #4a4a4a;
 
   &:hover {
     text-decoration: none;
-    color: #e32d40;
+    color: $article-hover-clor;
   }
 }

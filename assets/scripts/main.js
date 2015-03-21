@@ -6,7 +6,7 @@
 
       var nav = {
         wrapId: 'ls-navigator',
-        heads: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'],
+        heads: ['H2', 'H3', 'H4', 'H5', 'H6'],
         inited: false,
         rootNode: '',                 // 根结点(ul)
         outwrap: '',                  // the wrap of navs
@@ -61,7 +61,7 @@
       nav.createWrap = function(level) {
         var ul = document.createElement('ul');
 
-        ul.className = 'side-nav level-' + (level + 1);
+        ul.className = 'nav level-' + (level + 1);
 
         ul._data_level_ = level;
 
@@ -143,6 +143,11 @@
       });
 
 
+      // scrollspy
+      $(document.body).scrollspy({
+        target: '#' + nav.wrapId,
+        offset: 40
+      });
 
       /*!
        * AnchorJS - v0.1.0 - 2014-08-17
