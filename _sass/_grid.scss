@@ -1,0 +1,58 @@
+
+// Container sizes
+// --------------------------------------------------
+
+// Small screen / tablet
+$container-tablet:             ((720px + $grid-gutter-width)) !default;
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            ((940px + $grid-gutter-width)) !default;
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      ((1140px + $grid-gutter-width)) !default;
+$container-lg:                 $container-large-desktop !default;
+
+$media-list: (
+  xs: "",
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min
+);
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $grid-gutter-width / 2;
+  padding-right: $grid-gutter-width / 2;
+  @include clearfix();
+}
+
+.row {
+  @include make-row();
+}
+
+@include make-grid-columns();
+
+
+@each $name, $width in $media-list {
+  @if ($width != "") {
+    @media (min-width: $width) {
+      .container {
+        @include cal-container-with(#{"$container-#{$name}"});
+      }
+      @include make-grid-column-float($name);
+      @include make-grid($name, width);
+      @include make-grid($name, pull);
+      @include make-grid($name, push);
+      @include make-grid($name, offset);
+    }
+  } @else {
+    @include make-grid-column-float(xs);
+    @include make-grid(xs, width);
+    @include make-grid(xs, pull);
+    @include make-grid(xs, push);
+    @include make-grid(xs, offset);
+  }
+}

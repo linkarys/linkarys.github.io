@@ -1,0 +1,41 @@
+
+$nav-item-color: #637c84;
+
+.post-navigator {
+  display: none;
+
+  > .side-nav {
+    width: 285px;
+    background: #FFF;
+    padding: 6px 0;
+
+    &.fixed {
+      position: fixed;
+      top: 0px;
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    margin-left: 0;
+  }
+
+  li > ul {
+    padding-left: 20px;
+  }
+
+  a {
+    color: $nav-item-color;
+    &:hover {
+      color: lighten($nav-item-color, 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .post-navigator {
+    display: block;
+  }
+}

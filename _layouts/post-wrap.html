@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+    <div class="container">
+      <div class="page-content">
+          <div class="post col-md-9">
+            {{ content }}
+            <!-- {% include mixin/disqus %} -->
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    {% include post/footer.html %}
+    {% include footer.html %}
+  </body>
+
+</html>
