@@ -30,17 +30,13 @@
   text-decoration: none;
 }
 
-.anchorjs-link {
-  &:focus {
-    opacity: 1;
-    transition: color .16s linear;
-  }
-}
 *:hover > .anchorjs-link,
 .anchorjs-link:focus  {
   /* To fade links as they appear, change transition-property from 'color' to 'all' */
-
+  opacity: 1;
+  transition: color .16s linear;
 }
+
 /**
  * Make screen-reader friendly description text visually hidden.
  */
