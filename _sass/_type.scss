@@ -6,22 +6,3 @@ h2 {
 		border: 0;
 	}
 }
-
-.hash-link {
-  transition: opacity $transition;
-  opacity: 0;
-  position: absolute;
-  margin: -2px 0 0 -17px;
-  color: #CACACA;
-  font-weight: normal;
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  @for $i from 1 through 7 {
-    h#{$i}:hover & {
-      opacity: 1;
-    }
-  }
-}
