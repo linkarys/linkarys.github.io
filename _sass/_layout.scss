@@ -75,6 +75,7 @@
     }
 
     @include media-query($on-palm) {
+        display: none;
         position: absolute;
         top: 9px;
         right: 30px;
