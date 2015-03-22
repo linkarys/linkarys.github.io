@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linkarys</title>
+    <description></description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 22 Mar 2015 15:53:46 +0800</pubDate>
+    <lastBuildDate>Sun, 22 Mar 2015 15:53:46 +0800</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>非固定高度元素的垂直居中</title>
+        <description>&lt;p&gt;纯css垂直居中有若干种方案, 不过我们只会关注&lt;strong&gt;look forward&lt;/strong&gt;或者最优的一两种方案,
+并且我们希望这种一两方案具有比较强的普适性, 能满足基本的浏览器兼容需求, 以及允许无限制的嵌套.
+本文将对这一目标进行一些探讨.&lt;/p&gt;
+
+&lt;h2&gt;使用vertical-align来垂直居中&lt;/h2&gt;
+
+&lt;p&gt;vertical-align有很多限制, 它只作用于inline, inline-block及table-cell上, 既然如此,
+我们怎么在普遍意义上使用vertical-align来垂直居中元素呢, 先看实现效果：&lt;/p&gt;
+
+&lt;h3&gt;实现效果&lt;/h3&gt;
+
+&lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;弱弱的说一声, 其实这个同心圆是响应式的:)&lt;/p&gt;
+
+&lt;h3&gt;相关代码&lt;/h3&gt;
+
+&lt;h4&gt;HTML&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-wrap c1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content c2 center-wrap&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content c3 center-wrap&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        Lorem ipsum dolor sit amet.
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;CSS&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.center-wrap {
+  text-align: center;
+  font-size: 0;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 50%;
+
+  &amp;amp;:after {
+    display: inline-block;
+    height: 100%;
+    content: &amp;quot; &amp;quot;;
+    width: 0;
+    vertical-align: middle;
+    padding-top: 100%;
+  }
+}
+
+.center-content {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  &amp;amp;.center-wrap {
+    font-size: 0;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;咋眼看一，我去! 这里的&lt;code&gt;&amp;amp;:after&lt;/code&gt;内的元素是干嘛用的？怎么还用这么写？！问题是这样的vertical-align
+的对齐是基于每个 &lt;a href=&quot;http://www.w3.org/TR/CSS21/visuren.html#inline-formatting&quot;&gt;line box&lt;/a&gt;的，
+而&lt;code&gt;.center-content&lt;/code&gt;容器并非该行文本的&lt;code&gt;line box&lt;/code&gt;，因此就算定义了vertical-align: middle也是没有用的。
+&lt;strong&gt;那怎么办呢？&lt;/strong&gt;我们知道&lt;code&gt;line box&lt;/code&gt;元素的高度是由其内容决定，所在就在此处添加一个&lt;code&gt;&amp;amp;:after&lt;/code&gt;，其作用是把与文本处于同一&lt;code&gt;line box&lt;/code&gt;的元素撑到和父级元素一样大。&lt;/p&gt;
+
+&lt;p&gt;还有一个问题是: &lt;code&gt;font-size:0&lt;/code&gt;是作什么用的？我们知道,inline-block元素元素之间是有间隙的（这个间隙会可以由换行符产生）,
+这在内容只有单行的时候没有什么问题, 多行时间隙就会导致&lt;code&gt;line box&lt;/code&gt;元素的高度和父级不一致, 产下如下悲剧:&lt;/p&gt;
+
+&lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align-break.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h2&gt;使用flex垂直居中&lt;/h2&gt;
+
+&lt;p&gt;使用此法布局比较简单, 只要设置&lt;code&gt;display&lt;/code&gt;, &lt;code&gt;align-items&lt;/code&gt;, &lt;code&gt;justify-content&lt;/code&gt;三个属性就可以了.有关flex布局的详情, 可以参阅鄙人的&lt;a href=&quot;http://linkarys.github.io//css/flex/&quot;&gt;flex 布局&lt;/a&gt;.
+此处只列出最终实现代码和实现效果&lt;/p&gt;
+
+&lt;h3&gt;实现效果&amp;nbsp;&lt;/h3&gt;
+
+&lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align-flex.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h3&gt;相关代码&amp;nbsp;&lt;/h3&gt;
+
+&lt;h4&gt;HTML&amp;nbsp;&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-container ct&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-item cs flex-container&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-item cg flex-container&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        Lorem ipsum dolor sit amet.
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;CSS&amp;nbsp;&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;justify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;60%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;70%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考资料:&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;http://demo.doyoe.com/css/alignment/&quot;&gt;http://demo.doyoe.com/css/alignment/&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 13 Mar 2015 00:00:00 +0800</pubDate>
+        <link>/posts/css/vertical-align</link>
+        <guid isPermaLink="true">/posts/css/vertical-align</guid>
+        
+        <category>css</category>
+        
+        
+        <category>posts</category>
+        
+        <category>css</category>
+        
+      </item>
+    
+      <item>
+        <title>build javascript with sublime text</title>
+        <description>&lt;p&gt;调试js代码经常是在浏览器中完成的, 如果编辑器也能完成部分的调试工作, 那我相信前端和node的世界将美好很多. OK, 先上图:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://sfault-image.b0.upaiyun.com/160/788/1607889778-546eacc1a7253&quot; alt=&quot;sublime build demo&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;实现&lt;/h2&gt;
+
+&lt;h3&gt;首先安装&lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;当然你可以使用其它诸如&lt;a href=&quot;https://trac.webkit.org/wiki/JSC&quot;&gt;jsc&lt;/a&gt;之类的环境来运行js, 本文使用的是&lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;. 首先确保你的电脑已经安装好nodejs, 并已将其添加到环境变量中 (一般安装时自动添加或者询问是否添加)&lt;/p&gt;
+
+&lt;h3&gt;添加&lt;a href=&quot;https://sublime-text-unofficial-documentation.readthedocs.org/en/sublime-text-2/file_processing/build_systems.html&quot;&gt;build system&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;在sublime text中依次打开Tools -&amp;gt; Build System -&amp;gt; New Build System... 粘贴以下代码后保存(如Node.sublime-build), 然后把Build System设成Automatic&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{
+    &amp;quot;cmd&amp;quot;: [&amp;quot;node&amp;quot;, &amp;quot;--use-strict&amp;quot;, &amp;quot;--harmony&amp;quot;, &amp;quot;$file&amp;quot;],
+    &amp;quot;selector&amp;quot;: &amp;quot;source.js&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;说明&lt;/h3&gt;
+
+&lt;p&gt;在以上的build文件中(Node.sublime-build), node是执行命令, --harmony和--use-strict是执行参数, $file是当前文件名, 所以一次build操作实际上相当于在命令行中执行了&lt;code&gt;node  --use-strict --harmony filename&lt;/code&gt;. &lt;code&gt;--harmony&lt;/code&gt;表示启用&lt;a href=&quot;http://kangax.github.io/compat-table/es6/&quot;&gt;ES Harmony features&lt;/a&gt;, 而这些features目前只能在strict模式下运行, 所以需要同时添加use-strict参数(详见&lt;a href=&quot;http://stackoverflow.com/questions/17253509/what-is-extended-mode&quot;&gt;what-is-extended-mode&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;如果不想启用es6的特性,把build文件更改成以下代码保存即可.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{
+    &amp;quot;cmd&amp;quot;: [&amp;quot;node&amp;quot;, &amp;quot;$file&amp;quot;],
+    &amp;quot;selector&amp;quot;: &amp;quot;source.js&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;使用&lt;/h2&gt;
+
+&lt;p&gt;在sublime test中新建一个test.js文件, 然后输入你的测试代码, 比如:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;for (let i = 0; i &amp;lt; 3; i++) {
+    console.log(&amp;#39;i:&amp;#39;, i);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用快捷键&lt;code&gt;ctrl + b&lt;/code&gt;, 将得到以下执行结果:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;i: 0
+i: 1
+i: 2
+[Finished in 0.1s]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注: 文件必须是存在于磁盘中的, 而不是untitled的, 否则sublime无法找到相应的文件.&lt;/p&gt;
+
+&lt;p&gt;以上.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 07 Feb 2015 00:00:00 +0800</pubDate>
+        <link>/javascript/build-javascript-with-sublime-text</link>
+        <guid isPermaLink="true">/javascript/build-javascript-with-sublime-text</guid>
+        
+        <category>javascript</category>
+        
+        <category>nodejs</category>
+        
+        <category>sublime text</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>flex</title>
+        <description>&lt;p&gt;布局神器flex, 本文将尽量详细的介绍这一个布局方法.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注: 不同的浏览器对这一布局方式的支持所采用的语法并不一致, 我们可以用&lt;code&gt;grunt&lt;/code&gt;或者&lt;code&gt;gulp&lt;/code&gt;的&lt;code&gt;autoprefixer&lt;/code&gt;插件来帮助我们完成浏览器的兼容性写法。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;本文暂不作兼容性处理, 请使用最新Chrome进行阅读&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Flex Container相关属性&lt;/h2&gt;
+
+&lt;p&gt;这种布局方式需要父级元素和子级元素共同配合, 首先我们需要把父级的display设为flex。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;方向与换行&lt;/h3&gt;
+
+&lt;h4&gt;布局方向&lt;/h4&gt;
+
+&lt;p&gt;正常的布局方向是由左及右的, 我们可以通过设置&lt;code&gt;flex-direction&lt;/code&gt;为还控制布局方向.
+row是正常的左右向, column为上下向. &lt;code&gt;-reverse&lt;/code&gt;指各自方向上的反向.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;direction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;是否换行&lt;/h4&gt;
+
+&lt;p&gt;当我们使用flex布局的时候, 默认是不换行的, 如果我们希望他换行, 那么我们就需要设置&lt;code&gt;flex-wrap&lt;/code&gt;属性值为&lt;code&gt;wrap&lt;/code&gt;. 注意这边还有wrap-reserve, 指的是文章的方向是由下至上的, 而不是常规的由上至下.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;nowrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;简写形式&lt;/h4&gt;
+
+&lt;p&gt;我们可以用&lt;code&gt;flex-flow&lt;/code&gt;来同时表示&lt;code&gt;flex-direction&lt;/code&gt;和&lt;code&gt;flex-wrap&lt;/code&gt;第一个属性指的是&lt;code&gt;flex-direction&lt;/code&gt;, 第二属性表示&lt;code&gt;flex-wrap&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;flex-flow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;flex-direction&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;flex-wrap&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;示例&lt;/h4&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;260&quot; src=&quot;/embed/flex/flex-flow.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h3&gt;对齐方法&lt;/h3&gt;
+
+&lt;h4&gt;水平对齐&lt;/h4&gt;
+
+&lt;p&gt;我们用&lt;code&gt;justify-content&lt;/code&gt;来指定flex-item在主坐标轴方向(main axis)的对齐方式.
+这个属性类似于我们平时用的&lt;code&gt;text-align&lt;/code&gt;. 不过需要注意的是, 当&lt;code&gt;flex-direction&lt;/code&gt;为&lt;code&gt;row-reverse&lt;/code&gt;时, &lt;code&gt;justify-content: flex-end&lt;/code&gt;实际为左对齐(因内容方向由右及左, end方向在左边---命名果然很科学!)
+&lt;code&gt;space-around&lt;/code&gt;和&lt;code&gt;space-between&lt;/code&gt;的区别在于空白均匀是否包含边界。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;justify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;around&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;水平对齐示例&lt;/h5&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;400&quot; src=&quot;/embed/flex/flex-justify.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;单行垂直对齐&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;align-items&lt;/code&gt;表示单行情况下垂直方向(cross axis)的对齐方式, 默认情况下是&lt;code&gt;stretch&lt;/code&gt;, 即充满整个父级的高度. 无对齐一言, 多行时起作用为&lt;code&gt;align-content&lt;/code&gt;(默认: space-between)。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;baseline&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stretch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;单行垂直对齐示例&lt;/h5&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;230&quot; src=&quot;/embed/flex/flex-align-items.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;多行垂直对齐&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;align-content&lt;/code&gt;多行情况下内容的垂直(cross axis)对齐方式, 当内容只有当行时起作用的是&lt;code&gt;align-items&lt;/code&gt;,可以把它当成垂直方向的&lt;code&gt;justify-content&lt;/code&gt;。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;between&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;around&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;280&quot; src=&quot;/embed/flex/flex-align-content.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h2&gt;Flex Item的相关属性&lt;/h2&gt;
+
+&lt;h3&gt;顺序&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;order&lt;/code&gt;, 可以理解成&lt;code&gt;z-index&lt;/code&gt;可为负值&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;order示例&lt;/h4&gt;
+
+&lt;p&gt;此时flex-item中html的书写顺序, 不影响显示的顺序
+&lt;iframe width=&quot;100%&quot; height=&quot;130&quot; src=&quot;/embed/flex/flex-order.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+&lt;h3&gt;flex item&lt;/h3&gt;
+
+&lt;h4&gt;flex-basis&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;flex-basis&lt;/code&gt;指定flex item的初始宽度, 缺省情况下是0, auto表示取决于内容.
+比如当我们设置&lt;code&gt;flex-basis&lt;/code&gt;为10px, 此时如果父级的空间足够, 那么flex item的宽度即为10px.
+不够则按照flex item个数进行均分。 &lt;code&gt;flex-basis&lt;/code&gt;支持百分比写法, 相较于父级元素, 100%为等同于父级元素宽度.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;flex-grow&lt;/h4&gt;
+
+&lt;p&gt;当&lt;code&gt;flex-basis&lt;/code&gt;足够分配, 父元素将有一部分多余的正空间, 那么这部分多余空间在分配时, &lt;code&gt;flex-grow&lt;/code&gt;为2的元素将比&lt;code&gt;flex-grow&lt;/code&gt;为1的元素的多得到两倍的空间, 假如设置&lt;code&gt;flex-basis&lt;/code&gt;不足分配, 则按照flex item个数进行均分。&lt;/p&gt;
+
+&lt;h4&gt;flex-shrink&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;flex-shrink&lt;/code&gt;的默认值为1, 它只有在设置&lt;code&gt;flex-basis&lt;/code&gt;不足分配时才有作用. 在分配这些负的空间时
+&lt;code&gt;flex-shrink&lt;/code&gt;为2的元素将比&lt;code&gt;flex-shrink&lt;/code&gt;为1的元素的分配两倍的负空间。&lt;/p&gt;
+
+&lt;h4&gt;简写&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;flex-grow&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;flex-shrink&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;flex-basis&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;flex item示例&lt;/h4&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;160&quot; src=&quot;/embed/flex/flex-item.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h3&gt;独自的对齐方式&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;align-self&lt;/code&gt; 独自的对齐方式, 相较于父级的align-items而言. 如果发生换行, 将在其所在的那一行起作用.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;baseline&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stretch&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;独自对齐示例&lt;/h4&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;170&quot; src=&quot;/embed/flex/flex-align-self.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;参考文档:&lt;/p&gt;
+
+&lt;p&gt;[1] https://css-tricks.com/snippets/css/a-guide-to-flexbox/&lt;/p&gt;
+
+&lt;p&gt;[2] https://css-tricks.com/almanac/properties/f/flex-grow/&lt;/p&gt;
+
+&lt;p&gt;[3] https://css-tricks.com/almanac/properties/f/flex-shrink/&lt;/p&gt;
+</description>
+        <pubDate>Fri, 06 Feb 2015 00:00:00 +0800</pubDate>
+        <link>/css/flex</link>
+        <guid isPermaLink="true">/css/flex</guid>
+        
+        
+        <category>css</category>
+        
+      </item>
+    
+      <item>
+        <title>grunt简介</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://www.gruntjs.org/img/grunt-logo.png&quot; alt=&quot;Grunt&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;glup&lt;/code&gt;党, 文章写于过去, 只做简单迁移.&lt;/p&gt;
+
+&lt;h2&gt;安装 grunt-cli&lt;/h2&gt;
+
+&lt;p&gt;在使用grunt前，首先要安装 &lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;, 其次安装grunt-cli&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;npm install -g grunt-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;grunt主程序和插件&lt;/h3&gt;
+
+&lt;p&gt;接下来根据项目需要安装安装grunt主程序和插件&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# npm install xx -S 会保存到package.json dependencies下&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# npm install xx --save-dev 保存到package.json devDependencies下&lt;/span&gt;
+npm install grunt --save-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;grunt-init&lt;/h3&gt;
+
+&lt;p&gt;为了方便使用，我们一帮会安装一些grunt模板 (项目脚手架)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# 使用模板之前，安装脚手架工具&lt;/span&gt;
+npm install -g grunt-init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;安装模板&lt;/h3&gt;
+
+&lt;p&gt;模板文件一般保存在~/.grunt-init目录中&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# jquery&lt;/span&gt;
+git clone https://github.com/gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
+&lt;span class=&quot;c&quot;&gt;# base grunt file&lt;/span&gt;
+git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;使用模板&lt;/h3&gt;
+
+&lt;p&gt;通过使用grunt-init [已安装模板名称] 来使用相应的模板&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grunt-init gruntfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;grunt插件&lt;/h2&gt;
+
+&lt;h3&gt;自动载入插件&lt;/h3&gt;
+
+&lt;p&gt;默认情况下，grunt提供的载入插件的命令是：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grunt.loadNpmTasks&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-concat&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;每安装一个插件都要手动加载一遍，实在是太stupid, 我们可以安装一个自动加载插件的插件&lt;code&gt;load-grunt-tasks&lt;/code&gt;,安装和使用比较简单：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;npm install load-grunt-tasks --save-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后在Gruntfile.js的开头加入&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;load-grunt-tasks&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;注：使用&lt;code&gt;load-grunt-tasks&lt;/code&gt;的插件需要保存在&lt;code&gt;package.json&lt;/code&gt;中&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;参考文档:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://nodejs.org/&quot;&gt;1&lt;/a&gt;  http://www.gruntjs.org/&lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Jan 2014 00:00:00 +0800</pubDate>
+        <link>/posts/tools/grunt</link>
+        <guid isPermaLink="true">/posts/tools/grunt</guid>
+        
+        <category>grunt</category>
+        
+        <category>tools</category>
+        
+        
+        <category>posts</category>
+        
+        <category>tools</category>
+        
+      </item>
+    
+  </channel>
+</rss>

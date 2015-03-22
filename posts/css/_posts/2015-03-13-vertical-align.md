@@ -35,7 +35,7 @@ vertical-align有很多限制, 它只作用于inline, inline-block及table-cell�
 </div>
 ```
 #### CSS
-```css
+```
 .center-wrap {
   text-align: center;
   font-size: 0;
