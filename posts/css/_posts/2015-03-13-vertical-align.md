@@ -12,10 +12,12 @@ tags: ['css']
 ## 使用vertical-align来垂直居中
 
 vertical-align有很多限制, 它只作用于inline, inline-block及table-cell上, 既然如此,
-我们怎么普遍意义上使用vertical-align来垂直居中元素呢, 先看实现效果：
+我们怎么在普遍意义上使用vertical-align来垂直居中元素呢, 先看实现效果：
 
 ### 实现效果
 <iframe width="300" height="240" src="/embed/vertical-align/vertical-align.html" frameborder="0" allowfullscreen></iframe>
+
+弱弱的说一声, 其实这个同心圆是响应式的:)
 
 ### 相关代码
 
@@ -73,8 +75,52 @@ vertical-align有很多限制, 它只作用于inline, inline-block及table-cell�
 
 ## 使用flex垂直居中
 
-未完待续...
+使用此法布局比较简单, 只要设置`display`, `align-items`, `justify-content`三个属性就可以了.有关flex布局的详情, 可以参阅鄙人的[flex 布局](http://linkarys.github.io//css/flex/).
+此处只列出最终实现代码和实现效果
 
+### 实现效果&nbsp;
+<iframe width="300" height="240" src="/embed/vertical-align/vertical-align-flex.html" frameborder="0" allowfullscreen></iframe>
+
+### 相关代码&nbsp;
+#### HTML&nbsp;
+```html
+<div class="flex-container ct">
+  <div class="flex-item cs flex-container">
+      <div class="flex-item cg flex-container">
+        Lorem ipsum dolor sit amet.
+      </div>
+  </div>
+</div>
+```
+
+#### CSS&nbsp;
+
+```css{2-4}
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 60%;
+  }
+
+.flex-container:after {
+  padding-top: 100%;
+  content: " ";
+  display: block;
+}
+
+.flex-item {
+  width: 70%;
+  border-radius: 50%;
+}
+
+.flex-item:after {
+  padding-top: 100%;
+  content: " ";
+  display: block;
+}
+```
 
 参考资料:
 
