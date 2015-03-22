@@ -2,66 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-    header {
-      color: #5d5d5d;
-      margin-bottom: 10px;
-      font-weight: bold;
-      text-align: center;
-      /*border-bottom: solid 1px #ccc;*/
-    }
-
-    .section {
-      padding: 10px;
-      border: solid 1px #ccc;
-      margin: 4px 0;
-    }
-
-    .flex-container {
-      display: flex;
-    }
-
-    .flex-row-wrap {
-      flex-flow: row wrap;
-    }
-
-    .flex-justify-start {
-      justify-content: flex-start;
-    }
-
-    .flex-justify-space-between {
-      justify-content: space-between;
-    }
-
-    .flex-justify-space-around {
-      justify-content: space-around;
-    }
-
-   .flex-justify-end {
-      justify-content: flex-end;
-    }
-
-    .flex-item {
-      padding: 20px;
-      border: solid 1px #fff;
-    }
-
-    .ct {
-      background: tomato;
-    }
-
-    .cs {
-      background: steelblue;
-    }
-
-  </style>
+  <link rel="stylesheet" href="flex-style.css">
 </head>
-<body>
+<body id="flex-justify">
   <section class="section">
     <header>flex-justify: flex-start</header>
     <div class="flex-container flex-justify-start">
