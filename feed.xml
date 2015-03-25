@@ -5,8 +5,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Mar 2015 18:03:47 +0800</pubDate>
-    <lastBuildDate>Wed, 25 Mar 2015 18:03:47 +0800</lastBuildDate>
+    <pubDate>Wed, 25 Mar 2015 18:25:09 +0800</pubDate>
+    <lastBuildDate>Wed, 25 Mar 2015 18:25:09 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -98,6 +98,8 @@
 
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;内层函数当成普通函数处理&lt;/p&gt;
+
 &lt;p&gt;未完待续...&lt;/p&gt;
 
 &lt;p&gt;参考:&lt;br/&gt;
