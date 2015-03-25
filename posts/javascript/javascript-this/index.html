@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>javascript this值的探讨</title>
+  <meta name="description" content="关于这个问题, 网上已有很有文章.本篇将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/javascript-this">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">javascript this值的探讨</h1>
+    <p class="post-meta">Mar 25, 2015 • linkarys</p>
+    <div class="tag-groups">
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-this">javascript</span>
+        
+      
+    </div>
+  </header>
+
+  <article class="post-content">
+    <p>关于这个问题, 网上已有很有文章.<br>
+本篇将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。</p>
+
+<h2>原则</h2>
+
+<ul>
+<li>this值的确定是执行上下文环境的一部分</li>
+<li>执行全局代码时，会产生一个执行上下文环境 --&gt; 指向顶层对象(浏览器环境指向window)</li>
+<li>只有在执行上下文环境发生改变时this才会发生改变</li>
+<li>有且仅有调用函数才会产生新的执行上下文环境 --&gt; this指向调用这个函数的对象</li>
+<li>使用new构造对象时, this指向新创建的对象</li>
+</ul>
+
+<p>还有一条:</p>
+
+<ul>
+<li><code>call, apply, bind</code>可动态改变this值</li>
+</ul>
+
+<h2>实例</h2>
+
+<h3>全局环境</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">a</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+  <span class="nx">b</span><span class="o">:</span> <span class="k">this</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">b</span><span class="p">);</span>
+
+<span class="c1">// window in browser / {} in nodejs.</span>
+</code></pre></div>
+<p>没有函数调用, 上下文环境没有发生改变, 此时上下为一开始执行全局代码确定的, this指向顶层对象(浏览器环境指向window)</p>
+
+<h3>方法调用</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+
+<span class="c1">// foo</span>
+</code></pre></div>
+<p>bar调用时, 上下文发生改变, this重新赋值, 指向调用者foo</p>
+
+<h3>普通函数调用</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// window in browser / {} in nodejs</span>
+</code></pre></div>
+<p>可以理解成window.foo();</p>
+
+<h3>函数作为事件处理程序</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 当点击页面时log body的DOM对象</span>
+</code></pre></div>
+<p>上下文改变, onclick事件是由body触发的(fire), 因此this指向body的DOM对象</p>
+
+<h3>构造函数</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+
+<span class="c1">// foo</span>
+</code></pre></div>
+<p>this指向新对象foo本身</p>
+
+<h3>函数嵌套</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">method</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">test</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">.</span><span class="nx">method</span><span class="p">();</span>
+
+<span class="c1">// window in browser / {} in nodejs</span>
+</code></pre></div>
+<p>未完待续...</p>
+
+<p>参考:<br/>
+[1] <a href="http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent">stackoverflow: in javascript why is the this operator inconsistent</a><br/>
+[2] <a href="http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this">JavaScript-Garden</a><br/>
+[3] <a href="http://javascript.ruanyifeng.com/oop/basic.html#toc5">ruanyifeng blog: oop</a></p>
+
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>

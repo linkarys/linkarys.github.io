@@ -13,7 +13,15 @@
   <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
 </head>
 
-
+  <style>
+    #canvas {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      z-index: -1;
+    }
+  </style>
   <body>
 
     <header class="site-header">
@@ -110,6 +118,8 @@
           <head class="title">Recent Posts</head>
           <ul class="list">
               
+                  <li><a href="/posts/javascript/javascript-this" title="javascript this值的探讨" rel="bookmark">javascript this值的探讨</a></li>
+              
                   <li><a href="/posts/css/vertical-align" title="非固定高度元素的垂直居中" rel="bookmark">非固定高度元素的垂直居中</a></li>
               
                   <li><a href="/javascript/build-javascript-with-sublime-text" title="build javascript with sublime text" rel="bookmark">build javascript with sublime text</a></li>
@@ -122,6 +132,10 @@
       </aside>
 
     </div>
+
+    <canvas id="canvas"></canvas>
+    <script src="/assets/scripts/vendor/space.js"></script>
+    <script src="/assets/scripts/index.js"></script>
 
     <footer class="site-footer">
 
