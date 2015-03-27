@@ -198,10 +198,17 @@ console.log(obj.b);
 <p>this指向新对象foo本身</p>
 
 <h3>嵌套函数</h3>
+
+<p>这个是需要注意的地方, 内层函数当成普通函数处理, 其内部的this将指向顶层对象.</p>
+
+<blockquote>
+<p>这被认为是JavaScript语言另一个错误设计的地方, 因为它从来就没有实际的用途</p>
+</blockquote>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">method</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="c1">// 此时的this指向顶层对象</span>
     <span class="p">}</span>
     <span class="nx">test</span><span class="p">();</span>
   <span class="p">}</span>
@@ -211,21 +218,21 @@ console.log(obj.b);
 
 <span class="c1">// window in browser / {} in nodejs</span>
 </code></pre></div>
-<p>内层函数当成普通函数处理, 这相当于：</p>
+<p>如果希望内部引用foo, 可以采用下面的写法:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
 <span class="nx">foo</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
   <span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
-     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">self</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="nx">test</span><span class="p">();</span>
 <span class="p">};</span>
 
 <span class="nx">foo</span><span class="p">.</span><span class="nx">method</span><span class="p">();</span>
 
-<span class="c1">// window in browser / {} in nodejs</span>
+<span class="c1">// foo</span>
 </code></pre></div>
-<p>在method函数表达式定义的时候(注: 此处没有调用)，执行上下文没有发生改变。 内部代码相当于一个普通函数, 因此this的值还是顶层对象。</p>
-
 <p>参考:<br/>
 [1] <a href="http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent">stackoverflow: in javascript why is the this operator inconsistent</a><br/>
 [2] <a href="http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this">JavaScript-Garden</a><br/>
