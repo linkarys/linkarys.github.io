@@ -5,8 +5,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Mar 2015 12:08:03 +0800</pubDate>
-    <lastBuildDate>Fri, 27 Mar 2015 12:08:03 +0800</lastBuildDate>
+    <pubDate>Fri, 27 Mar 2015 13:08:45 +0800</pubDate>
+    <lastBuildDate>Fri, 27 Mar 2015 13:08:45 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -124,23 +124,20 @@ console.log(obj.b);
 
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;相当于：
-```javascript
-var foo = new Object();
-foo.method = function() {
-  function test() {
-     console.log(this);
-  }
-  test();
-};&lt;/p&gt;
+&lt;p&gt;内层函数当成普通函数处理, 这相当于：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
-&lt;p&gt;foo.method();&lt;/p&gt;
+&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
-&lt;p&gt;// window in browser / {} in nodejs
-```
-内层函数当成普通函数处理&lt;/p&gt;
-
-&lt;p&gt;未完待续...&lt;/p&gt;
+&lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在method函数表达式定义的时候(注: 此处没有调用)，执行上下文没有发生改变。 内部代码相当于一个普通函数, 因此this的值还是顶层对象。&lt;/p&gt;
 
 &lt;p&gt;参考:&lt;br/&gt;
 [1] &lt;a href=&quot;http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent&quot;&gt;stackoverflow: in javascript why is the this operator inconsistent&lt;/a&gt;&lt;br/&gt;

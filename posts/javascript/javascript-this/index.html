@@ -211,23 +211,20 @@ console.log(obj.b);
 
 <span class="c1">// window in browser / {} in nodejs</span>
 </code></pre></div>
-<p>相当于：
-```javascript
-var foo = new Object();
-foo.method = function() {
-  function test() {
-     console.log(this);
-  }
-  test();
-};</p>
+<p>内层函数当成普通函数处理, 这相当于：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">test</span><span class="p">();</span>
+<span class="p">};</span>
 
-<p>foo.method();</p>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">method</span><span class="p">();</span>
 
-<p>// window in browser / {} in nodejs
-```
-内层函数当成普通函数处理</p>
-
-<p>未完待续...</p>
+<span class="c1">// window in browser / {} in nodejs</span>
+</code></pre></div>
+<p>在method函数表达式定义的时候(注: 此处没有调用)，执行上下文没有发生改变。 内部代码相当于一个普通函数, 因此this的值还是顶层对象。</p>
 
 <p>参考:<br/>
 [1] <a href="http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent">stackoverflow: in javascript why is the this operator inconsistent</a><br/>
