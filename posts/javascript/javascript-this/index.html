@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>javascript this值的探讨</title>
-  <meta name="description" content="关于这个问题, 网上已有很有文章.本篇将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。">
+  <meta name="description" content="关于这个问题, 网上已有很有文章.本文将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。">
   <link rel="stylesheet" href="/assets/styles/main.css">
   <link rel="canonical" href="/posts/javascript/javascript-this">
   <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
@@ -99,22 +99,27 @@
 
   <article class="post-content">
     <p>关于这个问题, 网上已有很有文章.<br>
-本篇将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。</p>
+本文将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。</p>
 
 <h2>原则</h2>
 
 <ul>
 <li>this值的确定是执行上下文环境的一部分</li>
-<li>执行全局代码时，会产生一个执行上下文环境 --&gt; 指向顶层对象(浏览器环境指向window)</li>
 <li>只有在执行上下文环境发生改变时this才会发生改变</li>
-<li>有且仅有调用函数才会产生新的执行上下文环境 --&gt; this指向调用这个函数的对象</li>
+<li>在执行一个代码段之前会生成新的执行上下文环境, 具体包含以下三种情况
+
+<ul>
+<li>执行全局代码 --&gt; <strong>此时this指向顶层对象(浏览器环境指向window)</strong></li>
+<li>函数调用(本质 new Function(&quot;代码文本&quot;)) --&gt; <strong>此时this指向调用这个函数的对象</strong></li>
+<li>eval(&quot;代码文本&quot;)</li>
+</ul></li>
 <li>使用new构造对象时, this指向新创建的对象</li>
 </ul>
 
 <p>还有一条:</p>
 
 <ul>
-<li><code>call, apply, bind</code>可动态改变this值</li>
+<li><code>call, apply, bind</code>可动态改变this值(本文不讨论这种情况)</li>
 </ul>
 
 <h2>实例</h2>
@@ -128,7 +133,14 @@
 
 <span class="c1">// window in browser / {} in nodejs.</span>
 </code></pre></div>
-<p>没有函数调用, 上下文环境没有发生改变, 此时上下为一开始执行全局代码确定的, this指向顶层对象(浏览器环境指向window)</p>
+<p>以上代码相当于:
+<code>
+var obj = new Object();
+obj.a = &#39;foo&#39;;
+obj.b = this;
+console.log(obj.b);
+</code>
+容易看出这是在执行全局代码，this指向顶层对象(浏览器环境指向window)</p>
 
 <h3>方法调用</h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
@@ -150,7 +162,21 @@
 
 <span class="c1">// window in browser / {} in nodejs</span>
 </code></pre></div>
-<p>可以理解成window.foo();</p>
+<p>可以理解成<code>window.foo();</code>,  指向调用者window。</p>
+
+<p>这个还有以下变种:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">bar</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">;</span>
+<span class="nx">bar</span><span class="p">();</span>
+
+<span class="c1">// window in browser / {} in nodejs.</span>
+</code></pre></div>
+<p>道理同上, 可以理解成<code>window.bar();</code>, 指向调用者window</p>
 
 <h3>函数作为事件处理程序</h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">){</span>
@@ -171,7 +197,7 @@
 </code></pre></div>
 <p>this指向新对象foo本身</p>
 
-<h3>函数嵌套</h3>
+<h3>嵌套函数</h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">method</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
@@ -185,14 +211,29 @@
 
 <span class="c1">// window in browser / {} in nodejs</span>
 </code></pre></div>
-<p>内层函数当成普通函数处理</p>
+<p>相当于：
+```javascript
+var foo = new Object();
+foo.method = function() {
+  function test() {
+     console.log(this);
+  }
+  test();
+};</p>
+
+<p>foo.method();</p>
+
+<p>// window in browser / {} in nodejs
+```
+内层函数当成普通函数处理</p>
 
 <p>未完待续...</p>
 
 <p>参考:<br/>
 [1] <a href="http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent">stackoverflow: in javascript why is the this operator inconsistent</a><br/>
 [2] <a href="http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this">JavaScript-Garden</a><br/>
-[3] <a href="http://javascript.ruanyifeng.com/oop/basic.html#toc5">ruanyifeng blog: oop</a></p>
+[3] <a href="http://javascript.ruanyifeng.com/oop/basic.html#toc5">ruanyifeng blog: oop</a><br/>
+[4] <a href="http://www.cnblogs.com/wangfupeng1988/p/4001284.html">wangfupeng blog</a></p>
 
   </article>
 

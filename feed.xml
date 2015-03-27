@@ -5,29 +5,34 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Mar 2015 18:25:09 +0800</pubDate>
-    <lastBuildDate>Wed, 25 Mar 2015 18:25:09 +0800</lastBuildDate>
+    <pubDate>Fri, 27 Mar 2015 12:08:03 +0800</pubDate>
+    <lastBuildDate>Fri, 27 Mar 2015 12:08:03 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>javascript this值的探讨</title>
         <description>&lt;p&gt;关于这个问题, 网上已有很有文章.&lt;br&gt;
-本篇将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。&lt;/p&gt;
+本文将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。&lt;/p&gt;
 
 &lt;h2&gt;原则&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;this值的确定是执行上下文环境的一部分&lt;/li&gt;
-&lt;li&gt;执行全局代码时，会产生一个执行上下文环境 --&amp;gt; 指向顶层对象(浏览器环境指向window)&lt;/li&gt;
 &lt;li&gt;只有在执行上下文环境发生改变时this才会发生改变&lt;/li&gt;
-&lt;li&gt;有且仅有调用函数才会产生新的执行上下文环境 --&amp;gt; this指向调用这个函数的对象&lt;/li&gt;
+&lt;li&gt;在执行一个代码段之前会生成新的执行上下文环境, 具体包含以下三种情况
+
+&lt;ul&gt;
+&lt;li&gt;执行全局代码 --&amp;gt; &lt;strong&gt;此时this指向顶层对象(浏览器环境指向window)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;函数调用(本质 new Function(&amp;quot;代码文本&amp;quot;)) --&amp;gt; &lt;strong&gt;此时this指向调用这个函数的对象&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;eval(&amp;quot;代码文本&amp;quot;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;使用new构造对象时, this指向新创建的对象&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;还有一条:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;call, apply, bind&lt;/code&gt;可动态改变this值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;call, apply, bind&lt;/code&gt;可动态改变this值(本文不讨论这种情况)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2&gt;实例&lt;/h2&gt;
@@ -41,7 +46,14 @@
 
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;没有函数调用, 上下文环境没有发生改变, 此时上下为一开始执行全局代码确定的, this指向顶层对象(浏览器环境指向window)&lt;/p&gt;
+&lt;p&gt;以上代码相当于:
+&lt;code&gt;
+var obj = new Object();
+obj.a = &amp;#39;foo&amp;#39;;
+obj.b = this;
+console.log(obj.b);
+&lt;/code&gt;
+容易看出这是在执行全局代码，this指向顶层对象(浏览器环境指向window)&lt;/p&gt;
 
 &lt;h3&gt;方法调用&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -63,7 +75,21 @@
 
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;可以理解成window.foo();&lt;/p&gt;
+&lt;p&gt;可以理解成&lt;code&gt;window.foo();&lt;/code&gt;,  指向调用者window。&lt;/p&gt;
+
+&lt;p&gt;这个还有以下变种:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;道理同上, 可以理解成&lt;code&gt;window.bar();&lt;/code&gt;, 指向调用者window&lt;/p&gt;
 
 &lt;h3&gt;函数作为事件处理程序&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
@@ -84,7 +110,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;this指向新对象foo本身&lt;/p&gt;
 
-&lt;h3&gt;函数嵌套&lt;/h3&gt;
+&lt;h3&gt;嵌套函数&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -98,14 +124,29 @@
 
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;内层函数当成普通函数处理&lt;/p&gt;
+&lt;p&gt;相当于：
+```javascript
+var foo = new Object();
+foo.method = function() {
+  function test() {
+     console.log(this);
+  }
+  test();
+};&lt;/p&gt;
+
+&lt;p&gt;foo.method();&lt;/p&gt;
+
+&lt;p&gt;// window in browser / {} in nodejs
+```
+内层函数当成普通函数处理&lt;/p&gt;
 
 &lt;p&gt;未完待续...&lt;/p&gt;
 
 &lt;p&gt;参考:&lt;br/&gt;
 [1] &lt;a href=&quot;http://stackoverflow.com/questions/80084/in-javascript-why-is-the-this-operator-inconsistent&quot;&gt;stackoverflow: in javascript why is the this operator inconsistent&lt;/a&gt;&lt;br/&gt;
 [2] &lt;a href=&quot;http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this&quot;&gt;JavaScript-Garden&lt;/a&gt;&lt;br/&gt;
-[3] &lt;a href=&quot;http://javascript.ruanyifeng.com/oop/basic.html#toc5&quot;&gt;ruanyifeng blog: oop&lt;/a&gt;&lt;/p&gt;
+[3] &lt;a href=&quot;http://javascript.ruanyifeng.com/oop/basic.html#toc5&quot;&gt;ruanyifeng blog: oop&lt;/a&gt;&lt;br/&gt;
+[4] &lt;a href=&quot;http://www.cnblogs.com/wangfupeng1988/p/4001284.html&quot;&gt;wangfupeng blog&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 25 Mar 2015 00:00:00 +0800</pubDate>
         <link>/posts/javascript/javascript-this</link>
