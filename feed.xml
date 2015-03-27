@@ -5,8 +5,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Mar 2015 13:20:23 +0800</pubDate>
-    <lastBuildDate>Fri, 27 Mar 2015 13:20:23 +0800</lastBuildDate>
+    <pubDate>Fri, 27 Mar 2015 13:22:00 +0800</pubDate>
+    <lastBuildDate>Fri, 27 Mar 2015 13:22:00 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -112,7 +112,7 @@ console.log(obj.b);
 
 &lt;h3&gt;嵌套函数&lt;/h3&gt;
 
-&lt;p&gt;这个是需要注意的地方, 内层函数当成普通函数处理, 其内部的this将指向顶层对象.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是需要注意的地方, 内层函数应当成普通函数处理, 其内部的this将指向顶层对象.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;这被认为是JavaScript语言另一个错误设计的地方, 因为它从来就没有实际的用途&lt;/p&gt;
