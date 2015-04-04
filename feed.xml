@@ -5,9 +5,138 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Mar 2015 13:22:00 +0800</pubDate>
-    <lastBuildDate>Fri, 27 Mar 2015 13:22:00 +0800</lastBuildDate>
+    <pubDate>Sat, 04 Apr 2015 17:52:09 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Apr 2015 17:52:09 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>javascrip原型链</title>
+        <description>&lt;p&gt;我们从一道题目开始:&lt;/p&gt;
+
+&lt;p&gt;请说出以下代码的执行结果&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以上所有结果都是true. 要解释上的结果我们需要知道两点:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;instanceof是怎么计算的&lt;/li&gt;
+&lt;li&gt;javascript的原型链&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;知识准备&lt;/h2&gt;
+
+&lt;p&gt;首先要明确构造函数本身并不使用自身的prototype属性, 这个属性是给它的实例对象用的, 而构造函数本身又是一个对象, 所以它会使用它的构造函数的prototype属性(-_-..)&lt;/p&gt;
+
+&lt;h3&gt;instanceof&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;就是说, 只要右侧构造函数的prototype属性能在左侧的对象的原型链中找到, 那么就返回true, 否则就返回false.&lt;/p&gt;
+
+&lt;h3&gt;javascript原型链&lt;/h3&gt;
+
+&lt;p&gt;首先我们要知道在实例对象的原型 (&lt;strong&gt;[[Prototype]]&lt;/strong&gt;, 说明: 下文的&lt;strong&gt;[[Prototype]]&lt;/strong&gt;和&lt;code&gt;__proto__&lt;/code&gt;指同一个东西) 是指向其构造函数的prototype属性的, 而构造的函数的prototype属性又可以当成另一个实例对象, 这个实例对象的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;)又指向其构造函数的prototype属性, 如此反复一直到达世界的尽头: &lt;strong&gt;Object.prototype&lt;/strong&gt;(&lt;code&gt;Object.prototype.__proto__&lt;/code&gt;指向&lt;code&gt;null&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;知道了这一点就可以祭出下面这张著名的图了:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/javascript-object-layout.jpg&quot; alt=&quot;javascript object layout&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;注: 图中的&lt;code&gt;__proto__&lt;/code&gt;指的即是实例对象的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;), 它是一个私有属性, 现代浏览器中将其暴露给用户, 我们可以通过修改这个值来改变继承关系&lt;/p&gt;
+
+&lt;h2&gt;分析&lt;/h2&gt;
+
+&lt;p&gt;上面的图一时没看清也没关系，我们来具体分析一下。&lt;/p&gt;
+
+&lt;h3&gt;x instanceof Function&lt;/h3&gt;
+
+&lt;p&gt;Object, Number, String, Array, Function(恩！包括它自己), Date等都属于构造函数, 而所有构造函数都是由Function创建的, 所以它的原型(&lt;code&gt;__proto__&lt;/code&gt;)指向Function.prototype。所以对于Object instanceof Function,  Function instanceof Function, 根据instanceof的定义此处应当返回true&lt;/p&gt;
+
+&lt;h3&gt;x instanceof Object&lt;/h3&gt;
+
+&lt;p&gt;我们已经知道构造函数(Object, Function等)的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;)指向Function.prototype,
+而Function.prototype是一个函数对象，这个函数对象的&lt;code&gt;__proto__&lt;/code&gt;指向Object.prototype. 因此对于Object instanceof Object, Function instanceof Object, 右侧Object.prototype可以在左侧的原型链中找到，计算结果为true&lt;/p&gt;
+
+&lt;p&gt;这边需要注意的是Function.prototype并不是我们所以为的普通对象, 而是一个函数对象，具体看下图:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/function-prototype.png&quot; alt=&quot;function prototype&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;注: 以上为v8引擎的执行结果&lt;/p&gt;
+
+&lt;p&gt;所有构造函数中,只有Function的prototype属性是函数, 至于为什么, 我也不知道, 导演就是这么安排的—__—!! 详细请移步:
+&lt;a href=&quot;http://es5.github.io/#x15.3.4&quot;&gt;Properties of the Function Prototype Object&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;有人说这是为了一致性, &lt;strong&gt;因为Number.Prototye是个Number对象, String.Prototype是个String对象, 以此类推, Function.Prototype当然要是个Funciton对象&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;练习&lt;/h2&gt;
+
+&lt;p&gt;OK, 好像都懂了, 看看以下代码的执行结果是什么?&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;Foo.__proto__&lt;/code&gt;为Function.prototype, 再往上就是Object.prototype, 无法找到Foo.prototype, 因此返回false&lt;/p&gt;
+
+&lt;p&gt;再看:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;This is a simple string&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;str并非是通过其构造函数&lt;strong&gt;String&lt;/strong&gt;创建的, 其&lt;strong&gt;[[Prototype]]&lt;/strong&gt;未定义, 因此返回结果false.(这里说&lt;strong&gt;[[Prototype]]&lt;/strong&gt;未定义可能会有误解, 因为实际我们在控制台中打印&lt;code&gt;str.__proto__&lt;/code&gt;是有值的, 而且就是String.prototype, 这是其实是因为js在访问str属性时创建了一个临时的String对象(假设叫tmpStr), 此处我们看到的只是&lt;code&gt;tmpStr.__proto__&lt;/code&gt;的值)&lt;/p&gt;
+
+&lt;p&gt;再来:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;结果是什么? false? naive! true! 至于为什么呢？
+看下面一段话:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;However, objects created with the object literal notation are an exception here: Although the prototype is undefined, instanceof Object returns true.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;其实对于&lt;strong&gt;String&lt;/strong&gt;, &lt;strong&gt;Number&lt;/strong&gt;, &lt;strong&gt;Boolean&lt;/strong&gt;三种基础类型的字面声明, 类似的instanceof的计算返回都为false:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;bln&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bln&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;而对于其它类型, 即便是通过字面值声明其返回值也是true, 即:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;reg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/test/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;RegExp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考链接:&lt;br/&gt;
+[1] http://stackoverflow.com/questions/7688902/what-is-functions-proto&lt;br/&gt;
+[2] http://www.mollypages.org/misc/js.mp&lt;br/&gt;
+[3] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Apr 2015 00:00:00 +0800</pubDate>
+        <link>/posts/javascript/javascript-prototype</link>
+        <guid isPermaLink="true">/posts/javascript/javascript-prototype</guid>
+        
+        <category>javascript</category>
+        
+        <category>prototype</category>
+        
+        
+        <category>posts</category>
+        
+        <category>javascript</category>
+        
+      </item>
     
       <item>
         <title>javascript this值的探讨</title>
@@ -17,7 +146,7 @@
 &lt;h2&gt;原则&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;this值的确定是执行上下文环境的一部分&lt;/li&gt;
+&lt;li&gt;this值的确定是执行上下文环境(Execution context)的一部分&lt;/li&gt;
 &lt;li&gt;只有在执行上下文环境发生改变时this才会发生改变&lt;/li&gt;
 &lt;li&gt;在执行一个代码段之前会生成新的执行上下文环境, 具体包含以下三种情况
 

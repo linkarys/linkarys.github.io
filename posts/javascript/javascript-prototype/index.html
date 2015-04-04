@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>javascrip原型链</title>
+  <meta name="description" content="我们从一道题目开始:">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/javascript-prototype">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">javascrip原型链</h1>
+    <p class="post-meta">Apr 4, 2015 • linkarys</p>
+    <div class="tag-groups">
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-prototype">javascript</span>
+        
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-prototype">prototype</span>
+        
+      
+    </div>
+  </header>
+
+  <article class="post-content">
+    <p>我们从一道题目开始:</p>
+
+<p>请说出以下代码的执行结果</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Function</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Function</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span>
+</code></pre></div>
+<p>以上所有结果都是true. 要解释上的结果我们需要知道两点:</p>
+
+<ul>
+<li>instanceof是怎么计算的</li>
+<li>javascript的原型链</li>
+</ul>
+
+<h2>知识准备</h2>
+
+<p>首先要明确构造函数本身并不使用自身的prototype属性, 这个属性是给它的实例对象用的, 而构造函数本身又是一个对象, 所以它会使用它的构造函数的prototype属性(-_-..)</p>
+
+<h3>instanceof</h3>
+
+<blockquote>
+<p>The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.</p>
+</blockquote>
+
+<p>就是说, 只要右侧构造函数的prototype属性能在左侧的对象的原型链中找到, 那么就返回true, 否则就返回false.</p>
+
+<h3>javascript原型链</h3>
+
+<p>首先我们要知道在实例对象的原型 (<strong>[[Prototype]]</strong>, 说明: 下文的<strong>[[Prototype]]</strong>和<code>__proto__</code>指同一个东西) 是指向其构造函数的prototype属性的, 而构造的函数的prototype属性又可以当成另一个实例对象, 这个实例对象的原型(<strong>[[Prototype]]</strong>)又指向其构造函数的prototype属性, 如此反复一直到达世界的尽头: <strong>Object.prototype</strong>(<code>Object.prototype.__proto__</code>指向<code>null</code>).</p>
+
+<p><strong>知道了这一点就可以祭出下面这张著名的图了:</strong></p>
+
+<p><img src="/assets/images/javascript-object-layout.jpg" alt="javascript object layout"></p>
+
+<p>注: 图中的<code>__proto__</code>指的即是实例对象的原型(<strong>[[Prototype]]</strong>), 它是一个私有属性, 现代浏览器中将其暴露给用户, 我们可以通过修改这个值来改变继承关系</p>
+
+<h2>分析</h2>
+
+<p>上面的图一时没看清也没关系，我们来具体分析一下。</p>
+
+<h3>x instanceof Function</h3>
+
+<p>Object, Number, String, Array, Function(恩！包括它自己), Date等都属于构造函数, 而所有构造函数都是由Function创建的, 所以它的原型(<code>__proto__</code>)指向Function.prototype。所以对于Object instanceof Function,  Function instanceof Function, 根据instanceof的定义此处应当返回true</p>
+
+<h3>x instanceof Object</h3>
+
+<p>我们已经知道构造函数(Object, Function等)的原型(<strong>[[Prototype]]</strong>)指向Function.prototype,
+而Function.prototype是一个函数对象，这个函数对象的<code>__proto__</code>指向Object.prototype. 因此对于Object instanceof Object, Function instanceof Object, 右侧Object.prototype可以在左侧的原型链中找到，计算结果为true</p>
+
+<p>这边需要注意的是Function.prototype并不是我们所以为的普通对象, 而是一个函数对象，具体看下图:</p>
+
+<p><img src="/assets/images/function-prototype.png" alt="function prototype"></p>
+
+<p>注: 以上为v8引擎的执行结果</p>
+
+<p>所有构造函数中,只有Function的prototype属性是函数, 至于为什么, 我也不知道, 导演就是这么安排的—__—!! 详细请移步:
+<a href="http://es5.github.io/#x15.3.4">Properties of the Function Prototype Object</a></p>
+
+<p>有人说这是为了一致性, <strong>因为Number.Prototye是个Number对象, String.Prototype是个String对象, 以此类推, Function.Prototype当然要是个Funciton对象</strong></p>
+
+<h2>练习</h2>
+
+<p>OK, 好像都懂了, 看看以下代码的执行结果是什么?</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Foo</span> <span class="k">instanceof</span> <span class="nx">Foo</span><span class="p">);</span>        <span class="c1">// false</span>
+</code></pre></div>
+<p><code>Foo.__proto__</code>为Function.prototype, 再往上就是Object.prototype, 无法找到Foo.prototype, 因此返回false</p>
+
+<p>再看:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&quot;This is a simple string&quot;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span> <span class="k">instanceof</span> <span class="nb">String</span><span class="p">);</span>     <span class="c1">// false</span>
+</code></pre></div>
+<p>str并非是通过其构造函数<strong>String</strong>创建的, 其<strong>[[Prototype]]</strong>未定义, 因此返回结果false.(这里说<strong>[[Prototype]]</strong>未定义可能会有误解, 因为实际我们在控制台中打印<code>str.__proto__</code>是有值的, 而且就是String.prototype, 这是其实是因为js在访问str属性时创建了一个临时的String对象(假设叫tmpStr), 此处我们看到的只是<code>tmpStr.__proto__</code>的值)</p>
+
+<p>再来:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span>
+</code></pre></div>
+<p>结果是什么? false? naive! true! 至于为什么呢？
+看下面一段话:</p>
+
+<blockquote>
+<p>However, objects created with the object literal notation are an exception here: Although the prototype is undefined, instanceof Object returns true.</p>
+</blockquote>
+
+<p>其实对于<strong>String</strong>, <strong>Number</strong>, <strong>Boolean</strong>三种基础类型的字面声明, 类似的instanceof的计算返回都为false:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    <span class="nx">bln</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span> <span class="k">instanceof</span> <span class="nb">Number</span><span class="p">);</span>      <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span> <span class="k">instanceof</span> <span class="nb">String</span><span class="p">);</span>      <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bln</span> <span class="k">instanceof</span> <span class="nb">Boolean</span><span class="p">);</span>     <span class="c1">// false</span>
+</code></pre></div>
+<p>而对于其它类型, 即便是通过字面值声明其返回值也是true, 即:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/test/</span><span class="p">,</span>
+    <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">);</span>       <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg</span> <span class="k">instanceof</span> <span class="nb">RegExp</span><span class="p">);</span>      <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span>      <span class="c1">// true</span>
+</code></pre></div>
+<p>参考链接:<br/>
+[1] http://stackoverflow.com/questions/7688902/what-is-functions-proto<br/>
+[2] http://www.mollypages.org/misc/js.mp<br/>
+[3] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof</p>
+
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>
