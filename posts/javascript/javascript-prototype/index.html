@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>Javascrip原型链</title>
+  <title>Javascript原型链</title>
   <meta name="description" content="我们从一道题目开始:">
   <link rel="stylesheet" href="/assets/styles/main.css">
   <link rel="canonical" href="/posts/javascript/javascript-prototype">
@@ -86,7 +86,7 @@
       <div class="page-content">
           <div class="post col-md-9">
               <header class="post-header">
-    <h1 class="post-title">Javascrip原型链</h1>
+    <h1 class="post-title">Javascript原型链</h1>
     <p class="post-meta">Apr 4, 2015 • linkarys</p>
     <div class="tag-groups">
       
@@ -177,7 +177,7 @@
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span> <span class="k">instanceof</span> <span class="nb">String</span><span class="p">);</span>        <span class="c1">// false</span>
 </code></pre></div>
-<p>str并非是通过其构造函数<strong>String</strong>创建的, 其<strong>[[Prototype]]</strong>未定义, 因此返回结果false.(这里说<strong>[[Prototype]]</strong>未定义可能会有误解, 因为实际我们在控制台中打印<code>str.__proto__</code>是有值的, 而且就是String.prototype, 这是其实是因为js在访问str属性时创建了一个临时的String对象(假设叫tmpStr), 此处我们看到的只是<code>tmpStr.__proto__</code>的值)</p>
+<p>str并非是通过其构造函数<strong>String</strong>创建的, 其<strong>[[Prototype]]</strong>未定义, 因此返回结果false.(这里说<strong>[[Prototype]]</strong>未定义可能会有误解, 因为实际我们在控制台中打印<code>str.__proto__</code>是有值的, 而且就是String.prototype, 这其实是因为js在访问str属性时创建了一个临时的String对象(假设叫tmpStr), 并在得到这个返回值的时候销毁临时对象, 而此处我们看到的正是<code>tmpStr.__proto__</code>的值)</p>
 
 <p>再来:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
