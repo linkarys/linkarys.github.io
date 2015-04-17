@@ -627,12 +627,27 @@
   .post-navigator > .nav {
     width: 265px;
     background: #FFF;
-    padding: 6px 0 6px 15px; }
+    padding: 6px 0 6px 15px;
+    position: relative; }
     .post-navigator > .nav.fixed {
       position: fixed;
       top: 0px; }
+  .post-navigator li li > ul {
+    height: 0;
+    opacity: 0; }
+  .post-navigator li li.active > ul {
+    transition: 600ms opacity;
+    height: auto;
+    opacity: 1; }
   .post-navigator .active > a {
-    color: #ee82ee; }
+    font-weight: bold; }
+    .post-navigator .active > a:before {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 4px;
+      height: 20px;
+      border-left: solid 2px #637c84; }
   .post-navigator ul {
     list-style: none;
     margin-left: 0; }
