@@ -109,28 +109,28 @@
     <p><img src="http://www.gruntjs.org/img/grunt-logo.png" alt="Grunt"></p>
 
 <p><code>glup</code>党, 文章写于过去, 只做简单迁移.</p>
-<h2 id="6770a793-cd36-4d4d-b96f-de8ab2f9525f">安装 grunt-cli<a class="anchorjs-link" href="#6770a793-cd36-4d4d-b96f-de8ab2f9525f"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="8dbb45da-c7e7-4101-972c-da54ff0ca771">安装 grunt-cli<a class="anchorjs-link" href="#8dbb45da-c7e7-4101-972c-da54ff0ca771"><span class="anchorjs-icon"></span></a></h2>
 <p>在使用grunt前，首先要安装 <a href="http://nodejs.org/">nodejs</a>, 其次安装grunt-cli</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g grunt-cli
-</code></pre></div><h3 id="46c3abf8-5238-435d-8ef2-25147d551b62">grunt主程序和插件<a class="anchorjs-link" href="#46c3abf8-5238-435d-8ef2-25147d551b62"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="677a744f-521e-49ed-a12c-9cabb90c22c8">grunt主程序和插件<a class="anchorjs-link" href="#677a744f-521e-49ed-a12c-9cabb90c22c8"><span class="anchorjs-icon"></span></a></h3>
 <p>接下来根据项目需要安装安装grunt主程序和插件</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># npm install xx -S 会保存到package.json dependencies下</span>
 <span class="c"># npm install xx --save-dev 保存到package.json devDependencies下</span>
 npm install grunt --save-dev
-</code></pre></div><h3 id="30583731-970e-47f7-a811-dfb0d24ac527">grunt-init<a class="anchorjs-link" href="#30583731-970e-47f7-a811-dfb0d24ac527"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="f1d274d6-36c7-4d05-b6f3-5c941859714c">grunt-init<a class="anchorjs-link" href="#f1d274d6-36c7-4d05-b6f3-5c941859714c"><span class="anchorjs-icon"></span></a></h3>
 <p>为了方便使用，我们一帮会安装一些grunt模板 (项目脚手架)</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 使用模板之前，安装脚手架工具</span>
 npm install -g grunt-init
-</code></pre></div><h3 id="a43b2903-3d77-4f14-941c-a4a29baa547c">安装模板<a class="anchorjs-link" href="#a43b2903-3d77-4f14-941c-a4a29baa547c"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="e64ad1d9-71e1-4511-8ef9-e499fcd9ead0">安装模板<a class="anchorjs-link" href="#e64ad1d9-71e1-4511-8ef9-e499fcd9ead0"><span class="anchorjs-icon"></span></a></h3>
 <p>模板文件一般保存在~/.grunt-init目录中</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># jquery</span>
 git clone https://github.com/gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
 <span class="c"># base grunt file</span>
 git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
-</code></pre></div><h3 id="3d25818a-dffa-495f-8e8b-36e58291945b">使用模板<a class="anchorjs-link" href="#3d25818a-dffa-495f-8e8b-36e58291945b"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="315efa02-f075-4c27-96b2-e80223bbd2c2">使用模板<a class="anchorjs-link" href="#315efa02-f075-4c27-96b2-e80223bbd2c2"><span class="anchorjs-icon"></span></a></h3>
 <p>通过使用grunt-init [已安装模板名称] 来使用相应的模板</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">grunt-init gruntfile
-</code></pre></div><h2 id="8446f7e2-4279-4e93-8a12-a5a67722a7e0">grunt插件<a class="anchorjs-link" href="#8446f7e2-4279-4e93-8a12-a5a67722a7e0"><span class="anchorjs-icon"></span></a></h2><h3 id="63777278-7563-4bd2-8aaa-fa8deadd4395">自动载入插件<a class="anchorjs-link" href="#63777278-7563-4bd2-8aaa-fa8deadd4395"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h2 id="e1826678-701e-48fa-b94b-5397da01aed3">grunt插件<a class="anchorjs-link" href="#e1826678-701e-48fa-b94b-5397da01aed3"><span class="anchorjs-icon"></span></a></h2><h3 id="df090e01-c511-4663-9456-444307ffefd5">自动载入插件<a class="anchorjs-link" href="#df090e01-c511-4663-9456-444307ffefd5"><span class="anchorjs-icon"></span></a></h3>
 <p>默认情况下，grunt提供的载入插件的命令是：</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">grunt.loadNpmTasks<span class="o">(</span><span class="s1">&#39;grunt-contrib-concat&#39;</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
