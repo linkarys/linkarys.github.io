@@ -7,10 +7,10 @@
 		wrapId: 'ls-navigator',
 		heads: ['H2', 'H3', 'H4', 'H5', 'H6'],
 		inited: false,
-		rootNode: '', // 根结点(ul)
-		outwrap: '', // the wrap of navs
-		current: '', // 当前指向的ul
-		currentLevel: -1 // 当前所处的目录级别
+		rootNode: '',                                       // 根结点(ul)
+		outwrap: '',                                        // the wrap of navs
+		current: '',                                        // 当前指向的ul
+		currentLevel: -1                                    // 当前所处的目录级别
 	};
 
 	nav.init = function (outwrap, startLevel) {

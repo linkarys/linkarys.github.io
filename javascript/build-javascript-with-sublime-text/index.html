@@ -109,17 +109,17 @@
     <p>调试js代码经常是在浏览器中完成的, 如果编辑器也能完成部分的调试工作, 那我相信前端和node的世界将美好很多. OK, 先上图:</p>
 
 <p><img src="http://sfault-image.b0.upaiyun.com/160/788/1607889778-546eacc1a7253" alt="sublime build demo"></p>
-<h2 id="86ca95b4-3c3a-4f3a-a620-83c2b350d8bc">前言<a class="anchorjs-link" href="#86ca95b4-3c3a-4f3a-a620-83c2b350d8bc"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="68394b98-f997-4156-bf08-e1e3eb21bdf5">前言<a class="anchorjs-link" href="#68394b98-f997-4156-bf08-e1e3eb21bdf5"><span class="anchorjs-icon"></span></a></h2>
 <p><strong>此文著于过去, 当时没注意到<a href="http://phantomjs.org/">phantomjs</a>的存在, 因<a href="http://phantomjs.org/">phantomjs</a>与浏览器环境有较高的一致性, 因此建议使用<a href="http://phantomjs.org/">phantomjs</a>来运行js, 方法与下文所述类似</strong></p>
-<h2 id="310706fb-6d7c-4657-85e1-a4244e025748">实现<a class="anchorjs-link" href="#310706fb-6d7c-4657-85e1-a4244e025748"><span class="anchorjs-icon"></span></a></h2><h3 id="3c3683d0-95c0-4336-b97a-36a5030e198e">首先安装<a href="http://nodejs.org/">nodejs</a><a class="anchorjs-link" href="#3c3683d0-95c0-4336-b97a-36a5030e198e"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="2f8ea52a-1340-4749-8be5-7827f4817c1d">实现<a class="anchorjs-link" href="#2f8ea52a-1340-4749-8be5-7827f4817c1d"><span class="anchorjs-icon"></span></a></h2><h3 id="498c477c-1c8a-48f4-85bc-e226d2546d9c">首先安装<a href="http://nodejs.org/">nodejs</a><a class="anchorjs-link" href="#498c477c-1c8a-48f4-85bc-e226d2546d9c"><span class="anchorjs-icon"></span></a></h3>
 <p>当然你可以使用其它诸如<a href="https://trac.webkit.org/wiki/JSC">jsc</a>之类的环境来运行js, 本文使用的是<a href="http://nodejs.org/">nodejs</a>. 首先确保你的电脑已经安装好nodejs, 并已将其添加到环境变量中 (一般安装时自动添加或者询问是否添加)</p>
-<h3 id="b36ac139-6715-4a6a-ae50-51cd5ec602ac">添加<a href="https://sublime-text-unofficial-documentation.readthedocs.org/en/sublime-text-2/file_processing/build_systems.html">build system</a><a class="anchorjs-link" href="#b36ac139-6715-4a6a-ae50-51cd5ec602ac"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="14f8ea30-933f-4551-83ca-e4dad3d906ea">添加<a href="https://sublime-text-unofficial-documentation.readthedocs.org/en/sublime-text-2/file_processing/build_systems.html">build system</a><a class="anchorjs-link" href="#14f8ea30-933f-4551-83ca-e4dad3d906ea"><span class="anchorjs-icon"></span></a></h3>
 <p>在sublime text中依次打开Tools -&gt; Build System -&gt; New Build System... 粘贴以下代码后保存(如Node.sublime-build), 然后把Build System设成Automatic</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">{
     &quot;cmd&quot;: [&quot;node&quot;, &quot;--use-strict&quot;, &quot;--harmony&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.js&quot;
 }
-</code></pre></div><h3 id="5690e70a-cad7-4b13-80b0-5bccb61079a0">说明<a class="anchorjs-link" href="#5690e70a-cad7-4b13-80b0-5bccb61079a0"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="dad02f0d-2483-47b9-a33c-ff2b690b0b44">说明<a class="anchorjs-link" href="#dad02f0d-2483-47b9-a33c-ff2b690b0b44"><span class="anchorjs-icon"></span></a></h3>
 <p>在以上的build文件中(Node.sublime-build), node是执行命令, --harmony和--use-strict是执行参数, $file是当前文件名, 所以一次build操作实际上相当于在命令行中执行了<code>node  --use-strict --harmony filename</code>. <code>--harmony</code>表示启用<a href="http://kangax.github.io/compat-table/es6/">ES Harmony features</a>, 而这些features目前只能在strict模式下运行, 所以需要同时添加use-strict参数(详见<a href="http://stackoverflow.com/questions/17253509/what-is-extended-mode">what-is-extended-mode</a>).</p>
 
 <p>如果不想启用es6的特性,把build文件更改成以下代码保存即可.</p>
@@ -127,7 +127,7 @@
     &quot;cmd&quot;: [&quot;node&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.js&quot;
 }
-</code></pre></div><h2 id="3a960348-d158-4c12-9c76-b0d07eaf247f">使用<a class="anchorjs-link" href="#3a960348-d158-4c12-9c76-b0d07eaf247f"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="6e4f6081-83b5-4275-af3e-b49e792a30d0">使用<a class="anchorjs-link" href="#6e4f6081-83b5-4275-af3e-b49e792a30d0"><span class="anchorjs-icon"></span></a></h2>
 <p>在sublime test中新建一个test.js文件, 然后输入你的测试代码, 比如:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">for (let i = 0; i &lt; 3; i++) {
     console.log(&#39;i:&#39;, i);
