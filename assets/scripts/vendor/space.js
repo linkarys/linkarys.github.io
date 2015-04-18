@@ -1,6 +1,5 @@
 var Space = (function () {
     function Space(id) {
-        console.log(id);
         this.canvas = id ? document.getElementById(id) : document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];

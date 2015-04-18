@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Javascript继承</title>
+  <meta name="description" content="说到Javascript, 继承永远是我们无法绕过去的坑, 当ES6出现的时候, 我终于可以说Javascript也有类继承了, 而在此之前, 在历史上也出现过一些关于继承的著名方案, 本文做一下总结。">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/javascript-inherit">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+            
+            <a  href="/about/">About</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">Javascript继承</h1>
+    <p class="post-meta">Apr 18, 2015 • linkarys</p>
+    <div class="tag-groups">
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-inherit">javascript</span>
+        
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-inherit">prototype</span>
+        
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-inherit">es6</span>
+        
+      
+    </div>
+  </header>
+
+  <article class="post-content">
+    <p>说到Javascript, 继承永远是我们无法绕过去的坑, 当ES6出现的时候, 我终于可以说Javascript也有类继承了, 而在此之前, 在历史上也出现过一些关于继承的著名方案, 本文做一下总结。</p>
+<h2 id="bc968967-bd7c-4abf-bc09-19b6c30e5f8c">基于原型的继承<a class="anchorjs-link" href="#bc968967-bd7c-4abf-bc09-19b6c30e5f8c"><span class="anchorjs-icon"></span></a></h2>
+<p>这应该是目前js中使用最多的继承方法</p>
+<h3 id="89c770ef-c3a3-4c3d-a629-63bd53c8b597">原始版本<a class="anchorjs-link" href="#89c770ef-c3a3-4c3d-a629-63bd53c8b597"><span class="anchorjs-icon"></span></a></h3>
+<p>先看一下最基础的继承:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">P</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kd">function</span> <span class="nx">C</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">P</span><span class="p">();</span>
+<span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">C</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
+
+<span class="nx">c</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>                  <span class="c1">// hi</span>
+</code></pre></div><h3 id="fdecf8ee-4b28-4130-969c-934786945e7a">使用代理<a class="anchorjs-link" href="#fdecf8ee-4b28-4130-969c-934786945e7a"><span class="anchorjs-icon"></span></a></h3>
+<p>上面的方法众所周知, 看起来挺好, 问题在于每次继承都需要创建一个<code>P</code>的实例对象, 假如这个对象很大, 那么 将对性能产生负面影响. 所以有人提出了以下改进方案:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">P</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kd">function</span> <span class="nx">C</span><span class="p">()</span> <span class="p">{}</span>
+<span class="hll"><span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
+</span>
+<span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="hll"><span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+</span><span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
+<span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">C</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
+
+<span class="nx">c</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>                  <span class="c1">// hi</span>
+</code></pre></div>
+<p>这个方法添加一个空的中间函数, 意义在在:</p>
+
+<ul>
+<li>隔离, 如果直接用<code>C.prototype = P.prototype</code>, 也能实现继承, 而且性能最高, 但是此时<code>C.prototype</code>和<code>P.prototype</code>指向一个内存地址, 修改<code>C.prototype</code>意味着同时修改了<code>P.prototype</code>, 这当然不是我们想看到的, 所以我们添加了一个中间函数.</li>
+<li>性能, 因为<code>F</code>为空函数, 因此创建其对应实例的消耗比较低.</li>
+</ul>
+<h3 id="b5f13a36-cbdc-41dc-84b8-5b36e9c167e1">封装<a class="anchorjs-link" href="#b5f13a36-cbdc-41dc-84b8-5b36e9c167e1"><span class="anchorjs-icon"></span></a></h3>
+<p>OK, 基于以上所述, 我们可以做一下封装:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">C</span><span class="p">,</span> <span class="nx">P</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+  <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
+  <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">C</span><span class="p">;</span>
+<span class="hll">  <span class="nx">C</span><span class="p">.</span><span class="nx">uber</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+</span><span class="p">}</span>
+</code></pre></div>
+<p><code>C.uber</code>的作用是保留对原始父对象的引用, 以防在哪个地方用到(下文有例子).</p>
+<h3 id="54579511-cf74-4731-b753-3f97f740ba57">缓存临时函数<a class="anchorjs-link" href="#54579511-cf74-4731-b753-3f97f740ba57"><span class="anchorjs-icon"></span></a></h3>
+<p>以上道格拉斯提出的方法一度被奉为经典, 但也不是没有改进的余地, 因为这边的中间函数还是每次继承的时候都需要创建一次临时构造函数<code>F</code>, 因此, 又有人提出了以下方案:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">inherit</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">C</span><span class="p">,</span> <span class="nx">P</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">C</span><span class="p">;</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">uber</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+</code></pre></div>
+<p>此处用立即执行函数创建了一个闭包, <code>F</code>只需在inherit函数表达式初化时创建一次.</p>
+<h3 id="72cf1347-a65a-4666-9848-83f6bfb99e1d">延伸<a class="anchorjs-link" href="#72cf1347-a65a-4666-9848-83f6bfb99e1d"><span class="anchorjs-icon"></span></a></h3>
+<p>有人实现了一个Kclass, 此法在ES6时代显然过时, 不过具体实现还是值得看一看(略有改动)</p>
+<h4 id="2b7c1b46-77ba-4d7e-945d-352f58405e6c">效果<a class="anchorjs-link" href="#2b7c1b46-77ba-4d7e-945d-352f58405e6c"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Man</span> <span class="o">=</span> <span class="nx">Klass</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">__construtor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Man constructor&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">SuperMan</span> <span class="o">=</span> <span class="nx">Klass</span><span class="p">(</span><span class="nx">Man</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">__construtor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;SuperMan constructor&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">SuperMan</span><span class="p">.</span><span class="nx">uber</span><span class="p">.</span><span class="nx">getName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s1">&#39;I am &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">man</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Man</span><span class="p">(</span><span class="s1">&#39;xiaoming&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sman</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperMan</span><span class="p">(</span><span class="s1">&#39;xiaoming&#39;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">man</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>                <span class="c1">// xiaoming</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sman</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>               <span class="c1">// I am xiaoming</span>
+</code></pre></div><h4 id="6d9c5fa1-447e-45cb-8866-95eebb915353">实现<a class="anchorjs-link" href="#6d9c5fa1-447e-45cb-8866-95eebb915353"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Klass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">P</span><span class="p">,</span> <span class="nx">protos</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+      <span class="nx">C</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+
+  <span class="c1">// 构造新函数</span>
+  <span class="nx">C</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 个人觉得的父类的&quot;构造方法&quot;最好手动调用</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">C</span><span class="p">.</span><span class="nx">uber</span> <span class="o">&amp;&amp;</span> <span class="nx">C</span><span class="p">.</span><span class="nx">uber</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;__construtor&#39;</span><span class="p">))</span> <span class="p">{</span>
+       <span class="nx">C</span><span class="p">.</span><span class="nx">uber</span><span class="p">.</span><span class="nx">__construtor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;__construtor&#39;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__construtor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 继承</span>
+  <span class="nx">P</span> <span class="o">=</span> <span class="nx">P</span> <span class="o">||</span> <span class="nb">Object</span><span class="p">;</span>                <span class="c1">// P为null时, 使用Object作为父类</span>
+  <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+  <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
+  <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">C</span><span class="p">;</span>
+  <span class="nx">C</span><span class="p">.</span><span class="nx">uber</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+  <span class="c1">// 添加方法到prototype</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">protos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">protos</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">protos</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">C</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="7b6c0911-f3cb-4e11-84fe-e7aa3804a905">基于对象的承继<a class="anchorjs-link" href="#7b6c0911-f3cb-4e11-84fe-e7aa3804a905"><span class="anchorjs-icon"></span></a></h2>
+<p>直接看例子吧</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;human&#39;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">man</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">man</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>     <span class="c1">// human</span>
+</code></pre></div><h2 id="a8a17b01-8a14-4d6e-ad4f-8f1c09f735f6">基于类的承继<a class="anchorjs-link" href="#a8a17b01-8a14-4d6e-ad4f-8f1c09f735f6"><span class="anchorjs-icon"></span></a></h2>
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>

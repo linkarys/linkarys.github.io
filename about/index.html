@@ -81,6 +81,10 @@
             <a  href="/css/">CSS</a>
             
           
+            
+            <a  class="active" href="/about/">About</a>
+            
+          
         </div>
 
 
@@ -93,22 +97,22 @@
 
     <div class="page-content">
       <div class="container">
-        <div class="post">
+        <div class="about">
 
-<!--   <header class="post-header">
-    <h1 class="post-title">关于我</h1>
-  </header> -->
+  <article class="about-content">
+    <article class="profile-container text-center">
+  <img class="img-circle fade-in-up" src="/assets/images/profile.jpg">
+  <p id="desc" class="fade fade-in-up animation-delay-200">A Coder</p>
+</article>
 
-  <article class="post-content">
-    <p>This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at <a href="http://jekyllrb.com/">jekyllrb.com</a></p>
-
-<p>You can find the source code for the Jekyll new theme at: <a href="https://github.com/jglovier/jekyll-new">github.com/jglovier/jekyll-new</a></p>
-
-<p>You can find the source code for Jekyll at <a href="https://github.com/jekyll/jekyll">github.com/jekyll/jekyll</a></p>
+<script>
+  var desc = document.getElementById('desc');
+  desc.addEventListener('webkitAnimationStart', function() {
+    this.classList.remove('fade');
+  });
+</script>
 
   </article>
-
-
 
 </div>
 
@@ -117,6 +121,8 @@
       <aside class="aside">
           <head class="title">Recent Posts</head>
           <ul class="list">
+              
+                  <li><a href="/posts/javascript/javascript-inherit" title="Javascript继承" rel="bookmark">Javascript继承</a></li>
               
                   <li><a href="/posts/javascript/javascript-prototype" title="Javascript原型链" rel="bookmark">Javascript原型链</a></li>
               
@@ -127,8 +133,6 @@
                   <li><a href="/javascript/build-javascript-with-sublime-text" title="build javascript with sublime text" rel="bookmark">build javascript with sublime text</a></li>
               
                   <li><a href="/css/flex" title="flex" rel="bookmark">flex</a></li>
-              
-                  <li><a href="/posts/tools/grunt" title="grunt简介" rel="bookmark">grunt简介</a></li>
               
           </ul>
       </aside>

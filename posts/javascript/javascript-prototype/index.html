@@ -73,6 +73,10 @@
             <a  href="/css/">CSS</a>
             
           
+            
+            <a  href="/about/">About</a>
+            
+          
         </div>
 
 
@@ -116,15 +120,15 @@
 <li>instanceof是怎么计算的</li>
 <li>javascript的原型链</li>
 </ul>
-<h2 id="802fce5b-f6ef-49d4-ba61-9c6eaa05cff2">知识准备<a class="anchorjs-link" href="#802fce5b-f6ef-49d4-ba61-9c6eaa05cff2"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="050f0711-b2ff-4609-958d-26d5d6c8e81e">知识准备<a class="anchorjs-link" href="#050f0711-b2ff-4609-958d-26d5d6c8e81e"><span class="anchorjs-icon"></span></a></h2>
 <p>首先要明确构造函数本身并不使用自身的prototype属性, 这个属性是给它的实例对象用的, 而构造函数本身又是一个对象, 所以它会使用它的构造函数的prototype属性(-_-..)</p>
-<h3 id="bfd5f4cf-29c9-4ff2-a5db-ed8a8f684638">instanceof<a class="anchorjs-link" href="#bfd5f4cf-29c9-4ff2-a5db-ed8a8f684638"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="eb89cb79-80cd-4982-976c-e848a3172a59">instanceof<a class="anchorjs-link" href="#eb89cb79-80cd-4982-976c-e848a3172a59"><span class="anchorjs-icon"></span></a></h3>
 <blockquote>
 <p>The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.</p>
 </blockquote>
 
 <p>就是说, 只要右侧构造函数的prototype属性能在左侧的对象的原型链中找到, 那么就返回true, 否则就返回false.</p>
-<h3 id="20d6dc99-a405-47ce-a2bb-8b790ee1da9f">javascript原型链<a class="anchorjs-link" href="#20d6dc99-a405-47ce-a2bb-8b790ee1da9f"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="878ec4a4-11dd-43d8-b9a0-18b5627b9c55">javascript原型链<a class="anchorjs-link" href="#878ec4a4-11dd-43d8-b9a0-18b5627b9c55"><span class="anchorjs-icon"></span></a></h3>
 <p>首先我们要知道在实例对象的原型 (<strong>[[Prototype]]</strong>, 说明: 下文的<strong>[[Prototype]]</strong>和<code>__proto__</code>指同一个东西) 是指向其构造函数的prototype属性的, 而构造的函数的prototype属性又可以当成另一个实例对象, 这个实例对象的原型(<strong>[[Prototype]]</strong>)又指向其构造函数的prototype属性, 如此反复一直到达世界的尽头: <strong>Object.prototype</strong>(<code>Object.prototype.__proto__</code>指向<code>null</code>).</p>
 
 <p><strong>知道了这一点就可以祭出下面这张著名的图了:</strong></p>
@@ -132,11 +136,11 @@
 <p><img src="/assets/images/javascript-object-layout.jpg" alt="javascript object layout"></p>
 
 <p>注: 图中的<code>__proto__</code>指的即是实例对象的原型(<strong>[[Prototype]]</strong>), 它是一个私有属性, 现代浏览器中将其暴露给用户, 修改这个值会改变继承关系</p>
-<h2 id="d2335b49-e5be-4bb0-8deb-75c0742d90dd">分析<a class="anchorjs-link" href="#d2335b49-e5be-4bb0-8deb-75c0742d90dd"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="336535c2-5b61-488f-a182-ed4da643af6b">分析<a class="anchorjs-link" href="#336535c2-5b61-488f-a182-ed4da643af6b"><span class="anchorjs-icon"></span></a></h2>
 <p>上面的图一时没看清也没关系，我们来具体分析一下。</p>
-<h3 id="79b79349-b2ab-4c66-8311-eb6348997bf0">x instanceof Function<a class="anchorjs-link" href="#79b79349-b2ab-4c66-8311-eb6348997bf0"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="e3675b86-7621-4260-9141-92bf279e07fe">x instanceof Function<a class="anchorjs-link" href="#e3675b86-7621-4260-9141-92bf279e07fe"><span class="anchorjs-icon"></span></a></h3>
 <p>Object, Number, String, Array, Function(恩！包括它自己), Date等都属于构造函数, 而所有构造函数都是由Function创建的, 所以它的原型(<code>__proto__</code>)指向Function.prototype。所以对于Object instanceof Function,  Function instanceof Function, 根据instanceof的定义此处应当返回true</p>
-<h3 id="8a5d306e-f6ff-45c1-b04c-f45bf3a2d87c">x instanceof Object<a class="anchorjs-link" href="#8a5d306e-f6ff-45c1-b04c-f45bf3a2d87c"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="aa2070ec-8b3c-46ff-80d2-d89f142f3f24">x instanceof Object<a class="anchorjs-link" href="#aa2070ec-8b3c-46ff-80d2-d89f142f3f24"><span class="anchorjs-icon"></span></a></h3>
 <p>我们已经知道构造函数(Object, Function等)的原型(<strong>[[Prototype]]</strong>)指向Function.prototype,
 而Function.prototype是一个函数对象，这个函数对象的<code>__proto__</code>指向Object.prototype. 因此对于Object instanceof Object, Function instanceof Object, 右侧Object.prototype可以在左侧的原型链中找到，计算结果为true</p>
 
@@ -150,7 +154,7 @@
 <a href="http://es5.github.io/#x15.3.4">Properties of the Function Prototype Object</a></p>
 
 <p>有人说这是为了一致性, <strong>因为Number.Prototye是个Number对象, String.Prototype是个String对象, 以此类推, Function.Prototype当然要是个Funciton对象</strong></p>
-<h2 id="86ba57eb-25ed-4770-916e-e231635d04ca">练习<a class="anchorjs-link" href="#86ba57eb-25ed-4770-916e-e231635d04ca"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="d6f6bb80-8a78-4fd3-afd6-b85b2ad4325c">练习<a class="anchorjs-link" href="#d6f6bb80-8a78-4fd3-afd6-b85b2ad4325c"><span class="anchorjs-icon"></span></a></h2>
 <p>OK, 好像都懂了, 看看以下代码的执行结果是什么?</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{}</span>
 

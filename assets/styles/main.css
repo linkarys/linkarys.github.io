@@ -890,7 +890,9 @@ blockquote {
     display: inline-block;
     padding: 0 8px;
     transition: color 400ms;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    border-bottom: 0 solid transparent;
+    transition: border 400ms, color 400ms, background 400ms; }
     .site-nav .page-links > a:hover {
       color: #fafafa;
       text-decoration: none; }
@@ -898,7 +900,8 @@ blockquote {
       margin-left: 20px; }
     .site-nav .page-links > a.active {
       color: #fafafa;
-      border-bottom: 4px solid #CC7A6F;
+      border-width: 4px;
+      border-color: #cc7a6f;
       background: #777; }
   @media screen and (max-width: 600px) {
     .site-nav {
@@ -1046,7 +1049,7 @@ blockquote {
 code {
   background: #F8F5EC;
   padding: 2px 7px;
-  color: #E06A6A;
+  color: #838181;
   border-radius: 4px; }
 
 .highlight {
@@ -1320,6 +1323,9 @@ h2 {
   .post-list h2 {
     border: 0; }
 
+.text-center {
+  text-align: center; }
+
 .article {
   margin-bottom: 20px;
   background: #fff;
@@ -1450,3 +1456,23 @@ a.post-link {
 
 .aside {
   display: none; }
+
+.img-circle {
+  border: 6px solid #fff;
+  border-radius: 50%; }
+
+.fade {
+  opacity: 0; }
+
+.fade-in-up {
+  -webkit-animation: fadeInUp 800ms; }
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }
+.animation-delay-200 {
+  -webkit-animation-delay: 200ms; }
