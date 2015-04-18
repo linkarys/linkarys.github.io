@@ -14,8 +14,17 @@
 </head>
 
   <style>
-    #avatar {
-      margin-top: 100px;
+    .page-content {
+      padding: 0;
+    }
+
+    .page-content > .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+      height: 80%;
     }
 
     #desc {
@@ -97,8 +106,10 @@
 
     <div class="page-content">
       <div class="container text-center">
-        <img id="avatar" class="img-circle fade-in-up" src="/assets/images/profile.jpg">
-        <p id="desc" class="fade fade-in-up animation-delay-200">A Coder</p>
+        <div class="profile">
+          <img id="avatar" class="img-circle fade-in-up" src="/assets/images/profile.jpg">
+          <p id="desc" class="fade fade-in-up animation-delay-200">A Coder</p>
+        </div>
       </div>
     </div>
 

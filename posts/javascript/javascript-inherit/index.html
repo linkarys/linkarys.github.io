@@ -111,9 +111,9 @@
 
   <article class="post-content">
     <p>说到Javascript, 继承永远是我们无法绕过去的坑, 当ES6出现的时候, 我终于可以说Javascript也有类继承了, 而在此之前, 在历史上也出现过一些关于继承的著名方案, 本文做一下总结。</p>
-<h2 id="2903545d-1c97-4c71-afc3-24ea8f279f74">基于原型的继承<a class="anchorjs-link" href="#2903545d-1c97-4c71-afc3-24ea8f279f74"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="3840aa77-55ff-488e-a970-ec93a353af33">基于原型的继承<a class="anchorjs-link" href="#3840aa77-55ff-488e-a970-ec93a353af33"><span class="anchorjs-icon"></span></a></h2>
 <p>这应该是目前js中使用最多的继承方法</p>
-<h3 id="6d844054-d288-44d4-95fe-67afc5e1c823">原始版本<a class="anchorjs-link" href="#6d844054-d288-44d4-95fe-67afc5e1c823"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="87df56c7-0a94-4fec-8cbd-7e2839761307">原始版本<a class="anchorjs-link" href="#87df56c7-0a94-4fec-8cbd-7e2839761307"><span class="anchorjs-icon"></span></a></h3>
 <p>先看一下最基础的继承:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">P</span><span class="p">()</span> <span class="p">{}</span>
 <span class="kd">function</span> <span class="nx">C</span><span class="p">()</span> <span class="p">{}</span>
@@ -128,7 +128,7 @@
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
 
 <span class="nx">c</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>                  <span class="c1">// hi</span>
-</code></pre></div><h3 id="4153113c-bf51-497b-9e13-0c14c771eeb3">使用代理<a class="anchorjs-link" href="#4153113c-bf51-497b-9e13-0c14c771eeb3"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="47c80046-3346-4686-a5d2-9b3644927307">使用代理<a class="anchorjs-link" href="#47c80046-3346-4686-a5d2-9b3644927307"><span class="anchorjs-icon"></span></a></h3>
 <p>上面的方法众所周知, 看起来挺好, 问题在于每次继承都需要创建一个<code>P</code>的实例对象, 假如这个对象很大, 那么 将对性能产生负面影响. 所以有人提出了以下改进方案:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">P</span><span class="p">()</span> <span class="p">{}</span>
 <span class="kd">function</span> <span class="nx">C</span><span class="p">()</span> <span class="p">{}</span>
@@ -152,7 +152,7 @@
 <li>隔离, 如果直接用<code>C.prototype = P.prototype</code>, 也能实现继承, 而且性能最高, 但是此时<code>C.prototype</code>和<code>P.prototype</code>指向一个内存地址, 修改<code>C.prototype</code>意味着同时修改了<code>P.prototype</code>, 这当然不是我们想看到的, 所以我们添加了一个中间函数.</li>
 <li>性能, 因为<code>F</code>为空函数, 因此创建其对应实例的消耗比较低.</li>
 </ul>
-<h3 id="78c1677f-386f-4609-beed-16b2d63e1fbc">封装<a class="anchorjs-link" href="#78c1677f-386f-4609-beed-16b2d63e1fbc"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="29c04b8f-70ab-431c-96c3-a6ab90651f77">封装<a class="anchorjs-link" href="#29c04b8f-70ab-431c-96c3-a6ab90651f77"><span class="anchorjs-icon"></span></a></h3>
 <p>OK, 基于以上所述, 我们可以做一下封装:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">C</span><span class="p">,</span> <span class="nx">P</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
@@ -164,7 +164,7 @@
 </span><span class="p">}</span>
 </code></pre></div>
 <p><code>C.uber</code>的作用是保留对原始父对象的引用, 以防在哪个地方用到(下文有例子).</p>
-<h3 id="95013a04-0e76-4b42-83e1-c8f5ddea06d5">缓存临时函数<a class="anchorjs-link" href="#95013a04-0e76-4b42-83e1-c8f5ddea06d5"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="34ffd8bb-076e-4222-8b66-5d25f17315c9">缓存临时函数<a class="anchorjs-link" href="#34ffd8bb-076e-4222-8b66-5d25f17315c9"><span class="anchorjs-icon"></span></a></h3>
 <p>以上道格拉斯提出的方法一度被奉为经典, 但也不是没有改进的余地, 因为这边的中间函数还是每次继承的时候都需要创建一次临时构造函数<code>F</code>, 因此, 又有人提出了以下方案:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">inherit</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
@@ -178,9 +178,9 @@
 <span class="p">}());</span>
 </code></pre></div>
 <p>此处用立即执行函数创建了一个闭包, <code>F</code>只需在inherit函数表达式初化时创建一次.</p>
-<h3 id="35d2b1da-0cd4-486a-8253-94c54a252939">延伸<a class="anchorjs-link" href="#35d2b1da-0cd4-486a-8253-94c54a252939"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="06ae6865-6c0d-431e-8388-26fd1e945623">延伸<a class="anchorjs-link" href="#06ae6865-6c0d-431e-8388-26fd1e945623"><span class="anchorjs-icon"></span></a></h3>
 <p>有人实现了一个Kclass, 此法在ES6时代显然过时, 不过具体实现还是值得看一看(略有改动)</p>
-<h4 id="f58e63d1-1344-4963-af89-c1f094bd0c94">效果<a class="anchorjs-link" href="#f58e63d1-1344-4963-af89-c1f094bd0c94"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Man</span> <span class="o">=</span> <span class="nx">Klass</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+<h4 id="76fddb7b-8b41-4c42-81c2-d5b169cde0bb">效果<a class="anchorjs-link" href="#76fddb7b-8b41-4c42-81c2-d5b169cde0bb"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Man</span> <span class="o">=</span> <span class="nx">Klass</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">__construtor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Man constructor&#39;</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
@@ -206,7 +206,7 @@
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">man</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>                <span class="c1">// xiaoming</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sman</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>               <span class="c1">// I am xiaoming</span>
-</code></pre></div><h4 id="ea15b8cb-fefe-48b8-a974-af2f4498565b">实现<a class="anchorjs-link" href="#ea15b8cb-fefe-48b8-a974-af2f4498565b"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Klass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">P</span><span class="p">,</span> <span class="nx">protos</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><h4 id="16e0dc09-d9b1-4ec3-afa0-d25bbefdcd46">实现<a class="anchorjs-link" href="#16e0dc09-d9b1-4ec3-afa0-d25bbefdcd46"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Klass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">P</span><span class="p">,</span> <span class="nx">protos</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
       <span class="nx">C</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
@@ -239,7 +239,7 @@
 
   <span class="k">return</span> <span class="nx">C</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="0cf5de72-1cee-4683-b1d2-856aa36ac4d4">基于对象的承继<a class="anchorjs-link" href="#0cf5de72-1cee-4683-b1d2-856aa36ac4d4"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="82d1fdda-5734-4991-88e2-ab88a08ad00d">基于对象的承继<a class="anchorjs-link" href="#82d1fdda-5734-4991-88e2-ab88a08ad00d"><span class="anchorjs-icon"></span></a></h2>
 <p>直接看例子吧</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;human&#39;</span>
@@ -248,7 +248,7 @@
 <span class="kd">var</span> <span class="nx">man</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">man</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>     <span class="c1">// human</span>
-</code></pre></div><h2 id="df5faf80-12bb-498f-9bd2-6cdae3516a07">基于类的承继<a class="anchorjs-link" href="#df5faf80-12bb-498f-9bd2-6cdae3516a07"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="4096500e-eff7-42f8-b305-7291a23f63ca">基于类的承继<a class="anchorjs-link" href="#4096500e-eff7-42f8-b305-7291a23f63ca"><span class="anchorjs-icon"></span></a></h2>
   </article>
 
 
