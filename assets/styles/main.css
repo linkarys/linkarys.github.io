@@ -1050,7 +1050,8 @@ code {
   background: #F8F5EC;
   padding: 2px 7px;
   color: #838181;
-  border-radius: 4px; }
+  border-radius: 4px;
+  line-height: 1.2; }
 
 .highlight {
   color: #333333;

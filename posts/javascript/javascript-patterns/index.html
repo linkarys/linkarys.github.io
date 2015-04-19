@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Javascript模式</title>
+  <meta name="description" content="老生常谈, 做下总结。似乎在ES6之前, js并不算一个完备的面向对象的语言, 本文总结的可能有效期也比较有限, 但是核心思想应该是不变的。当然, 我们并不是为了模式而模式, 要知道很多模式是基于静态语言提出的, 在js中并一定有市场, 也只有在某类模式能够优雅的某种需求时, 才有使用的意义.">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/javascript-patterns">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+            
+            <a  href="/about/">About</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">Javascript模式</h1>
+    <p class="post-meta">Apr 20, 2015 • linkarys</p>
+    <div class="tag-groups">
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-patterns">javascript</span>
+        
+      
+        
+        <span class="tag" href="/posts/javascript/javascript-patterns">patterns</span>
+        
+      
+    </div>
+    
+      <style>
+  li > ul {
+    height: 0;
+    opacity: 0;
+  }
+  li.active > ul {
+    transition: 600ms opacity;
+    height: auto;
+    opacity: 1;
+  }
+</style>
+
+    
+  </header>
+
+  <article class="post-content">
+    <p>老生常谈, 做下总结。似乎在ES6之前, js并不算一个完备的面向对象的语言, 本文总结的可能有效期也比较有限, 但是核心思想应该是不变的。当然, 我们并不是为了模式而模式, 要知道很多模式是基于静态语言提出的, 在js中并一定有市场, 也只有在某类模式能够优雅的某种需求时, 才有使用的意义.</p>
+<h2 id="oxkqaqc2">单例<a class="anchorjs-link" href="#oxkqaqc2"><span class="anchorjs-icon"></span></a></h2><h3 id="khg0jnbb">使用场景<a class="anchorjs-link" href="#khg0jnbb"><span class="anchorjs-icon"></span></a></h3>
+<ul>
+<li>计数</li>
+<li>全局配置</li>
+<li>作为模块通信的桥梁</li>
+</ul>
+<h3 id="u1cze5is">实现<a class="anchorjs-link" href="#u1cze5is"><span class="anchorjs-icon"></span></a></h3>
+<p>个人觉得以下是个比较好的实现, 可以省略new, 外界没法直接访问和修改instance.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">instance</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="kd">function</span> <span class="nx">single</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">)</span> <span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+
+    <span class="c1">// 处理不用new关键字, 直接调用的情况</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">single</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nx">single</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+
+    <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+</code></pre></div><h2 id="u4ymkybp">工厂<a class="anchorjs-link" href="#u4ymkybp"><span class="anchorjs-icon"></span></a></h2><h3 id="xofnfqz6">使用场景<a class="anchorjs-link" href="#xofnfqz6"><span class="anchorjs-icon"></span></a></h3>
+<p>在静态语言中用的比较多, 工厂模式有以下目标:</p>
+
+<ul>
+<li>创建相似对象时执行重复操作</li>
+<li>编译时不知道具体类型的情况下， 为工厂客户提供一种创建对象的接口(动态语言没有这个烦恼)</li>
+</ul>
+<h3 id="u1vuhygi">实现<a class="anchorjs-link" href="#u1vuhygi"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MobileFactory</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">constr</span><span class="p">,</span>
+      <span class="nx">F</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">();</span>
+
+  <span class="c1">// 使用闭包避免每次调用都要创建代理函数</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">sys</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">constr</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">[</span><span class="nx">sys</span><span class="p">];</span>
+
+    <span class="c1">// 如果构造函数不存在, 抛出异常</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">factory</span><span class="p">[</span><span class="nx">sys</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span>
+        <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;factory &#39;</span> <span class="o">+</span> <span class="nx">sys</span> <span class="o">+</span> <span class="s1">&#39; is not a valid construtor function&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 子类需要继承父类的方法, 这里通过constr.prototype.info判断是否已经继承过,</span>
+    <span class="c1">// 使用代理F来提高执行效率</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">info</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">MobileFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+      <span class="nx">constr</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
+      <span class="nx">constr</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">;</span>
+      <span class="nx">constr</span><span class="p">.</span><span class="nx">uber</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">constr</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+
+<span class="nx">MobileFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;system info: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">company</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// 定义子类构造方法</span>
+<span class="nx">MobileFactory</span><span class="p">.</span><span class="nx">ios</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">company</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">MobileFactory</span><span class="p">.</span><span class="nx">ios</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+
+<span class="kd">var</span> <span class="nx">ios</span> <span class="o">=</span> <span class="nx">MobileFactory</span><span class="p">(</span><span class="s1">&#39;ios&#39;</span><span class="p">);</span>
+<span class="nx">ios</span><span class="p">.</span><span class="nx">info</span><span class="p">();</span>                                 <span class="c1">// system info: apple</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ios</span> <span class="k">instanceof</span> <span class="nx">MobileFactory</span><span class="p">);</span>  <span class="c1">// true</span>
+
+<span class="kd">var</span> <span class="nx">android</span> <span class="o">=</span> <span class="nx">MobileFactory</span><span class="p">(</span><span class="s1">&#39;android&#39;</span><span class="p">);</span>     <span class="c1">// Error: factory android is not a valid construtor function</span>
+</code></pre></div>
+<p>有意思的是js内部其实有个“自然工厂”, 那就是<code>Object</code>, 来看下面的例子:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span>
+    <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">(),</span>
+    <span class="nx">num</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">),</span>
+    <span class="nx">bln</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">;</span>                  <span class="c1">// true</span>
+<span class="nx">num</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">;</span>                  <span class="c1">// true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>                  <span class="c1">// true</span>
+<span class="nx">bln</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>                 <span class="c1">// true</span>
+</code></pre></div><h2 id="yycapl1x">迭代器<a class="anchorjs-link" href="#yycapl1x"><span class="anchorjs-icon"></span></a></h2>
+<blockquote>
+<p>在迭代模式中,通常有一个包含某种数据集合的对象。该数据可能存储在一个复杂数据结构内部,而提供一种简单的方法能够访问数据结构中的每一个元素。对象的消费者并不需要知道如何组织数据,所有需要做的就是取出单个数据进行工作。</p>
+</blockquote>
+
+<p>看了以上的说明, 其实这种模式在js中并没有什么市场。尽管如此, 还是来看一下代码吧:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">agg</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+      <span class="nx">length</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">data</span><span class="p">[</span><span class="nx">index</span><span class="o">++</span><span class="p">];</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">hasNext</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">current</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+    <span class="p">},</span>
+    <span class="nx">rewind</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+</code></pre></div><h2 id="xc8jwpl7">装饰者模式<a class="anchorjs-link" href="#xc8jwpl7"><span class="anchorjs-icon"></span></a></h2>
+<p>目的：运行时动态添加附加功能到对象中</p>
+<h3 id="depfq0sp">使用场景<a class="anchorjs-link" href="#depfq0sp"><span class="anchorjs-icon"></span></a></h3>
+<p>个人觉得在作组件化的时候会比较有用, 因为有些组件间的差异很小, 这个时候你不会希望再建一个类似的组件, 而通过传入大量的配置参数和解决其实对使用者和开发者来说都不算友好, 同时需求的增加, 后期的维护和扩展都将是一个问题</p>
+<h3 id="fxd4242k">实现<a class="anchorjs-link" href="#fxd4242k"><span class="anchorjs-icon"></span></a></h3>
+<p>好吧, 下边的代码是我的理解, 不明白这么简单的例子《JavascScript模式》一书, 需要用列表或者继承来实现</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Sale</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 增加联邦税</span>
+<span class="nx">Sale</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fedtax</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">+=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 增加省级税</span>
+<span class="nx">Sale</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quebec</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 如果是英雄的话, 减10　</span>
+<span class="nx">Sale</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hero</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 测试</span>
+<span class="kd">var</span> <span class="nx">sale</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sale</span><span class="p">();</span>
+<span class="nx">sale</span><span class="p">.</span><span class="nx">fedtax</span><span class="p">().</span><span class="nx">quebec</span><span class="p">().</span><span class="nx">hero</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sale</span><span class="p">);</span>  <span class="c1">// { price: 20 }</span>
+</code></pre></div>
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>

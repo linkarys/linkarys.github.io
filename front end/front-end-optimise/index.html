@@ -6,12 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>css</title>
-  <meta name="description" content="">
+  <title>一些前端优化的方案</title>
+  <meta name="description" content="这是个比较大的题, 我准备分几个阶段完成——放心吧不是那老掉牙的雅虎军规.">
   <link rel="stylesheet" href="/assets/styles/main.css">
-  <link rel="canonical" href="/css/">
+  <link rel="canonical" href="/front%20end/front-end-optimise">
   <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
 </head>
+
 
   <body>
 
@@ -71,7 +72,7 @@
             
           
             
-            <a  class="active" href="/css/">CSS</a>
+            <a  href="/css/">CSS</a>
             
           
             
@@ -87,71 +88,65 @@
 
 </header>
 
-
-    <div class="page-content">
-      <div class="container">
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">一些前端优化的方案</h1>
+    <p class="post-meta">Apr 19, 2015 • linkarys</p>
+    <div class="tag-groups">
+      
         
-  <article class="article">
-    <header class="article-header">
-      <h2><a class="article-title" href="/posts/css/vertical-align" title="非固定高度元素的垂直居中">非固定高度元素的垂直居中</a></h2>
-    </header>
-    <div class="article-excerpt">
-        <p><p>纯css垂直居中有若干种方案, 不过我们只会关注<strong>look forward</strong>或者最优的一两种方案,
-并且我们希望这种一两方案具有比较强的普适性, 能满足基本的浏览器兼容需求, 以及允许无限制的嵌套.
-本文将对这一目标进行一些探讨.</p>
-</p>
+        <span class="tag" href="/front%20end/front-end-optimise">front end</span>
+        
+      
+        
+        <span class="tag" href="/front%20end/front-end-optimise">optimise</span>
+        
+      
     </div>
-    <div class="article-info">
-        <span class="article-info-title"><i class="icon-calendar"></i> Published: </span>
-        <span class="article-info-date">Mar 13, 2015</span>
-    </div>
-</article>
+    
+  </header>
+
+  <article class="post-content">
+    <p>这是个比较大的题, 我准备分几个阶段完成——放心吧不是那老掉牙的雅虎军规.</p>
+<h2 id="rwdelc52">工具准备<a class="anchorjs-link" href="#rwdelc52"><span class="anchorjs-icon"></span></a></h2>
+<p>说到前端优化, 没有个测量工具显得太不(没)专(B)业(格). 迫于此种压力, 我们要先准备几个像样的工具.</p>
+<h3 id="m6ejt5ic">Benchmark<a class="anchorjs-link" href="#m6ejt5ic"><span class="anchorjs-icon"></span></a></h3>
+<!-- ## 优化方案
+
+### Chunked Transfer Coding
+ -->
+
+  </article>
 
 
-  <article class="article">
-    <header class="article-header">
-      <h2><a class="article-title" href="/css/flex" title="flex">flex</a></h2>
-    </header>
-    <div class="article-excerpt">
-        <p><p>布局神器flex, 本文将尽量详细的介绍这一个布局方法.</p>
-</p>
-    </div>
-    <div class="article-info">
-        <span class="article-info-title"><i class="icon-calendar"></i> Published: </span>
-        <span class="article-info-date">Feb 6, 2015</span>
-    </div>
-</article>
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
 
-
-
+          </div>
+          <div class="post-navigator col-md-3"></div>
       </div>
-
-      <aside class="aside">
-          <head class="title">Recent Posts</head>
-          <ul class="list">
-              
-                  <li><a href="/posts/javascript/javascript-patterns" title="Javascript模式" rel="bookmark">Javascript模式</a></li>
-              
-                  <li><a href="/front%20end/front-end-optimise" title="一些前端优化的方案" rel="bookmark">一些前端优化的方案</a></li>
-              
-                  <li><a href="/posts/javascript/javascript-inherit" title="Javascript继承" rel="bookmark">Javascript继承</a></li>
-              
-                  <li><a href="/posts/javascript/javascript-prototype" title="Javascript原型链" rel="bookmark">Javascript原型链</a></li>
-              
-                  <li><a href="/posts/javascript/javascript-this" title="javascript this值的探讨" rel="bookmark">javascript this值的探讨</a></li>
-              
-                  <li><a href="/posts/css/vertical-align" title="非固定高度元素的垂直居中" rel="bookmark">非固定高度元素的垂直居中</a></li>
-              
-          </ul>
-      </aside>
-
     </div>
 
-    <canvas id="canvas"></canvas>
-    <script src="/assets/scripts/vendor/space.js"></script>
-    <script src="/assets/scripts/index.js"></script>
-
-    <footer class="site-footer">
+    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
 
   <div class="container">
 
@@ -192,6 +187,7 @@
   </div>
 
 </footer>
+
 
 
   </body>
