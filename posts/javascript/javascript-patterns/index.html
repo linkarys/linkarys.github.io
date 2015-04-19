@@ -123,13 +123,13 @@
 
   <article class="post-content">
     <p>老生常谈, 做下总结。似乎在ES6之前, js并不算一个完备的面向对象的语言, 本文总结的可能有效期也比较有限, 但是核心思想应该是不变的。当然, 我们并不是为了模式而模式, 要知道很多模式是基于静态语言提出的, 在js中并一定有市场, 也只有在某类模式能够优雅的某种需求时, 才有使用的意义.</p>
-<h2 id="oxkqaqc2">单例<a class="anchorjs-link" href="#oxkqaqc2"><span class="anchorjs-icon"></span></a></h2><h3 id="khg0jnbb">使用场景<a class="anchorjs-link" href="#khg0jnbb"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="gjgocek2">单例<a class="anchorjs-link" href="#gjgocek2"><span class="anchorjs-icon"></span></a></h2><h3 id="pslqb4hc">使用场景<a class="anchorjs-link" href="#pslqb4hc"><span class="anchorjs-icon"></span></a></h3>
 <ul>
 <li>计数</li>
 <li>全局配置</li>
 <li>作为模块通信的桥梁</li>
 </ul>
-<h3 id="u1cze5is">实现<a class="anchorjs-link" href="#u1cze5is"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="kfwlblxq">示例<a class="anchorjs-link" href="#kfwlblxq"><span class="anchorjs-icon"></span></a></h3>
 <p>个人觉得以下是个比较好的实现, 可以省略new, 外界没法直接访问和修改instance.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">instance</span><span class="p">;</span>
@@ -147,14 +147,14 @@
     <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}());</span>
-</code></pre></div><h2 id="u4ymkybp">工厂<a class="anchorjs-link" href="#u4ymkybp"><span class="anchorjs-icon"></span></a></h2><h3 id="xofnfqz6">使用场景<a class="anchorjs-link" href="#xofnfqz6"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h2 id="t2f6e1tv">工厂<a class="anchorjs-link" href="#t2f6e1tv"><span class="anchorjs-icon"></span></a></h2><h3 id="a3tbji8y">使用场景<a class="anchorjs-link" href="#a3tbji8y"><span class="anchorjs-icon"></span></a></h3>
 <p>在静态语言中用的比较多, 工厂模式有以下目标:</p>
 
 <ul>
 <li>创建相似对象时执行重复操作</li>
 <li>编译时不知道具体类型的情况下， 为工厂客户提供一种创建对象的接口(动态语言没有这个烦恼)</li>
 </ul>
-<h3 id="u1vuhygi">实现<a class="anchorjs-link" href="#u1vuhygi"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MobileFactory</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<h3 id="dt3v5b6b">示例<a class="anchorjs-link" href="#dt3v5b6b"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MobileFactory</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">constr</span><span class="p">,</span>
       <span class="nx">F</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">();</span>
 
@@ -212,7 +212,7 @@
 <span class="nx">num</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">;</span>                  <span class="c1">// true</span>
 <span class="nx">str</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>                  <span class="c1">// true</span>
 <span class="nx">bln</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>                 <span class="c1">// true</span>
-</code></pre></div><h2 id="yycapl1x">迭代器<a class="anchorjs-link" href="#yycapl1x"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="x2bub6su">迭代器<a class="anchorjs-link" href="#x2bub6su"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>在迭代模式中,通常有一个包含某种数据集合的对象。该数据可能存储在一个复杂数据结构内部,而提供一种简单的方法能够访问数据结构中的每一个元素。对象的消费者并不需要知道如何组织数据,所有需要做的就是取出单个数据进行工作。</p>
 </blockquote>
@@ -241,12 +241,12 @@
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}());</span>
-</code></pre></div><h2 id="xc8jwpl7">装饰者模式<a class="anchorjs-link" href="#xc8jwpl7"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="oxxvd8ea">装饰者<a class="anchorjs-link" href="#oxxvd8ea"><span class="anchorjs-icon"></span></a></h2>
 <p>目的：运行时动态添加附加功能到对象中</p>
-<h3 id="depfq0sp">使用场景<a class="anchorjs-link" href="#depfq0sp"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="odr93x6r">使用场景<a class="anchorjs-link" href="#odr93x6r"><span class="anchorjs-icon"></span></a></h3>
 <p>个人觉得在作组件化的时候会比较有用, 因为有些组件间的差异很小, 这个时候你不会希望再建一个类似的组件, 而通过传入大量的配置参数和解决其实对使用者和开发者来说都不算友好, 同时需求的增加, 后期的维护和扩展都将是一个问题</p>
-<h3 id="fxd4242k">实现<a class="anchorjs-link" href="#fxd4242k"><span class="anchorjs-icon"></span></a></h3>
-<p>好吧, 下边的代码是我的理解, 不明白这么简单的例子《JavascScript模式》一书, 需要用列表或者继承来实现</p>
+<h3 id="3sj6a3p8">示例<a class="anchorjs-link" href="#3sj6a3p8"><span class="anchorjs-icon"></span></a></h3>
+<p>以下代码是个人理解, 不理解这么简单的例子《JavascScript模式》一书, 选择用列表或者继承来实现</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Sale</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -274,6 +274,157 @@
 <span class="nx">sale</span><span class="p">.</span><span class="nx">fedtax</span><span class="p">().</span><span class="nx">quebec</span><span class="p">().</span><span class="nx">hero</span><span class="p">();</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sale</span><span class="p">);</span>  <span class="c1">// { price: 20 }</span>
+</code></pre></div><h2 id="wejmbgyk">策略<a class="anchorjs-link" href="#wejmbgyk"><span class="anchorjs-icon"></span></a></h2>
+<p>没有特别之处, 只不过给一个经常用的方案取了一个名字</p>
+<h3 id="28ay7dh4">使用场景<a class="anchorjs-link" href="#28ay7dh4"><span class="anchorjs-icon"></span></a></h3>
+<p>表单验证</p>
+<h3 id="n6xzxlc8">示例<a class="anchorjs-link" href="#n6xzxlc8"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">validator</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">checker</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">,</span>
+        <span class="nx">errors</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">checker</span> <span class="o">=</span> <span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+        <span class="nx">type</span> <span class="o">=</span> <span class="nx">validator</span><span class="p">.</span><span class="nx">types</span><span class="p">[</span><span class="nx">checker</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">type</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]))</span> <span class="p">{</span>
+          <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">instructions</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">errors</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">types</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 非空检查</span>
+<span class="nx">validator</span><span class="p">.</span><span class="nx">types</span><span class="p">.</span><span class="nx">nonEmpty</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">value</span> <span class="o">!==</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">instructions</span><span class="o">:</span> <span class="s1">&#39;the value can\&#39;t be empty&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// 是否为数字</span>
+<span class="nx">validator</span><span class="p">.</span><span class="nx">types</span><span class="p">.</span><span class="nx">number</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[object Number]&#39;</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">instructions</span><span class="o">:</span> <span class="s1">&#39;the value should be number&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// 是否为数字和字母的组合</span>
+<span class="nx">validator</span><span class="p">.</span><span class="nx">types</span><span class="p">.</span><span class="nx">alphaNum</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 和/[a-zA-Z0-9]*/相比, 这里只要匹配到一个非字母数字就返回false, 效率更高</span>
+    <span class="k">return</span> <span class="o">!</span><span class="sr">/[^a-zA-Z0-9]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">instructions</span><span class="o">:</span> <span class="s1">&#39;the value can only contains numbers and characters&#39;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;3*&#39;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;nonEmpty&#39;</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="s1">&#39;number&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;alphaNum&#39;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">validator</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errors</span><span class="p">);</span>  <span class="c1">// [ &#39;the value can\&#39;t be empty&#39;, &#39;the value can only contains numbers and characters&#39; ]</span>
+</code></pre></div><h2 id="uwyfbepl">外观(facade)<a class="anchorjs-link" href="#uwyfbepl"><span class="anchorjs-icon"></span></a></h2><h3 id="my9y73xm">使用场景<a class="anchorjs-link" href="#my9y73xm"><span class="anchorjs-icon"></span></a></h3>
+<p>同样没有特别之处, 同样只是取了一个名字。</p>
+
+<blockquote>
+<p>有时候, 两个或更多的方法可能普遍的被一起调用。在这样的情况下， 创建另一个方法以包装重复的方法调用是非常有意义的。</p>
+</blockquote>
+
+<p>比如<code>stopPropagation</code>和<code>preventDefault</code>常常一起使用, 我们可以创建一个外观方法从而同时调用这两个方法:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">myevent</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="3cer0h3y">代理<a class="anchorjs-link" href="#3cer0h3y"><span class="anchorjs-icon"></span></a></h2><h3 id="fvndtsaw">使用场景<a class="anchorjs-link" href="#fvndtsaw"><span class="anchorjs-icon"></span></a></h3>
+<p>这个模式还是不错的, 具体应用可以是通过一个代理来合并请求: 设置一个超时时间(如50ms), 把这个时间段内的请求合并成一个以提高性能(可以同时把请求的结果缓存起来).</p>
+
+<blockquote>
+<p>另一应用是延迟初始化: 如果初始化本体对象开销很大, 并且这个对象使用频率并不高。在这种情况下, 代理可以通过替换本体对象的接口来解决这个问题, 代理接收初始化请求, 但是直到该本体对象明确的将被实际使用之前, 代理不会将该请求传递给本体对象.</p>
+</blockquote>
+<h2 id="gn3mh6yw">中介者<a class="anchorjs-link" href="#gn3mh6yw"><span class="anchorjs-icon"></span></a></h2><h3 id="mvird12t">使用场景<a class="anchorjs-link" href="#mvird12t"><span class="anchorjs-icon"></span></a></h3>
+<p>对象之间的直接通信可能会导致不良的紧耦合, 当对象间紧密耦合的时候, 代码的维护和扩展将变得十分困难, 中介者的目的是缓解这个问题, 并促进形成松耦合.</p>
+<h3 id="qub70cjf">示例<a class="anchorjs-link" href="#qub70cjf"><span class="anchorjs-icon"></span></a></h3>
+<p>这是一个游戏的代码示例, 每次玩家play的时候都需要更新一次计分板, 但是我们并不让玩家直接更新计分板而是通过中介(mediator)来更新计分板, 以达到降低代码耦合底的需要</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 玩家</span>
+<span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">points</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">play</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="o">++</span><span class="p">;</span>
+  <span class="nx">mediator</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="c1">// 计分板</span>
+<span class="kd">var</span> <span class="nx">scoceboard</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scores</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">scores</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">scores</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">scores</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 中介</span>
+<span class="kd">var</span> <span class="nx">mediator</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">players</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="nx">setup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">home</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Player</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">guest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Player</span><span class="p">(</span><span class="s1">&#39;guest&#39;</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">play</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">scoceboard</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
+      <span class="s1">&#39;home&#39;</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">points</span><span class="p">,</span>
+      <span class="s1">&#39;guest&#39;</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">guest</span><span class="p">.</span><span class="nx">points</span><span class="p">,</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">keypress</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">===</span> <span class="mi">49</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">mediator</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">===</span> <span class="mi">48</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">mediator</span><span class="p">.</span><span class="nx">players</span><span class="p">.</span><span class="nx">guest</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 测试</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start...&#39;</span><span class="p">);</span>
+<span class="nx">mediator</span><span class="p">.</span><span class="nx">setup</span><span class="p">();</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="nx">mediator</span><span class="p">.</span><span class="nx">keypress</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;finished...&#39;</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">10000</span><span class="p">);</span>
+</code></pre></div><h2 id="aq5kmvsl">观察者<a class="anchorjs-link" href="#aq5kmvsl"><span class="anchorjs-icon"></span></a></h2>
+<p>和中介相比, 观察者并不是一个对象去调用另一个对象的方法, 崦是一个对象订阅另一个对象的特定活动并在状态心迹后获得通知.</p>
+<h3 id="70qjpeiu">使用场景<a class="anchorjs-link" href="#70qjpeiu"><span class="anchorjs-icon"></span></a></h3>
+<p>杂志订阅等, 这里我们把中介示例中的那个游戏用观察者模式重写一下</p>
+<h3 id="1bs2mafr">示例<a class="anchorjs-link" href="#1bs2mafr"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript">
 </code></pre></div>
   </article>
 
