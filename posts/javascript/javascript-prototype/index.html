@@ -123,15 +123,15 @@
 <li>instanceof是怎么计算的</li>
 <li>javascript的原型链</li>
 </ul>
-<h2 id="pimfz7j">知识准备<a class="anchorjs-link" href="#pimfz7j"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="gfanawdm">知识准备<a class="anchorjs-link" href="#gfanawdm"><span class="anchorjs-icon"></span></a></h2>
 <p>首先要明确构造函数本身并不使用自身的prototype属性, 这个属性是给它的实例对象用的, 而构造函数本身又是一个对象, 所以它会使用它的构造函数的prototype属性(-_-..)</p>
-<h3 id="cbl3pcrp">instanceof<a class="anchorjs-link" href="#cbl3pcrp"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="8xc5oc01">instanceof<a class="anchorjs-link" href="#8xc5oc01"><span class="anchorjs-icon"></span></a></h3>
 <blockquote>
 <p>The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.</p>
 </blockquote>
 
 <p>就是说, 只要右侧构造函数的prototype属性能在左侧的对象的原型链中找到, 那么就返回true, 否则就返回false.</p>
-<h3 id="yc2plnvy">javascript原型链<a class="anchorjs-link" href="#yc2plnvy"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="tlm5n02y">javascript原型链<a class="anchorjs-link" href="#tlm5n02y"><span class="anchorjs-icon"></span></a></h3>
 <p>首先我们要知道在实例对象的原型 (<strong>[[Prototype]]</strong>, 说明: 下文的<strong>[[Prototype]]</strong>和<code>__proto__</code>指同一个东西) 是指向其构造函数的prototype属性的, 而构造的函数的prototype属性又可以当成另一个实例对象, 这个实例对象的原型(<strong>[[Prototype]]</strong>)又指向其构造函数的prototype属性, 如此反复一直到达世界的尽头: <strong>Object.prototype</strong>(<code>Object.prototype.__proto__</code>指向<code>null</code>).</p>
 
 <p><strong>知道了这一点就可以祭出下面这张著名的图了:</strong></p>
@@ -139,11 +139,11 @@
 <p><img src="/assets/images/javascript-object-layout.jpg" alt="javascript object layout"></p>
 
 <p>注: 图中的<code>__proto__</code>指的即是实例对象的原型(<strong>[[Prototype]]</strong>), 它是一个私有属性, 现代浏览器中将其暴露给用户, 修改这个值会改变继承关系</p>
-<h2 id="1ytdcdij">分析<a class="anchorjs-link" href="#1ytdcdij"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="99iij5lf">分析<a class="anchorjs-link" href="#99iij5lf"><span class="anchorjs-icon"></span></a></h2>
 <p>上面的图一时没看清也没关系，我们来具体分析一下。</p>
-<h3 id="y2zywdqm">x instanceof Function<a class="anchorjs-link" href="#y2zywdqm"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="rsw1bc0u">x instanceof Function<a class="anchorjs-link" href="#rsw1bc0u"><span class="anchorjs-icon"></span></a></h3>
 <p>Object, Number, String, Array, Function(恩！包括它自己), Date等都属于构造函数, 而所有构造函数都是由Function创建的, 所以它的原型(<code>__proto__</code>)指向Function.prototype。所以对于Object instanceof Function,  Function instanceof Function, 根据instanceof的定义此处应当返回true</p>
-<h3 id="2axc5ya0">x instanceof Object<a class="anchorjs-link" href="#2axc5ya0"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="vrf1uuc6">x instanceof Object<a class="anchorjs-link" href="#vrf1uuc6"><span class="anchorjs-icon"></span></a></h3>
 <p>我们已经知道构造函数(Object, Function等)的原型(<strong>[[Prototype]]</strong>)指向Function.prototype,
 而Function.prototype是一个函数对象，这个函数对象的<code>__proto__</code>指向Object.prototype. 因此对于Object instanceof Object, Function instanceof Object, 右侧Object.prototype可以在左侧的原型链中找到，计算结果为true</p>
 
@@ -157,7 +157,7 @@
 <a href="http://es5.github.io/#x15.3.4">Properties of the Function Prototype Object</a></p>
 
 <p>有人说这是为了一致性, <strong>因为Number.Prototye是个Number对象, String.Prototype是个String对象, 以此类推, Function.Prototype当然要是个Funciton对象</strong></p>
-<h2 id="w331v1pa">练习<a class="anchorjs-link" href="#w331v1pa"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="pp8kqup4">练习<a class="anchorjs-link" href="#pp8kqup4"><span class="anchorjs-icon"></span></a></h2>
 <p>OK, 好像都懂了, 看看以下代码的执行结果是什么?</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{}</span>
 
