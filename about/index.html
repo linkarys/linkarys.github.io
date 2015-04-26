@@ -60,6 +60,32 @@
     .avantar .desc {
       font-weight: bold;
     }
+
+    .avantar-img-wrap {
+      max-width: 187px;
+      max-height: 180px;
+    }
+
+    .avantar-img-wrap img {
+      -webkit-backface-visibility: hidden;
+      transition: transform 400ms;
+    }
+
+    .avantar-img-wrap .majorside {
+      transform: rotateY(0deg);
+    }
+
+    .avantar-img-wrap:hover .majorside {
+      transform: rotateY(180deg);
+    }
+
+    .avantar-img-wrap .backside {
+      transform: rotateY(-180deg) translateY(-180px);
+    }
+
+    .avantar-img-wrap:hover .backside {
+      transform: rotateY(-360deg) translateY(-180px);
+    }
   </style>
   <body>
 
@@ -141,7 +167,10 @@
         <div class="profile">
           <aside class="leftside flex-vertical-center">
             <div class="avantar">
-              <img class="img-circle fade-in-up" width="187" height="180" src="/assets/images/profile.jpg">
+              <div class="avantar-img-wrap">
+                <img class="majorside img-circle fade-in-up" width="187" src="/assets/images/profile.jpg">
+                <img class="backside img-circle" width="187" src="/assets/images/profile-aha.jpg">
+              </div>
               <p id="desc" class="desc fade fade-in-up animation-delay-200">A Coder</p>
             </div>
           </aside>
