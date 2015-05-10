@@ -756,6 +756,7 @@ body {
   font-weight: 300;
   color: #424242;
   background-color: #fafafa;
+  position: relative;
   -webkit-text-size-adjust: 100%; }
 
 * {
