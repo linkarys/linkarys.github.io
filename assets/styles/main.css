@@ -1409,16 +1409,40 @@ a.post-link {
   font-size: 14px;
   margin-bottom: 40px; }
 
-.tag {
-  background-color: #6aabb0;
-  padding: 3px 5px;
-  color: #efefef;
-  border-radius: 4px;
-  transition: background-color .2s; }
-  .tag:hover {
-    text-decoration: none;
+.tags {
+  list-style: none;
+  margin: 0; }
+  .tags:before, .tags:after {
+    content: " ";
+    display: table; }
+  .tags:after {
+    clear: both; }
+  .tags > li {
+    float: left; }
+    .tags > li + li {
+      margin-left: 10px; }
+  .tags > li > a {
+    background-color: #6aabb0;
+    padding: 3px 20px 3px 18px;
     color: #efefef;
-    background-color: #8a2be2; }
+    transition: background-color 400ms;
+    position: relative;
+    border-radius: 10px 28px 10px 10px; }
+    .tags > li > a:before {
+      content: "";
+      background: #fff;
+      transition: background 400ms;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      margin-top: -2.5px;
+      left: 5px; }
+    .tags > li > a:hover {
+      text-decoration: none;
+      color: #efefef;
+      background-color: #8a2be2; }
 
 .pagination {
   text-align: center;
