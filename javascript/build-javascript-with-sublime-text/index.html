@@ -116,17 +116,17 @@
     <p>调试js代码经常是在浏览器中完成的, 如果编辑器也能完成部分的调试工作, 那我相信前端和node的世界将美好很多. OK, 先上图:</p>
 
 <p><img src="http://sfault-image.b0.upaiyun.com/160/788/1607889778-546eacc1a7253" alt="sublime build demo"></p>
-<h2 id="ivlrc1dn">前言<a class="anchorjs-link" href="#ivlrc1dn"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="o61p1b4o">前言<a class="anchorjs-link" href="#o61p1b4o"><span class="anchorjs-icon"></span></a></h2>
 <p><strong>此文著于过去, 当时没注意到<a href="http://phantomjs.org/">phantomjs</a>的存在, 因<a href="http://phantomjs.org/">phantomjs</a>与浏览器环境有较高的一致性, 因此可以考虑使用<a href="http://phantomjs.org/">phantomjs</a>来运行js, 配置方法与下文所述类似</strong></p>
-<h2 id="dvnf51rf">实现<a class="anchorjs-link" href="#dvnf51rf"><span class="anchorjs-icon"></span></a></h2><h3 id="q7tdgsuz">首先安装<a href="http://nodejs.org/">nodejs</a><a class="anchorjs-link" href="#q7tdgsuz"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="ok4ummcfw">实现<a class="anchorjs-link" href="#ok4ummcfw"><span class="anchorjs-icon"></span></a></h2><h3 id="om6kbr6a2">首先安装<a href="http://nodejs.org/">nodejs</a><a class="anchorjs-link" href="#om6kbr6a2"><span class="anchorjs-icon"></span></a></h3>
 <p>当然你可以使用其它诸如<a href="https://trac.webkit.org/wiki/JSC">jsc</a>之类的环境来运行js, 本文使用的是<a href="http://nodejs.org/">nodejs</a>. 首先确保你的电脑已经安装好nodejs, 并已将其添加到环境变量中 (一般安装时自动添加或者询问是否添加)</p>
-<h3 id="hlhilxs7">添加<a href="https://sublime-text-unofficial-documentation.readthedocs.org/en/sublime-text-2/file_processing/build_systems.html">build system</a><a class="anchorjs-link" href="#hlhilxs7"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="otpn2t5vp">添加<a href="https://sublime-text-unofficial-documentation.readthedocs.org/en/sublime-text-2/file_processing/build_systems.html">build system</a><a class="anchorjs-link" href="#otpn2t5vp"><span class="anchorjs-icon"></span></a></h3>
 <p>在sublime text中依次打开Tools -&gt; Build System -&gt; New Build System... 粘贴以下代码后保存(如Node.sublime-build), 然后把Build System设成Automatic</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">{
     &quot;cmd&quot;: [&quot;node&quot;, &quot;--use-strict&quot;, &quot;--harmony&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.js&quot;
 }
-</code></pre></div><h3 id="4rt8imri">说明<a class="anchorjs-link" href="#4rt8imri"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="ocsx5rspm">说明<a class="anchorjs-link" href="#ocsx5rspm"><span class="anchorjs-icon"></span></a></h3>
 <p>在以上的build文件中(Node.sublime-build), node是执行命令, --harmony和--use-strict是执行参数, $file是当前文件名, 所以一次build操作实际上相当于在命令行中执行了<code>node  --use-strict --harmony filename</code>. <code>--harmony</code>表示启用<a href="http://kangax.github.io/compat-table/es6/">ES Harmony features</a>, 而这些features目前只能在strict模式下运行, 所以需要同时添加use-strict参数(详见<a href="http://stackoverflow.com/questions/17253509/what-is-extended-mode">what-is-extended-mode</a>).</p>
 
 <p>如果不想启用es6的特性,把build文件更改成以下代码保存即可.</p>
@@ -134,7 +134,7 @@
     &quot;cmd&quot;: [&quot;node&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.js&quot;
 }
-</code></pre></div><h2 id="v2710w29">使用<a class="anchorjs-link" href="#v2710w29"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="ox25pwtg4">使用<a class="anchorjs-link" href="#ox25pwtg4"><span class="anchorjs-icon"></span></a></h2>
 <p>在sublime test中新建一个test.js文件, 然后输入你的测试代码, 比如:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">for (let i = 0; i &lt; 3; i++) {
     console.log(&#39;i:&#39;, i);
@@ -154,29 +154,14 @@ i: 2
 
 
             <div class="copy-right">原创文章, 转载请注明出处</div>
-            <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_developer = 1;
-    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
-    
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
-
           </div>
           <div class="post-navigator col-md-3"></div>
       </div>
     </div>
 
-    <script src="/assets/scripts/vendor/jquery.min.js"></script>
+    <!-- <script src="/assets/scripts/vendor/jquery.min.js"></script> -->
 <!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
-<script src="/assets/scripts/vendor/scrollspy.js"></script>
+<!-- <script src="/assets/scripts/vendor/scrollspy.js"></script> -->
 <script src="/assets/scripts/main.js"></script>
 <footer class="site-footer">
 
