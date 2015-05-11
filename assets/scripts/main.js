@@ -313,6 +313,11 @@
 
 	// 获取相对于document.body的偏移量
 	Spy.prototype.getOffsetTop = function(elem) {
+
+		if (elem.getBoundingClientRect) {
+			return elem.getBoundingClientRect().top + window.scrollY;
+		}
+
 		var offsetTop = elem.offsetTop;
 
 		while (elem.offsetParent) {
@@ -322,6 +327,8 @@
 
 			offsetTop += elem.offsetTop;
 		}
+
+		console.log(offsetTop);
 
 		return offsetTop;
 	};
