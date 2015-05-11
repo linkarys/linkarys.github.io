@@ -1462,6 +1462,7 @@ a.post-link {
       margin: 0 4px;
       text-decoration: none;
       color: #424242;
+      border-radius: 2px;
       transition: background 400ms, color 400ms; }
       .pagination-list > li > a:hover {
         color: #fff;
