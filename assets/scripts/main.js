@@ -19,8 +19,6 @@
 		this.outwrap = options.outwrap;
 		this.options = this.extendOptions(options);
 
-		console.log(this.options);
-
 		this.inited = false;
 		this.rootNode = '';                                       // 根结点(ul)
 		this.current = '';                                        // 当前指向的ul
