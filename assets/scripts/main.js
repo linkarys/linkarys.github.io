@@ -1,11 +1,11 @@
 (function () {
 
-	var article = document.querySelector('.post .post-content');
-	var childNodes = article.childNodes;
+	var	navId = 'ls-navigator';
 
 	Nav.DEFAULTS = {
-		outwrap: document.body,
-		wrapId: 'ls-navigator',
+		navWrap: document.body,
+		contentWrap: document.body,
+		navid: null,
 		heads: ['H2', 'H3', 'H4', 'H5', 'H6']
 	};
 
@@ -16,7 +16,6 @@
 			return new Nav(options);
 		}
 
-		this.outwrap = options.outwrap;
 		this.options = this.extendOptions(options);
 
 		this.inited = false;
@@ -24,9 +23,10 @@
 		this.current = '';                                        // 当前指向的ul
 
 		// 当前所处的目录级别
-		this.currentLevel = this.options.startLevel === undefined ? -1 : this.options.startLevel;
+		this.currentLevel = null;
 
-		this.build(options.childNodes);
+		this.build(this.options.contentWrap.childNodes);
+
 		// 将导航DOM添加到页面中
 		this.flush();
 	}
@@ -58,6 +58,8 @@
 		innerText = innerText.replace('§', '');
 
 		li._data_level_ = this.options.heads.indexOf(elem.nodeName);
+
+		if (this.currentLevel === null) this.currentLevel = li._data_level_ - 1;
 
 		if (hash) {
 			var a = document.createElement('a');
@@ -93,7 +95,7 @@
 		ul._data_level_ = level;
 
 		if (!this.inited) {
-			ul._data_parent_ = this.outwrap;
+			ul._data_parent_ = this.options.navWrap;
 			this.rootNode = ul;
 			this.inited = true;
 		} else {
@@ -105,6 +107,7 @@
 			// console.log(lastNode);
 			lastNode.appendChild(ul);
 		}
+
 		this.currentLevel++;
 		this.current = ul;
 	};
@@ -132,8 +135,8 @@
 	};
 
 	Nav.prototype.flush = function () {
-		this.rootNode.id = this.options.wrapId;
-		this.rootNode && this.outwrap.appendChild(this.rootNode);
+		this.options.navid && (this.rootNode.id = this.options.navid);
+		this.rootNode && this.options.navWrap.appendChild(this.rootNode);
 	};
 
 	Nav.prototype.build = function (childNodes) {
@@ -162,9 +165,10 @@
 	};
 
 	Nav({
-		outwrap: document.querySelector('.post-navigator'),
-		heads: ['H2', 'H3', 'H4', 'H5', 'H6'],
-		childNodes: childNodes
+		navWrap: document.querySelector('.post-navigator'),
+		contentWrap: document.querySelector('.post > .post-content'),
+		navid: navId,
+		heads: ['H2', 'H3', 'H4', 'H5', 'H6']
 	});
 
 
@@ -175,13 +179,7 @@
 			return new Spy(options);
 		}
 
-		// console.log(Object.create(this.DEFAULTS));
-		// Options, OK, we don't have $.extend fn
-		this.options = {};
-		this.options.activeClass = options.activeClass === undefined ? Spy.DEFAULTS.activeClass : options.activeClass;
-		this.options.offset = options.offset === undefined ? Spy.DEFAULTS.offset : options.offset;
-		this.options.fixed = options.fixed === undefined ? Spy.DEFAULTS.fixed : options.fixed;
-		this.options.fixedClass = options.fixedClass === undefined ? Spy.DEFAULTS.fixedClass : options.fixedClass;
+		this.options = this.extendOptions(options);
 
 		this.navigator = options.navigator;    // navs' container
 		this.navs = [];                        // 所有a集合
@@ -199,8 +197,22 @@
 		fixedClass: 'fixed'
 	};
 
+	Spy.prototype.extendOptions = function(options) {
+		var o =  Object.create(Spy.DEFAULTS);
+
+		for (var key in options) {
+			if (options.hasOwnProperty(key)) {
+				o[key] = options[key];
+			}
+		}
+
+		return o;
+	};
+
 	// 刷新, 保存offset值
 	Spy.prototype.refresh = function() {
+
+		if (!this.navigator) return;
 
 		this.navs = Array.prototype.slice.call(this.navigator.querySelectorAll('li > a'));
 
@@ -217,11 +229,6 @@
 
 		}.bind(this));
 
-		// var debug = this.captures.map(function(item) {
-		// 	return item.offsetTop;
-		// });
-
-		// console.log(debug);
 		// offset of navigator
 		if (this.options.fixed) {
 			this.navOffsetTop = this.getOffsetTop(this.navigator);
@@ -252,7 +259,6 @@
 					break;
 				}
 
-				// nextCap && console.log(nextCap.offsetTop, scrollTop, cap.offsetTop, nextCap.offsetTop > scrollTop, cap.offsetTop <= scrollTop);
 				if (nextCap && nextCap.offsetTop > scrollTop && cap.offsetTop <= scrollTop) {
 					this.active(cap.nav);
 					break;
@@ -321,7 +327,7 @@
 	};
 
 	Spy({
-		navigator: document.getElementById('ls-navigator'),
+		navigator: document.getElementById(navId),
 		fixed: true,
 		offset: -10
 	});
