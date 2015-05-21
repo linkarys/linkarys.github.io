@@ -1064,15 +1064,14 @@ code {
 
 .highlight {
   color: #333333;
-  background: #f9f9f9;
+  background: #f7f7f7;
   position: relative;
   margin-bottom: 14px;
-  padding: 28px 14px 5px;
+  padding: 14px;
   border: none;
   border-radius: 2px;
   overflow: auto;
   font-size: 15px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   /* Literal.String.Other */
   /* CodeMirror doesn't support <jsx> syntax. Instead of highlighting it
      as error, just ignore it */
@@ -1141,17 +1140,6 @@ code {
   /* Name.Variable.Global */
   /* Name.Variable.Instance */
   /* Echo out a label for the example */ }
-  .highlight:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #8B8B8B;
-    background-color: #efefef;
-    content: ">_"; }
   .highlight pre code {
     color: #637c84;
     /* Respect line-height defined in <code> styles above */
