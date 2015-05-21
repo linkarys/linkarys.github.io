@@ -623,6 +623,120 @@
 
   .col-lg-offset-12 {
     margin-left: 100%; } }
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0; }
+
+/**
+ * Basic styling
+ */
+body {
+  font-family: "Helvetica neue", Helvetica, Tahoma, "lantinghei sc", "Microsoft Yahei", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #424242;
+  background-color: #fafafa;
+  -webkit-text-size-adjust: 100%; }
+
+* {
+  box-sizing: border-box; }
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure {
+  margin-bottom: 15px; }
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle; }
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block; }
+
+figcaption {
+  font-size: 14px; }
+
+/**
+ * Lists
+ */
+ul, ol {
+  margin-left: 30px; }
+
+li > ul,
+li > ol {
+  margin-bottom: 0; }
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300; }
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: #828282;
+  border-left: 4px solid #abc8e0;
+  letter-spacing: -1px;
+  line-height: 1.7;
+  border-color: #ABC8E0;
+  background: #f4faff;
+  padding: 10px; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: -webkit-calc(960px - (30px * 2));
+  max-width: calc(960px - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px; }
+  @media screen and (max-width: 800px) {
+    .wrapper {
+      max-width: -webkit-calc(960px - (30px));
+      max-width: calc(960px - (30px));
+      padding-right: 15px;
+      padding-left: 15px; } }
+
+/**
+ * Clearfix
+ */
+.wrapper:after, .footer-col-wrapper:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/**
+ * Icons
+ */
+.icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle; }
+  .icon > svg path {
+    fill: #828282; }
+
 .post-navigator {
   display: none; }
   .post-navigator > .nav {
@@ -744,122 +858,6 @@
 .anchorjs-icon:before {
   /* alternative icons -- uncomment to use */
   content: '¶'; }
-
-/**
- * Reset some basic elements
- */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
-  margin: 0;
-  padding: 0; }
-
-/**
- * Basic styling
- */
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  font-weight: 300;
-  color: #424242;
-  background-color: #fafafa;
-  -webkit-text-size-adjust: 100%; }
-
-* {
-  box-sizing: border-box; }
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure {
-  margin-bottom: 15px; }
-
-/**
- * Images
- */
-img {
-  max-width: 100%;
-  vertical-align: middle; }
-
-/**
- * Figures
- */
-figure > img {
-  display: block; }
-
-figcaption {
-  font-size: 14px; }
-
-/**
- * Lists
- */
-ul, ol {
-  margin-left: 30px; }
-
-li > ul,
-li > ol {
-  margin-bottom: 0; }
-
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 300; }
-
-/**
- * Blockquotes
- */
-blockquote {
-  color: #828282;
-  border-left: 4px solid #abc8e0;
-  font-size: 18px;
-  letter-spacing: -1px;
-  font-style: italic;
-  line-height: 1.2;
-  border-color: #ABC8E0;
-  background: aliceblue;
-  padding: 10px; }
-  blockquote > :last-child {
-    margin-bottom: 0; }
-
-/**
- * Wrapper
- */
-.wrapper {
-  max-width: -webkit-calc(960px - (30px * 2));
-  max-width: calc(960px - (30px * 2));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 30px;
-  padding-left: 30px; }
-  @media screen and (max-width: 800px) {
-    .wrapper {
-      max-width: -webkit-calc(960px - (30px));
-      max-width: calc(960px - (30px));
-      padding-right: 15px;
-      padding-left: 15px; } }
-
-/**
- * Clearfix
- */
-.wrapper:after, .footer-col-wrapper:after {
-  content: "";
-  display: table;
-  clear: both; }
-
-/**
- * Icons
- */
-.icon > svg {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle; }
-  .icon > svg path {
-    fill: #828282; }
 
 /**
  * Site header
@@ -1058,7 +1056,7 @@ blockquote {
         font-size: 18px; } }
 
 code {
-  background: #F8F5EC;
+  background: #f1f1f1;
   padding: 2px 7px;
   color: #838181;
   border-radius: 4px;
@@ -1066,7 +1064,7 @@ code {
 
 .highlight {
   color: #333333;
-  background: #f8f5ec;
+  background: #f9f9f9;
   position: relative;
   margin-bottom: 14px;
   padding: 28px 14px 5px;
@@ -1074,6 +1072,7 @@ code {
   border-radius: 2px;
   overflow: auto;
   font-size: 15px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   /* Literal.String.Other */
   /* CodeMirror doesn't support <jsx> syntax. Instead of highlighting it
      as error, just ignore it */
@@ -1142,6 +1141,17 @@ code {
   /* Name.Variable.Global */
   /* Name.Variable.Instance */
   /* Echo out a label for the example */ }
+  .highlight:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8B8B8B;
+    background-color: #efefef;
+    content: ">_"; }
   .highlight pre code {
     color: #637c84;
     /* Respect line-height defined in <code> styles above */
@@ -1150,7 +1160,7 @@ code {
     background: none;
     padding: 0; }
   .highlight .hll {
-    background-color: #f7ebc6;
+    background-color: #f9eddc;
     border-left: 5px solid #f7d87c;
     display: block;
     margin-left: -14px;
@@ -1308,17 +1318,6 @@ code {
     color: #268bd2; }
   .highlight .il {
     color: #36958e; }
-  .highlight:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #8B8B8B;
-    background-color: #f1ede4;
-    content: ">_"; }
 
 a {
   text-decoration: none;
@@ -1337,6 +1336,10 @@ h2 {
 
 .text-center {
   text-align: center; }
+
+h2 {
+  margin: 2rem 0 1rem;
+  line-height: 1.8; }
 
 .article {
   margin-bottom: 20px;
