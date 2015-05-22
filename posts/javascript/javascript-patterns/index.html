@@ -130,13 +130,13 @@
 
   <article class="post-content">
     <p>老生常谈, 做下总结。似乎在ES6之前, js并不算一个完备的面向对象的语言, 本文总结的可能有效期也比较有限, 但是核心思想应该是不变的。当然, 我们并不是为了模式而模式, 要知道很多模式是基于静态语言提出的, 在js中并一定有市场, 也只有在某类模式能够优雅地解决某种需求时, 才有使用的意义.</p>
-<h2 id="oa4bvd3rb">单例<a class="anchorjs-link" href="#oa4bvd3rb"><span class="anchorjs-icon"></span></a></h2><h3 id="odflo5bwb">使用场景<a class="anchorjs-link" href="#odflo5bwb"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="ofglootuz">单例<a class="anchorjs-link" href="#ofglootuz"><span class="anchorjs-icon"></span></a></h2><h3 id="orspmm6yi">使用场景<a class="anchorjs-link" href="#orspmm6yi"><span class="anchorjs-icon"></span></a></h3>
 <ul>
 <li>计数</li>
 <li>全局配置</li>
 <li>作为模块通信的桥梁</li>
 </ul>
-<h3 id="ocei66yma">示例<a class="anchorjs-link" href="#ocei66yma"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="okp4ilnli">示例<a class="anchorjs-link" href="#okp4ilnli"><span class="anchorjs-icon"></span></a></h3>
 <p>个人觉得以下是个比较好的实现, 可以省略new, 外界没法直接访问和修改instance.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">instance</span><span class="p">;</span>
@@ -154,18 +154,18 @@
     <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}());</span>
-</code></pre></div><h2 id="oxg9chnbx">工厂<a class="anchorjs-link" href="#oxg9chnbx"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="ocvrmguqm">工厂<a class="anchorjs-link" href="#ocvrmguqm"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>根据字符串指定的类型在运行时创建对象的方法</p>
 </blockquote>
-<h3 id="oqco0i55q">使用场景<a class="anchorjs-link" href="#oqco0i55q"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o323osppu">使用场景<a class="anchorjs-link" href="#o323osppu"><span class="anchorjs-icon"></span></a></h3>
 <p>在静态语言中用的比较多, 工厂模式有以下目标:</p>
 
 <ul>
 <li>创建相似对象时执行重复操作</li>
 <li>编译时不知道具体类型的情况下， 为工厂客户提供一种创建对象的接口(动态语言没有这个烦恼)</li>
 </ul>
-<h3 id="oqv4ok3vv">示例<a class="anchorjs-link" href="#oqv4ok3vv"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MobileFactory</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<h3 id="olv0ivr07">示例<a class="anchorjs-link" href="#olv0ivr07"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MobileFactory</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">constr</span><span class="p">,</span>
       <span class="nx">F</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">();</span>
 
@@ -223,7 +223,7 @@
 <span class="nx">num</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">;</span>                  <span class="c1">// true</span>
 <span class="nx">str</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>                  <span class="c1">// true</span>
 <span class="nx">bln</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>                 <span class="c1">// true</span>
-</code></pre></div><h2 id="o3mzt9xh5">迭代器<a class="anchorjs-link" href="#o3mzt9xh5"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="olao4ug74">迭代器<a class="anchorjs-link" href="#olao4ug74"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>提供一个API来遍历和操纵复杂的自定义数据结构。 在迭代模式中,通常有一个包含某种数据集合的对象。该数据可能存储在一个复杂数据结构内部,而提供一种简单的方法能够访问数据结构中的每一个元素。对象的消费者并不需要知道如何组织数据,所有需要做的就是取出单个数据进行工作。</p>
 </blockquote>
@@ -252,15 +252,15 @@
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}());</span>
-</code></pre></div><h2 id="otjjzttei">装饰者<a class="anchorjs-link" href="#otjjzttei"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="oixmk77g">装饰者<a class="anchorjs-link" href="#oixmk77g"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>通过从预定义装饰者对象中添加功能, 从而在运行时调整对象。</p>
 </blockquote>
 
 <p>目的：运行时动态添加附加功能到对象中</p>
-<h3 id="o3h5i73x3">使用场景<a class="anchorjs-link" href="#o3h5i73x3"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="odfe3ybta">使用场景<a class="anchorjs-link" href="#odfe3ybta"><span class="anchorjs-icon"></span></a></h3>
 <p>个人觉得在作组件化的时候会比较有用, 因为有些组件间的差异很小, 这个时候你不会希望再建一个类似的组件, 而通过传入大量的配置参数和解决其实对使用者和开发者来说都不算友好, 同时需求的增加, 后期的维护和扩展都将是一个问题</p>
-<h3 id="orbwmbvbp">示例<a class="anchorjs-link" href="#orbwmbvbp"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ozin69pjb">示例<a class="anchorjs-link" href="#ozin69pjb"><span class="anchorjs-icon"></span></a></h3>
 <p>以下代码是个人理解, 不理解这么简单的例子《JavascScript模式》一书, 选择用列表或者继承来实现</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Sale</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
@@ -289,15 +289,15 @@
 <span class="nx">sale</span><span class="p">.</span><span class="nx">fedtax</span><span class="p">().</span><span class="nx">quebec</span><span class="p">().</span><span class="nx">hero</span><span class="p">();</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sale</span><span class="p">);</span>  <span class="c1">// { price: 20 }</span>
-</code></pre></div><h2 id="os1o7phmr">策略<a class="anchorjs-link" href="#os1o7phmr"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="otcuz0g66">策略<a class="anchorjs-link" href="#otcuz0g66"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>选择最佳策略以处理特定任务</p>
 </blockquote>
 
 <p>没有特别之处, 只不过给一个经常用的方案取了一个名字</p>
-<h3 id="oa81ytdo7">使用场景<a class="anchorjs-link" href="#oa81ytdo7"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="op46zkacr">使用场景<a class="anchorjs-link" href="#op46zkacr"><span class="anchorjs-icon"></span></a></h3>
 <p>表单验证</p>
-<h3 id="oyeev9l9f">示例<a class="anchorjs-link" href="#oyeev9l9f"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">validator</span> <span class="o">=</span> <span class="p">{</span>
+<h3 id="opdpjuyl8">示例<a class="anchorjs-link" href="#opdpjuyl8"><span class="anchorjs-icon"></span></a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">validator</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">checker</span><span class="p">,</span>
         <span class="nx">type</span><span class="p">,</span>
@@ -358,11 +358,11 @@
 <span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">validator</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errors</span><span class="p">);</span>  <span class="c1">// [ &#39;the value can\&#39;t be empty&#39;, &#39;the value can only contains numbers and characters&#39; ]</span>
-</code></pre></div><h2 id="owlxljanq">外观(facade)<a class="anchorjs-link" href="#owlxljanq"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="o9t61xbdm">外观(facade)<a class="anchorjs-link" href="#o9t61xbdm"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>通过把常用方法包装到一个新方法中，从而提供一个列为便利的API。</p>
 </blockquote>
-<h3 id="ommpgvbmm">使用场景<a class="anchorjs-link" href="#ommpgvbmm"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="oubbh19wm">使用场景<a class="anchorjs-link" href="#oubbh19wm"><span class="anchorjs-icon"></span></a></h3>
 <p>同样没有特别之处, 同样只是取了一个名字。</p>
 
 <blockquote>
@@ -376,23 +376,23 @@
     <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="okbuz9ye6">代理<a class="anchorjs-link" href="#okbuz9ye6"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="o6r9h89uy">代理<a class="anchorjs-link" href="#o6r9h89uy"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>通过包装一个对象以控制对它的访问，其主要方法是将访问聚焦为组或公当真正必要的时候才执行访问, 从而避免了高昂的操作开销</p>
 </blockquote>
-<h3 id="oj18iypss">使用场景<a class="anchorjs-link" href="#oj18iypss"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="oxhwi236b">使用场景<a class="anchorjs-link" href="#oxhwi236b"><span class="anchorjs-icon"></span></a></h3>
 <p>这个模式还是不错的, 具体应用可以是通过一个代理来合并请求: 设置一个超时时间(如50ms), 把这个时间段内的请求合并成一个以提高性能(可以同时把请求的结果缓存起来).</p>
 
 <blockquote>
 <p>另一应用是延迟初始化: 如果初始化本体对象开销很大, 并且这个对象使用频率并不高。在这种情况下, 代理可以通过替换本体对象的接口来解决这个问题, 代理接收初始化请求, 但是直到该本体对象明确的将被实际使用之前, 代理不会将该请求传递给本体对象.</p>
 </blockquote>
-<h2 id="o3qjdofet">中介者<a class="anchorjs-link" href="#o3qjdofet"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="opul3ij27">中介者<a class="anchorjs-link" href="#opul3ij27"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>对象之间互相不直接“通话”, 而是仅通过一个中介者对象进行通信, 从而促进形成松散耦合</p>
 </blockquote>
-<h3 id="ob79z99qw">使用场景<a class="anchorjs-link" href="#ob79z99qw"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="olzn85way">使用场景<a class="anchorjs-link" href="#olzn85way"><span class="anchorjs-icon"></span></a></h3>
 <p>对象之间的直接通信可能会导致不良的紧耦合, 当对象间紧密耦合的时候, 代码的维护和扩展将变得十分困难, 中介者的目的是缓解这个问题, 并促进形成松耦合.</p>
-<h3 id="otuyv0qxa">示例<a class="anchorjs-link" href="#otuyv0qxa"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="okqrvxxni">示例<a class="anchorjs-link" href="#okqrvxxni"><span class="anchorjs-icon"></span></a></h3>
 <p>这是一个游戏的代码示例, 每次玩家play的时候都需要更新一次计分板, 但是我们并不让玩家直接更新计分板而是通过中介(mediator)来更新计分板, 以达到降低代码耦合底的需要</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 玩家</span>
 <span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
@@ -451,15 +451,15 @@
   <span class="nb">window</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;finished...&#39;</span><span class="p">);</span>
 <span class="p">},</span> <span class="mi">10000</span><span class="p">);</span>
-</code></pre></div><h2 id="ovhmtpkn5">观察者<a class="anchorjs-link" href="#ovhmtpkn5"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="odgo0ghja">观察者<a class="anchorjs-link" href="#odgo0ghja"><span class="anchorjs-icon"></span></a></h2>
 <blockquote>
 <p>通过创建可观者的对象，当发生一个感兴趣的事件时可将该事件通过千给所有观察者, 从而促进形成松散耦合.</p>
 </blockquote>
 
 <p>和中介相比, 观察者并不是一个对象去调用另一个对象的方法, 观察者是一个对象订阅另一个对象的特定活动并在状态变化后获得通知.</p>
-<h3 id="ojfckm74">使用场景<a class="anchorjs-link" href="#ojfckm74"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ogvo9dm05">使用场景<a class="anchorjs-link" href="#ogvo9dm05"><span class="anchorjs-icon"></span></a></h3>
 <p>杂志订阅等, 这里我们把中介示例中的那个游戏用观察者模式重写一下</p>
-<h3 id="oe3974frd">示例<a class="anchorjs-link" href="#oe3974frd"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o6up4x1kr">示例<a class="anchorjs-link" href="#o6up4x1kr"><span class="anchorjs-icon"></span></a></h3>
 <p>以下代码大多数源于《JavaScript》源码一书, 为让它能在控制台直接运行, 做了轻微简化。下面的代码对于观察者模式应该还算个不错的例子, 不过也不是没有改进的空间, 比如<code>makePublish</code>方法采用复制的方案来实现继承, 有一定性能损失, <code>publisher</code> 的实现不够清晰。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Players</span>
 <span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>

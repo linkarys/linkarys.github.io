@@ -1064,7 +1064,7 @@ code {
 
 .highlight {
   color: #333333;
-  background: #f3f3f3;
+  background: url("../images/blueprint-dark.png") #f7f7f7;
   position: relative;
   margin-bottom: 14px;
   padding: 14px;
