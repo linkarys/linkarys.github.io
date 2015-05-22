@@ -106,32 +106,32 @@
 <p><strong>注: 不同的浏览器对这一布局方式的支持所采用的语法并不一致, 我们可以用<code>grunt</code>或者<code>gulp</code>的<code>autoprefixer</code>插件来帮助我们完成浏览器的兼容性写法。</strong></p>
 
 <p><strong>本文暂不作兼容性处理, 请使用最新Chrome进行阅读</strong></p>
-<h2 id="obfr6jade">Flex Container相关属性<a class="anchorjs-link" href="#obfr6jade"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="on4kn52ok">Flex Container相关属性<a class="anchorjs-link" href="#on4kn52ok"><span class="anchorjs-icon"></span></a></h2>
 <p>这种布局方式需要父级元素和子级元素共同配合, 首先我们需要把父级的display设为flex。</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
   <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
-<h3 id="o4kkacmbb">方向与换行<a class="anchorjs-link" href="#o4kkacmbb"><span class="anchorjs-icon"></span></a></h3><h4 id="ohlreu5i9">布局方向<a class="anchorjs-link" href="#ohlreu5i9"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="on02wi3xj">方向与换行<a class="anchorjs-link" href="#on02wi3xj"><span class="anchorjs-icon"></span></a></h3><h4 id="o7zc2cgvb">布局方向<a class="anchorjs-link" href="#o7zc2cgvb"><span class="anchorjs-icon"></span></a></h4>
 <p>正常的布局方向是由左及右的, 我们可以通过设置<code>flex-direction</code>为还控制布局方向.
 row是正常的左右向, column为上下向. <code>-reverse</code>指各自方向上的反向.</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
   <span class="n">flex</span><span class="o">-</span><span class="k">direction</span><span class="o">:</span> <span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="n">reverse</span><span class="p">]</span> <span class="o">|</span> <span class="n">column</span><span class="p">[</span><span class="o">-</span><span class="n">reserve</span><span class="p">]</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="ouupmribo">是否换行<a class="anchorjs-link" href="#ouupmribo"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="owt3f39oj">是否换行<a class="anchorjs-link" href="#owt3f39oj"><span class="anchorjs-icon"></span></a></h4>
 <p>当我们使用flex布局的时候, 默认是不换行的, 如果我们希望他换行, 那么我们就需要设置<code>flex-wrap</code>属性值为<code>wrap</code>. 注意这边还有wrap-reserve, 指的是文章的方向是由下至上的, 而不是常规的由上至下.</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
   <span class="n">flex</span><span class="o">-</span><span class="n">wrap</span><span class="o">:</span> <span class="k">nowrap</span><span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="o">|</span> <span class="n">wrap</span><span class="p">[</span><span class="o">-</span><span class="n">reserve</span><span class="p">]</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="osd4fdhwu">简写形式<a class="anchorjs-link" href="#osd4fdhwu"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="ou2hg1qvn">简写形式<a class="anchorjs-link" href="#ou2hg1qvn"><span class="anchorjs-icon"></span></a></h4>
 <p>我们可以用<code>flex-flow</code>来同时表示<code>flex-direction</code>和<code>flex-wrap</code>第一个属性指的是<code>flex-direction</code>, 第二属性表示<code>flex-wrap</code></p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">flex-flow</span><span class="o">:</span> <span class="o">&lt;</span><span class="s1">&#39;flex-direction&#39;</span><span class="o">&gt;</span> <span class="o">||</span> <span class="o">&lt;</span><span class="s1">&#39;flex-wrap&#39;</span><span class="o">&gt;</span></code></pre></div>
-<h4 id="oe6dggqt8">示例<a class="anchorjs-link" href="#oe6dggqt8"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o6c98j6u9">示例<a class="anchorjs-link" href="#o6c98j6u9"><span class="anchorjs-icon"></span></a></h4>
 <iframe width="100%" height="260" src="/embed/flex/flex-flow.html" frameborder="0" allowfullscreen></iframe>
-<h3 id="ocnafmdje">对齐方法<a class="anchorjs-link" href="#ocnafmdje"><span class="anchorjs-icon"></span></a></h3><h4 id="oyzaqxgz9">水平对齐<a class="anchorjs-link" href="#oyzaqxgz9"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="omii1glhd">对齐方法<a class="anchorjs-link" href="#omii1glhd"><span class="anchorjs-icon"></span></a></h3><h4 id="oc8pmw7qi">水平对齐<a class="anchorjs-link" href="#oc8pmw7qi"><span class="anchorjs-icon"></span></a></h4>
 <p>我们用<code>justify-content</code>来指定flex-item在主坐标轴方向(main axis)的对齐方式.
 这个属性类似于我们平时用的<code>text-align</code>. 不过需要注意的是, 当<code>flex-direction</code>为<code>row-reverse</code>时, <code>justify-content: flex-end</code>实际为左对齐(因内容方向由右及左, end方向在左边---命名果然很科学!)
 <code>space-around</code>和<code>space-between</code>的区别在于空白均匀是否包含边界。</p>
@@ -139,17 +139,17 @@ row是正常的左右向, column为上下向. <code>-reverse</code>指各自方�
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
   <span class="k">justify</span><span class="o">-</span><span class="k">content</span><span class="o">:</span> <span class="n">flex</span><span class="o">-</span><span class="n">start</span><span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="o">|</span> <span class="n">flex</span><span class="o">-</span><span class="n">end</span> <span class="o">|</span> <span class="k">center</span> <span class="o">|</span> <span class="n">space</span><span class="o">-</span><span class="n">between</span> <span class="o">|</span> <span class="n">space</span><span class="o">-</span><span class="n">around</span>
 <span class="p">}</span></code></pre></div>
-<h5 id="otbpger4s">示例<a class="anchorjs-link" href="#otbpger4s"><span class="anchorjs-icon"></span></a></h5>
+<h5 id="ohwk6igtj">示例<a class="anchorjs-link" href="#ohwk6igtj"><span class="anchorjs-icon"></span></a></h5>
 <iframe width="100%" height="400" src="/embed/flex/flex-justify.html" frameborder="0" allowfullscreen></iframe>
-<h4 id="opvro4i7r">单行垂直对齐<a class="anchorjs-link" href="#opvro4i7r"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oqok7ctmz">单行垂直对齐<a class="anchorjs-link" href="#oqok7ctmz"><span class="anchorjs-icon"></span></a></h4>
 <p><code>align-items</code>表示单行情况下垂直方向(cross axis)的对齐方式, 默认情况下是<code>stretch</code>, 即充满整个父级的高度. 无对齐一言, 多行时起作用为<code>align-content</code>(默认: space-between)。</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
   <span class="n">align</span><span class="o">-</span><span class="n">items</span><span class="o">:</span> <span class="n">flex</span><span class="o">-</span><span class="n">start</span> <span class="o">|</span> <span class="n">flex</span><span class="o">-</span><span class="n">end</span> <span class="o">|</span> <span class="k">center</span> <span class="o">|</span> <span class="k">baseline</span> <span class="o">|</span> <span class="n">stretch</span><span class="p">(</span><span class="k">default</span><span class="p">);</span>
 <span class="p">}</span></code></pre></div>
-<h5 id="o92acpwj1">示例<a class="anchorjs-link" href="#o92acpwj1"><span class="anchorjs-icon"></span></a></h5>
+<h5 id="orongosgd">示例<a class="anchorjs-link" href="#orongosgd"><span class="anchorjs-icon"></span></a></h5>
 <iframe width="100%" height="230" src="/embed/flex/flex-align-items.html" frameborder="0" allowfullscreen></iframe>
-<h4 id="oiw5qscnk">多行垂直对齐<a class="anchorjs-link" href="#oiw5qscnk"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="ozcn1c2sk">多行垂直对齐<a class="anchorjs-link" href="#ozcn1c2sk"><span class="anchorjs-icon"></span></a></h4>
 <p><code>align-content</code>多行情况下内容的垂直(cross axis)对齐方式, 当内容只有当行时起作用的是<code>align-items</code>,可以把它当成垂直方向的<code>justify-content</code>。</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
@@ -157,16 +157,16 @@ row是正常的左右向, column为上下向. <code>-reverse</code>指各自方�
 <span class="p">}</span></code></pre></div>
 
 <iframe width="100%" height="280" src="/embed/flex/flex-align-content.html" frameborder="0" allowfullscreen></iframe>
-<h2 id="oloejl9dz">Flex Item的相关属性<a class="anchorjs-link" href="#oloejl9dz"><span class="anchorjs-icon"></span></a></h2><h3 id="offiyibl8">顺序<a class="anchorjs-link" href="#offiyibl8"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="ofr6sx79k">Flex Item的相关属性<a class="anchorjs-link" href="#ofr6sx79k"><span class="anchorjs-icon"></span></a></h2><h3 id="o4bygvrpg">顺序<a class="anchorjs-link" href="#o4bygvrpg"><span class="anchorjs-icon"></span></a></h3>
 <p><code>order</code>, 可以理解成<code>z-index</code>可为负值</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-item</span> <span class="p">{</span>
   <span class="n">order</span><span class="o">:</span> <span class="m">1</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="o7x1xpql2">示例<a class="anchorjs-link" href="#o7x1xpql2"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="ojq2lcse5">示例<a class="anchorjs-link" href="#ojq2lcse5"><span class="anchorjs-icon"></span></a></h4>
 <p>此时flex-item中html的书写顺序, 不影响显示的顺序
 <iframe width="100%" height="130" src="/embed/flex/flex-order.html" frameborder="0" allowfullscreen></iframe></p>
-<h3 id="oes19a7kt">flex item<a class="anchorjs-link" href="#oes19a7kt"><span class="anchorjs-icon"></span></a></h3><h4 id="ol5x71t9r">flex-basis<a class="anchorjs-link" href="#ol5x71t9r"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="oelwbkyof">flex item<a class="anchorjs-link" href="#oelwbkyof"><span class="anchorjs-icon"></span></a></h3><h4 id="oiww4atg6">flex-basis<a class="anchorjs-link" href="#oiww4atg6"><span class="anchorjs-icon"></span></a></h4>
 <p><code>flex-basis</code>指定flex item的初始宽度, 缺省情况下是0, auto表示取决于内容.
 比如当我们设置<code>flex-basis</code>为10px, 此时如果父级的空间足够, 那么flex item的宽度即为10px.
 不够则按照flex item个数进行均分。 <code>flex-basis</code>支持百分比写法, 相较于父级元素, 100%为等同于父级元素宽度.</p>
@@ -174,24 +174,24 @@ row是正常的左右向, column为上下向. <code>-reverse</code>指各自方�
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-item</span> <span class="p">{</span>
   <span class="n">flex</span><span class="o">-</span><span class="n">basis</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">length</span><span class="o">&gt;</span> <span class="o">|</span> <span class="k">auto</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="o50jwvdih">flex-grow<a class="anchorjs-link" href="#o50jwvdih"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="ofj00d1pb">flex-grow<a class="anchorjs-link" href="#ofj00d1pb"><span class="anchorjs-icon"></span></a></h4>
 <p>当<code>flex-basis</code>足够分配, 父元素将有一部分多余的正空间, 那么这部分多余空间在分配时, <code>flex-grow</code>为2的元素将比<code>flex-grow</code>为1的元素的多得到两倍的空间, 假如设置<code>flex-basis</code>不足分配, 则按照flex item个数进行均分。</p>
-<h4 id="ovc48tu0i">flex-shrink<a class="anchorjs-link" href="#ovc48tu0i"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o238h526e">flex-shrink<a class="anchorjs-link" href="#o238h526e"><span class="anchorjs-icon"></span></a></h4>
 <p><code>flex-shrink</code>的默认值为1, 它只有在设置<code>flex-basis</code>不足分配时才有作用. 在分配这些负的空间时
 <code>flex-shrink</code>为2的元素将比<code>flex-shrink</code>为1的元素的分配两倍的负空间。</p>
-<h4 id="owp8chb5b">简写<a class="anchorjs-link" href="#owp8chb5b"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="or3mdc05e">简写<a class="anchorjs-link" href="#or3mdc05e"><span class="anchorjs-icon"></span></a></h4>
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-item</span> <span class="p">{</span>
   <span class="n">flex</span><span class="o">:</span> <span class="k">none</span> <span class="o">|</span> <span class="o">&lt;</span><span class="s1">&#39;flex-grow&#39;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="s1">&#39;flex-shrink&#39;</span><span class="o">&gt;?</span> <span class="o">||</span> <span class="o">&lt;</span><span class="s1">&#39;flex-basis&#39;</span><span class="o">&gt;</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="om13yzqt8">示例<a class="anchorjs-link" href="#om13yzqt8"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o8pixf52o">示例<a class="anchorjs-link" href="#o8pixf52o"><span class="anchorjs-icon"></span></a></h4>
 <iframe width="100%" height="160" src="/embed/flex/flex-item.html" frameborder="0" allowfullscreen></iframe>
-<h3 id="orftew69s">独自的对齐方式<a class="anchorjs-link" href="#orftew69s"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o9d511feh">独自的对齐方式<a class="anchorjs-link" href="#o9d511feh"><span class="anchorjs-icon"></span></a></h3>
 <p><code>align-self</code> 独自的对齐方式, 相较于父级的align-items而言. 如果发生换行, 将在其所在的那一行起作用.</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-item</span> <span class="p">{</span>
   <span class="n">align</span><span class="o">-</span><span class="n">self</span><span class="o">:</span> <span class="k">auto</span> <span class="o">|</span> <span class="n">flex</span><span class="o">-</span><span class="n">start</span> <span class="o">|</span> <span class="n">flex</span><span class="o">-</span><span class="n">end</span> <span class="o">|</span> <span class="k">center</span> <span class="o">|</span> <span class="k">baseline</span> <span class="o">|</span> <span class="n">stretch</span>
 <span class="p">}</span></code></pre></div>
-<h4 id="o8bj6er63">示例<a class="anchorjs-link" href="#o8bj6er63"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o4oh1hnu1">示例<a class="anchorjs-link" href="#o4oh1hnu1"><span class="anchorjs-icon"></span></a></h4>
 <iframe width="100%" height="170" src="/embed/flex/flex-align-self.html" frameborder="0" allowfullscreen></iframe>
 
 <p>参考文档:</p>
