@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Something about Babel & ES6</title>
+  <meta name="description" content="Babel可以把ES6代码转换成主流浏览器可以执行的ES5代码(当然转换结果并不完美, 支持也不完整).　我好奇babel的转换过程, 所以对某些实现做了简单分析">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/es6_babel">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+            
+            <a  href="/about/">About</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">Something about Babel & ES6</h1>
+    <p class="post-meta">May 23, 2015 • linkarys</p>
+    <ul class="tags">
+      
+        
+        <li><a class="tag" href="javascript:void(0)">javascript</a></li>
+        
+      
+        
+        <li><a class="tag" href="javascript:void(0)">es6</a></li>
+        
+      
+    </ul>
+    
+  </header>
+
+  <article class="post-content">
+    <p>Babel可以把ES6代码转换成主流浏览器可以执行的ES5代码(当然转换结果并不完美, 支持也不完整).　我好奇babel的转换过程, 所以对某些实现做了简单分析</p>
+<h2 id="ouj5f96un">class<a class="anchorjs-link" href="#ouj5f96un"><span class="anchorjs-icon"></span></a></h2>
+<p>平地一声雷, js终于是告别了没有<code>class</code>的历史！Babel用es5来模拟es6提出的class, 用到了几个关键函数，我们依次来看一下</p>
+<h3 id="opufid0ho">_createClass<a class="anchorjs-link" href="#opufid0ho"><span class="anchorjs-icon"></span></a></h3>
+<p><code>_createClass</code>接受一个构造函数和一个包含key,value的json对象数组, 这些key, value通过<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.definedProperty</a>方法将其添加到构造函数的prototype属性中， 以实现每个构造函数的实例继承这些方法。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">_createClass</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 既然都用了Object.defineProperty, 为什么此处不用更简洁的forEach替代?</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nx">props</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+      <span class="c1">// 指定属性是否出现在for in操作中(默认为false)</span>
+      <span class="nx">descriptor</span><span class="p">.</span><span class="nx">enumerable</span> <span class="o">=</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">enumerable</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span>
+
+      <span class="c1">// 指定该属性能否被删除， 以后是否能改变其descriptor(默认为false)</span>
+      <span class="nx">descriptor</span><span class="p">.</span><span class="nx">configurable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+      <span class="c1">// writable表示定义的属性可写</span>
+      <span class="k">if</span> <span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span> <span class="k">in</span> <span class="nx">descriptor</span><span class="p">)</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">writable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">Constructor</span><span class="p">,</span> <span class="nx">protoProps</span><span class="p">,</span> <span class="nx">staticProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 每二个参数数组中定义的key, descriptor会添加到构造函数的prototype中</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">protoProps</span><span class="p">)</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">Constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">protoProps</span><span class="p">);</span>
+
+    <span class="c1">// 第三个参数数组中定义的key, descriptor会添加到构造函数的自身属性上</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">staticProps</span><span class="p">)</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">Constructor</span><span class="p">,</span> <span class="nx">staticProps</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">Constructor</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">})();</span>
+</code></pre></div><h3 id="okw69iowe">_inherits<a class="anchorjs-link" href="#okw69iowe"><span class="anchorjs-icon"></span></a></h3>
+<p>关于继承, 之前的一篇文章<a href="http://linkarys.github.io/posts/javascript/javascript-inherit/">javascript inherit</a>做了较详细的描述</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">_inherits</span><span class="p">(</span><span class="nx">subClass</span><span class="p">,</span> <span class="nx">superClass</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="err">‘</span><span class="kd">function</span><span class="err">’</span> <span class="o">&amp;&amp;</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="err">‘</span><span class="nx">Super</span> <span class="nx">expression</span> <span class="nx">must</span> <span class="nx">either</span> <span class="nx">be</span> <span class="kc">null</span> <span class="nx">or</span> <span class="nx">a</span> <span class="kd">function</span><span class="p">,</span> <span class="nx">not</span> <span class="err">‘</span> <span class="o">+</span> <span class="k">typeof</span> <span class="nx">superClass</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">subClass</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">superClass</span> <span class="o">&amp;&amp;</span> <span class="nx">superClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">subClass</span><span class="p">,</span>
+      <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+<span class="c1">// 保留对超类的引用, 另外，如果没有这一步，在现代浏览器中</span>
+<span class="c1">// Object.getPrototypeOf(subClass)的值将为Function.prototype而不是superClass</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">superClass</span><span class="p">)</span> <span class="nx">subClass</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">superClass</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">subClass</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="o9qet04uh">_classCallCheck<a class="anchorjs-link" href="#o9qet04uh"><span class="anchorjs-icon"></span></a></h3>
+<p>比较简单, 应该是防止调用构造函数时通过call, apply, bind之类的方式绑定了不合理的this</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">_classCallCheck</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">Constructor</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">instance</span> <span class="k">instanceof</span> <span class="nx">Constructor</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="err">‘</span><span class="nx">Cannot</span> <span class="nx">call</span> <span class="nx">a</span> <span class="kr">class</span> <span class="nx">as</span> <span class="nx">a</span> <span class="kd">function</span><span class="err">’</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="oxjenefxj">get<a class="anchorjs-link" href="#oxjenefxj"><span class="anchorjs-icon"></span></a></h3>
+<p>在原型链中查找对应方法: 通过<code>Object.getPrototypeof</code>遍历原型链, 通过<code>Object.getOwnPropertyDescriptor</code>获取对应属性值——未找到则继续沿着原型链的方向查找, 这边还考虑到了定义了getter的情况</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// _x: Super.prototype, _x2: 要调用的父级方法, _x3: this(当前调用此方法的实例)</span>
+<span class="kd">var</span> <span class="nx">_get</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">_x</span><span class="p">,</span> <span class="nx">_x2</span><span class="p">,</span> <span class="nx">_x3</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">_again</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="c1">// _function表示该循环体的名称,</span>
+  <span class="nx">_function</span><span class="o">:</span> <span class="k">while</span> <span class="p">(</span><span class="nx">_again</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">_x</span><span class="p">,</span>
+      <span class="nx">property</span> <span class="o">=</span> <span class="nx">_x2</span><span class="p">,</span>
+      <span class="nx">receiver</span> <span class="o">=</span> <span class="nx">_x3</span><span class="p">;</span>
+
+    <span class="nx">desc</span> <span class="o">=</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">getter</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="nx">_again</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">property</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">desc</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">parent</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">_x</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+        <span class="nx">_x2</span> <span class="o">=</span> <span class="nx">property</span><span class="p">;</span>
+        <span class="nx">_x3</span> <span class="o">=</span> <span class="nx">receiver</span><span class="p">;</span>
+        <span class="nx">_again</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="c1">// 如果有多层循环, 默认continue跳转到所在级别的循环体中,</span>
+        <span class="c1">// 可以通过continue + label指定跳转的选定的循环体</span>
+        <span class="k">continue</span> <span class="nx">_function</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span> <span class="k">in</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">desc</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">getter</span> <span class="o">=</span> <span class="nx">desc</span><span class="p">.</span><span class="nx">get</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">getter</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">getter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">receiver</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><code>constructor</code>的自动调用实现是通过复制其中的代码到<code>Greeter</code>中实现的.</p>
+<h3 id="oh2vmzk60">编译结果前后对照<a class="anchorjs-link" href="#oh2vmzk60"><span class="anchorjs-icon"></span></a></h3>
+<p>最后来看一下示例代码和其对应的编译结果:</p>
+
+<p><strong>编译前:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Human</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="err">‘</span><span class="nx">human</span><span class="err">’</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kr">static</span> <span class="nx">staticMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">call</span> <span class="kr">static</span> <span class="nx">method</span><span class="err">’</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Man</span> <span class="kr">extends</span> <span class="nx">Human</span> <span class="p">{</span>
+  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">man</span><span class="err">’</span><span class="p">);</span>
+    <span class="kr">super</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">set</span> <span class="nx">age</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">set</span> <span class="nx">value</span><span class="err">’</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>编译后:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="err">‘</span><span class="nx">use</span> <span class="nx">strict</span><span class="err">’</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_get</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">_x</span><span class="p">,</span> <span class="nx">_x2</span><span class="p">,</span> <span class="nx">_x3</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">_again</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="nx">_function</span><span class="o">:</span> <span class="k">while</span> <span class="p">(</span><span class="nx">_again</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">_x</span><span class="p">,</span> <span class="nx">property</span> <span class="o">=</span> <span class="nx">_x2</span><span class="p">,</span> <span class="nx">receiver</span> <span class="o">=</span> <span class="nx">_x3</span><span class="p">;</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">getter</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span> <span class="nx">_again</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">property</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="nx">desc</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="nx">parent</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="nx">_x</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span> <span class="nx">_x2</span> <span class="o">=</span> <span class="nx">property</span><span class="p">;</span> <span class="nx">_x3</span> <span class="o">=</span> <span class="nx">receiver</span><span class="p">;</span> <span class="nx">_again</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="k">continue</span> <span class="nx">_function</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span> <span class="k">in</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">desc</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">getter</span> <span class="o">=</span> <span class="nx">desc</span><span class="p">.</span><span class="nx">get</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nx">getter</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="nx">getter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">receiver</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span> <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">_createClass</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="kd">function</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nx">props</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">enumerable</span> <span class="o">=</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">enumerable</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">configurable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span> <span class="k">in</span> <span class="nx">descriptor</span><span class="p">)</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">writable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span> <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">Constructor</span><span class="p">,</span> <span class="nx">protoProps</span><span class="p">,</span> <span class="nx">staticProps</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">protoProps</span><span class="p">)</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">Constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">protoProps</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="nx">staticProps</span><span class="p">)</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">Constructor</span><span class="p">,</span> <span class="nx">staticProps</span><span class="p">);</span> <span class="k">return</span> <span class="nx">Constructor</span><span class="p">;</span> <span class="p">};</span> <span class="p">})();</span>
+
+<span class="kd">function</span> <span class="nx">_inherits</span><span class="p">(</span><span class="nx">subClass</span><span class="p">,</span> <span class="nx">superClass</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="err">‘</span><span class="kd">function</span><span class="err">’</span> <span class="o">&amp;&amp;</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="err">‘</span><span class="nx">Super</span> <span class="nx">expression</span> <span class="nx">must</span> <span class="nx">either</span> <span class="nx">be</span> <span class="kc">null</span> <span class="nx">or</span> <span class="nx">a</span> <span class="kd">function</span><span class="p">,</span> <span class="nx">not</span> <span class="err">‘</span> <span class="o">+</span> <span class="k">typeof</span> <span class="nx">superClass</span><span class="p">);</span> <span class="p">}</span> <span class="nx">subClass</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">superClass</span> <span class="o">&amp;&amp;</span> <span class="nx">superClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span> <span class="nx">constructor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">subClass</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">});</span> <span class="k">if</span> <span class="p">(</span><span class="nx">superClass</span><span class="p">)</span> <span class="nx">subClass</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">superClass</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">_classCallCheck</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">Constructor</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">instance</span> <span class="k">instanceof</span> <span class="nx">Constructor</span><span class="p">))</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="err">‘</span><span class="nx">Cannot</span> <span class="nx">call</span> <span class="nx">a</span> <span class="kr">class</span> <span class="nx">as</span> <span class="nx">a</span> <span class="kd">function</span><span class="err">’</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">Human</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">Human</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">_classCallCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">Human</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="err">‘</span><span class="nx">human</span><span class="err">’</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">_createClass</span><span class="p">(</span><span class="nx">Human</span><span class="p">,</span> <span class="p">[{</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="err">‘</span><span class="nx">greet</span><span class="err">’</span><span class="p">,</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}],</span> <span class="p">[{</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="err">‘</span><span class="nx">staticMethod</span><span class="err">’</span><span class="p">,</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">staticMethod</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">call</span> <span class="kr">static</span> <span class="nx">method</span><span class="err">’</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}]);</span>
+
+  <span class="k">return</span> <span class="nx">Human</span><span class="p">;</span>
+<span class="p">})();</span>
+
+<span class="kd">var</span> <span class="nx">Man</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">_Human</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">Man</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">_classCallCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">Man</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">_Human</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">_Human</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">_inherits</span><span class="p">(</span><span class="nx">Man</span><span class="p">,</span> <span class="nx">_Human</span><span class="p">);</span>
+
+  <span class="nx">_createClass</span><span class="p">(</span><span class="nx">Man</span><span class="p">,</span> <span class="p">[{</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="err">‘</span><span class="nx">greet</span><span class="err">’</span><span class="p">,</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">man</span><span class="err">’</span><span class="p">);</span>
+      <span class="nx">_get</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">Man</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span> <span class="err">‘</span><span class="nx">greet</span><span class="err">’</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="err">‘</span><span class="nx">age</span><span class="err">’</span><span class="p">,</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">‘</span><span class="nx">set</span> <span class="nx">value</span><span class="err">’</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}]);</span>
+
+  <span class="k">return</span> <span class="nx">Man</span><span class="p">;</span>
+<span class="p">})(</span><span class="nx">Human</span><span class="p">);</span>
+</code></pre></div><h2 id="obdu64m3t">function<a class="anchorjs-link" href="#obdu64m3t"><span class="anchorjs-icon"></span></a></h2>
+<p>ES6对于函数的改进主要包括三点</p>
+
+<ol>
+<li>可以指定默认值了(默认值要位于参数末尾)</li>
+<li>rest参数， 用于获取函数的多余参数(将其保存在数组里, 免去之前arguments.slice的操作, 也需要位于参数末尾)</li>
+<li>扩展运算符(spread), 好比rest参数的逆运算 (<code>JavaScript的函数只能返回一个值，如果需要返回多个值，只能返回数组或对象。扩展运算符提供了解决这个问题的一种变通方法</code>)</li>
+</ol>
+
+<p>关于这三点改进, 我们直接看一下前后对比</p>
+
+<p><strong>转换前的代码:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="err">…</span><span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">…</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="nx">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>转换后的代码:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">_len</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">_len</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">?</span> <span class="nx">_len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">_key</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">_key</span> <span class="o">&lt;</span> <span class="nx">_len</span><span class="p">;</span> <span class="nx">_key</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">b</span><span class="p">[</span><span class="nx">_key</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">_key</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// [ 2, 3, 4, 5 ]</span>
+<span class="c1">// 2 3 4 5</span>
+</code></pre></div>
+<p>参考链接:</p>
+
+<p>[1] http://es6.ruanyifeng.com/#docs/function</p>
+
+<p>[2] https://github.com/lukehoban/es6features</p>
+
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <!-- <script src="/assets/scripts/vendor/jquery.min.js"></script> -->
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<!-- <script src="/assets/scripts/vendor/scrollspy.js"></script> -->
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>
