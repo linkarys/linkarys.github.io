@@ -112,28 +112,28 @@
     <p><img src="/assets/images/grunt-logo.png" alt="Grunt"></p>
 
 <p><code>glup</code>党, 文章写于过去, 只做简单迁移.</p>
-<h2 id="owgkdztsx">安装 grunt-cli<a class="anchorjs-link" href="#owgkdztsx"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="o99bqx0nh">安装 grunt-cli<a class="anchorjs-link" href="#o99bqx0nh"><span class="anchorjs-icon"></span></a></h2>
 <p>在使用grunt前，首先要安装 <a href="http://nodejs.org/">nodejs</a>, 其次安装grunt-cli</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g grunt-cli
-</code></pre></div><h3 id="ofdwd7uym">grunt主程序和插件<a class="anchorjs-link" href="#ofdwd7uym"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="op0cdw6m3">grunt主程序和插件<a class="anchorjs-link" href="#op0cdw6m3"><span class="anchorjs-icon"></span></a></h3>
 <p>接下来根据项目需要安装安装grunt主程序和插件</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># npm install xx -S 会保存到package.json dependencies下</span>
 <span class="c"># npm install xx --save-dev 保存到package.json devDependencies下</span>
 npm install grunt --save-dev
-</code></pre></div><h3 id="osyiwst2v">grunt-init<a class="anchorjs-link" href="#osyiwst2v"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="o9e6mqr55">grunt-init<a class="anchorjs-link" href="#o9e6mqr55"><span class="anchorjs-icon"></span></a></h3>
 <p>为了方便使用，我们一帮会安装一些grunt模板 (项目脚手架)</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 使用模板之前，安装脚手架工具</span>
 npm install -g grunt-init
-</code></pre></div><h3 id="oabqb89bl">安装模板<a class="anchorjs-link" href="#oabqb89bl"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="oupnri1zo">安装模板<a class="anchorjs-link" href="#oupnri1zo"><span class="anchorjs-icon"></span></a></h3>
 <p>模板文件一般保存在~/.grunt-init目录中</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># jquery</span>
 git clone https://github.com/gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
 <span class="c"># base grunt file</span>
 git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
-</code></pre></div><h3 id="opw65pypi">使用模板<a class="anchorjs-link" href="#opw65pypi"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="omsk0f0b1">使用模板<a class="anchorjs-link" href="#omsk0f0b1"><span class="anchorjs-icon"></span></a></h3>
 <p>通过使用grunt-init [已安装模板名称] 来使用相应的模板</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">grunt-init gruntfile
-</code></pre></div><h2 id="omysymznl">grunt插件<a class="anchorjs-link" href="#omysymznl"><span class="anchorjs-icon"></span></a></h2><h3 id="ovauvoaoa">自动载入插件<a class="anchorjs-link" href="#ovauvoaoa"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h2 id="o3t4a8ga9">grunt插件<a class="anchorjs-link" href="#o3t4a8ga9"><span class="anchorjs-icon"></span></a></h2><h3 id="oqftm2gob">自动载入插件<a class="anchorjs-link" href="#oqftm2gob"><span class="anchorjs-icon"></span></a></h3>
 <p>默认情况下，grunt提供的载入插件的命令是：</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">grunt.loadNpmTasks<span class="o">(</span><span class="s1">&#39;grunt-contrib-concat&#39;</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
