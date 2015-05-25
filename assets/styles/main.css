@@ -693,7 +693,7 @@ h1, h2, h3, h4, h5, h6 {
 blockquote {
   color: #828282;
   border-left: 4px solid #abc8e0;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
   line-height: 1.7;
   border-color: #ABC8E0;
   background: #f4faff;

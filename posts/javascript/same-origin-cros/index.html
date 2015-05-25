@@ -110,9 +110,9 @@
 
   <article class="post-content">
     <p><strong>注: 未完待续, 文章尚有一些观点有待验证(给我一点时间..), 可能存在错误, 切记！</strong></p>
-<h2 id="oia18v35m">同源<a class="anchorjs-link" href="#oia18v35m"><span class="anchorjs-icon"></span></a></h2>
-<p>网络都在说如何解决跨域问题? 但是对于导致跨域的问题的同源策略确探讨不足，个人觉得很粗暴，很不好!</p>
-<h3 id="o7tpm4zbt">什么是同源<a class="anchorjs-link" href="#o7tpm4zbt"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="oqm4iyqbw">同源<a class="anchorjs-link" href="#oqm4iyqbw"><span class="anchorjs-icon"></span></a></h2>
+<p>网络都在说如何解决跨域问题? 但是对于导致跨域的问题的同源策略却探讨不足，个人觉得很粗暴-_-!</p>
+<h3 id="ol4109els">什么是同源<a class="anchorjs-link" href="#ol4109els"><span class="anchorjs-icon"></span></a></h3>
 <p>同源有三个要求:</p>
 
 <ul>
@@ -127,14 +127,14 @@
 <li>在store.company.com中设置document.domain = ‘company.com’.</li>
 <li>需要是火狐浏览器 (是的, 在<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">MDN</a>上有描述, 但是在chrome下同样会报同源错误, 其它浏览器未测试)</li>
 </ol>
-<h3 id="oag8wydqs">同源策略会限制什么<a class="anchorjs-link" href="#oag8wydqs"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ozuvgtkda">同源策略会限制什么<a class="anchorjs-link" href="#ozuvgtkda"><span class="anchorjs-icon"></span></a></h3>
 <ul>
 <li>Ajax(XHR)请求</li>
 <li>font-face (存在浏览器差异，有些限制, 有些不限制, google fonts在响应头中加了<code>Access-Control-Allow-Origin: *</code>)</li>
 <li>WebGL textures</li>
 <li>使用drawImage嵌入canvas中的图片(images drawn to a canvas using drawImage)</li>
 </ul>
-<h3 id="ohd5oldfi">同源策略不限制什么<a class="anchorjs-link" href="#ohd5oldfi"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="oebwtex3l">同源策略不限制什么<a class="anchorjs-link" href="#oebwtex3l"><span class="anchorjs-icon"></span></a></h3>
 <p>基于标签的跨域请求基本都不限制(可以这么理解: 对于静态资源一般是不限制的):</p>
 
 <ul>
@@ -147,7 +147,7 @@
 <li>link(各种浏览器行为有差异)</li>
 <li>frame, iframe (<a href="https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options">X-Frame-Options</a>头信息可以控制此限制)</li>
 </ul>
-<h3 id="o4lrxqpur">cookie的同源策略<a class="anchorjs-link" href="#o4lrxqpur"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o31fvp3jv">cookie的同源策略<a class="anchorjs-link" href="#o31fvp3jv"><span class="anchorjs-icon"></span></a></h3>
 <p>Cookie中的同源只关注域名，忽略协议和端口。而且子域和父域允许相互读写。</p>
 
 <p><strong>domain.com写cookie到所有子域:</strong></p>
@@ -155,15 +155,15 @@
 </code></pre></div>
 <p><strong>sub.domain.com写cookie到其父域:</strong></p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="err">‘</span><span class="nx">child_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="nx">domain</span><span class="o">=</span><span class="nx">domain</span><span class="p">.</span><span class="nx">com</span><span class="err">’</span><span class="p">;</span>
-</code></pre></div><h3 id="ohm77dach">为什么会有同源策略<a class="anchorjs-link" href="#ohm77dach"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="opurm7wfi">为什么会有同源策略<a class="anchorjs-link" href="#opurm7wfi"><span class="anchorjs-icon"></span></a></h3>
 <p>当然，这是为了网络安全, 那么没有同源策略会有哪些影响？我从<a href="http://security.stackexchange.com/questions/8264/why-is-the-same-origin-policy-so-important">网上</a>摘录了一个场景:</p>
 
 <blockquote>
 <p>Assume you are logged into Facebook and visit a malicious website in another browser tab. Without the same origin policy JavaScript on that website could do anything to your Facebook account that you are allowed to do. For example read private messages, post status updates, analyse the HTML DOM-tree after you entered your password before submitting the form.</p>
 </blockquote>
-<h3 id="ocl9ji3ea">浏览器是怎么做的<a class="anchorjs-link" href="#ocl9ji3ea"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ofifgjhar">浏览器是怎么做的<a class="anchorjs-link" href="#ofifgjhar"><span class="anchorjs-icon"></span></a></h3>
 <p>需要注意的是， 客户端发送的请求不在同源策略的限制中, 服务器端响应的数据才有跨域限制的问题, 而且本质上response已经到达本地，只不过浏览器在网络层做了一下校验, 看看服务器端是否允许此客户端访问这个页面, 不是的话浏览器会触发<code>XMLHttpRequest</code>’s <code>error</code>事件，然后拒绝把响应的数据交给请求该数据的js</p>
-<h2 id="o15mx0gsw">如何跨站访问数据<a class="anchorjs-link" href="#o15mx0gsw"><span class="anchorjs-icon"></span></a></h2><h3 id="onj2dgipk">使用CORS(<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Cross-Origin Resource Sharing</a>)<a class="anchorjs-link" href="#onj2dgipk"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="o6j6xhl5d">如何跨站访问数据<a class="anchorjs-link" href="#o6j6xhl5d"><span class="anchorjs-icon"></span></a></h2><h3 id="oy1q32dar">使用CORS(<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Cross-Origin Resource Sharing</a>)<a class="anchorjs-link" href="#oy1q32dar"><span class="anchorjs-icon"></span></a></h3>
 <p>这应该会成为未来解决跨域问题的主要方法, CORS标准添加了一些新的HTTP headers, 可以让客户端在已授权的情况下给远程服务器发送请求(部分验证在服务器端, 但是绝大多数在浏览器端完成), 这些相关的headers有:</p>
 
 <p><strong>Request headers</strong>:</p>
@@ -231,17 +231,17 @@ A header is said to be a simple response header if the header field name is an A
 <li>Opera &gt; 12.00</li>
 <li> Opera Mini 不支持</li>
 </ul>
-<h3 id="oyr05zncs">jsonp<a class="anchorjs-link" href="#oyr05zncs"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="owsifyd07">jsonp<a class="anchorjs-link" href="#owsifyd07"><span class="anchorjs-icon"></span></a></h3>
 <p>变相的使用<code>&lt;script&gt;</code>，地球人都知道，具体使用不赘述. 和CORS比较:</p>
 
 <p>jsonp有良好的兼容, 但是只支持get请求, 并且可能导致XSS攻击，安全性不如CORS; 而CORS支持其它的请求方法, 使用更加方便, 安全性高于JSONP(允许客户端自己解析响应的数据), 因为发送的是常规的XMLHttpRequest, 所以也更容易做错误处理.</p>
-<h3 id="ogty9jn5b">nginx反向代理<a class="anchorjs-link" href="#ogty9jn5b"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="otbmro9hc">nginx反向代理<a class="anchorjs-link" href="#otbmro9hc"><span class="anchorjs-icon"></span></a></h3>
 <p>这是我个人比较喜欢的方法，兼具jsonp和CORS的优点。具体做法:
 假如http://sitea.com要访问http://siteb.com/agency下的内容, 可以在nginx.conf中加入如下配置:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">location /agency {
     proxy_pass   http://119.255.25.130/agency;
 }
-</code></pre></div><h3 id="occlm3kto">iframe, window.name<a class="anchorjs-link" href="#occlm3kto"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="o6bnba52c">iframe, window.name<a class="anchorjs-link" href="#o6bnba52c"><span class="anchorjs-icon"></span></a></h3>
 <p>比较绕，也不优雅, pass</p>
 
 <p>参考:</p>
