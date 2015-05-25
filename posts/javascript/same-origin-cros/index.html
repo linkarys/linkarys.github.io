@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>同源 & 跨域</title>
+  <meta name="description" content="注: 未完待续, 文章尚有一些观点有待验证(给我一点时间..), 可能存在错误, 切记！">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/same-origin-cros">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+            
+            <a  href="/about/">About</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">同源 & 跨域</h1>
+    <p class="post-meta">May 25, 2015 • linkarys</p>
+    <ul class="tags">
+      
+        
+        <li><a class="tag" href="javascript:void(0)">frontend</a></li>
+        
+      
+        
+        <li><a class="tag" href="javascript:void(0)">hack</a></li>
+        
+      
+    </ul>
+    
+  </header>
+
+  <article class="post-content">
+    <p><strong>注: 未完待续, 文章尚有一些观点有待验证(给我一点时间..), 可能存在错误, 切记！</strong></p>
+<h2 id="oia18v35m">同源<a class="anchorjs-link" href="#oia18v35m"><span class="anchorjs-icon"></span></a></h2>
+<p>网络都在说如何解决跨域问题? 但是对于导致跨域的问题的同源策略确探讨不足，个人觉得很粗暴，很不好!</p>
+<h3 id="o7tpm4zbt">什么是同源<a class="anchorjs-link" href="#o7tpm4zbt"><span class="anchorjs-icon"></span></a></h3>
+<p>同源有三个要求:</p>
+
+<ul>
+<li>同协议(http, https为不同协议)</li>
+<li>同域(store.company.com 和 company.com属于不同域)</li>
+<li>同端口 (<strong>注: 早期版本IE未将端口号加入到同源策略的组成部分之中</strong>)</li>
+</ul>
+
+<p><strong>store.company.com向company.com发送XHR请求时，在以下情况可以通过同源检测:</strong></p>
+
+<ol>
+<li>在store.company.com中设置document.domain = ‘company.com’.</li>
+<li>需要是火狐浏览器 (是的, 在<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">MDN</a>上有描述, 但是在chrome下同样会报同源错误, 其它浏览器未测试)</li>
+</ol>
+<h3 id="oag8wydqs">同源策略会限制什么<a class="anchorjs-link" href="#oag8wydqs"><span class="anchorjs-icon"></span></a></h3>
+<ul>
+<li>Ajax(XHR)请求</li>
+<li>font-face (存在浏览器差异，有些限制, 有些不限制, google fonts在响应头中加了<code>Access-Control-Allow-Origin: *</code>)</li>
+<li>WebGL textures</li>
+<li>使用drawImage嵌入canvas中的图片(images drawn to a canvas using drawImage)</li>
+</ul>
+<h3 id="ohd5oldfi">同源策略不限制什么<a class="anchorjs-link" href="#ohd5oldfi"><span class="anchorjs-icon"></span></a></h3>
+<p>基于标签的跨域请求基本都不限制(可以这么理解: 对于静态资源一般是不限制的):</p>
+
+<ul>
+<li>script</li>
+<li>img</li>
+<li>form post</li>
+<li>object, embed, applet</li>
+<li>font-face(存在浏览器差异, 有些限制, 有些不限制)</li>
+<li>video, audio</li>
+<li>link(各种浏览器行为有差异)</li>
+<li>frame, iframe (<a href="https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options">X-Frame-Options</a>头信息可以控制此限制)</li>
+</ul>
+<h3 id="o4lrxqpur">cookie的同源策略<a class="anchorjs-link" href="#o4lrxqpur"><span class="anchorjs-icon"></span></a></h3>
+<p>Cookie中的同源只关注域名，忽略协议和端口。而且子域和父域允许相互读写。</p>
+
+<p><strong>domain.com写cookie到所有子域:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="err">‘</span><span class="nx">parent_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="nx">domain</span><span class="o">=</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">com</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>sub.domain.com写cookie到其父域:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="err">‘</span><span class="nx">child_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="nx">domain</span><span class="o">=</span><span class="nx">domain</span><span class="p">.</span><span class="nx">com</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div><h3 id="ohm77dach">为什么会有同源策略<a class="anchorjs-link" href="#ohm77dach"><span class="anchorjs-icon"></span></a></h3>
+<p>当然，这是为了网络安全, 那么没有同源策略会有哪些影响？我从<a href="http://security.stackexchange.com/questions/8264/why-is-the-same-origin-policy-so-important">网上</a>摘录了一个场景:</p>
+
+<blockquote>
+<p>Assume you are logged into Facebook and visit a malicious website in another browser tab. Without the same origin policy JavaScript on that website could do anything to your Facebook account that you are allowed to do. For example read private messages, post status updates, analyse the HTML DOM-tree after you entered your password before submitting the form.</p>
+</blockquote>
+<h3 id="ocl9ji3ea">浏览器是怎么做的<a class="anchorjs-link" href="#ocl9ji3ea"><span class="anchorjs-icon"></span></a></h3>
+<p>需要注意的是， 客户端发送的请求不在同源策略的限制中, 服务器端响应的数据才有跨域限制的问题, 而且本质上response已经到达本地，只不过浏览器在网络层做了一下校验, 看看服务器端是否允许此客户端访问这个页面, 不是的话浏览器会触发<code>XMLHttpRequest</code>’s <code>error</code>事件，然后拒绝把响应的数据交给请求该数据的js</p>
+<h2 id="o15mx0gsw">如何跨站访问数据<a class="anchorjs-link" href="#o15mx0gsw"><span class="anchorjs-icon"></span></a></h2><h3 id="onj2dgipk">使用CORS(<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Cross-Origin Resource Sharing</a>)<a class="anchorjs-link" href="#onj2dgipk"><span class="anchorjs-icon"></span></a></h3>
+<p>这应该会成为未来解决跨域问题的主要方法, CORS标准添加了一些新的HTTP headers, 可以让客户端在已授权的情况下给远程服务器发送请求(部分验证在服务器端, 但是绝大多数在浏览器端完成), 这些相关的headers有:</p>
+
+<p><strong>Request headers</strong>:</p>
+
+<ul>
+<li>Origin</li>
+<li>Access-Control-Request-Method</li>
+<li>Access-Control-Request-Headers</li>
+</ul>
+
+<p><strong>Response headers</strong></p>
+
+<ul>
+<li>Access-Control-Allow-Origin（指定哪些源可以请求到数据）</li>
+<li>Access-Control-Allow-Credentials</li>
+<li>Access-Control-Expose-Headers</li>
+<li>Access-Control-Max-Age（指定response的缓存时间, 在这个时间内, 不需要再次发送preflight请求）</li>
+<li>Access-Control-Allow-Methods（指定哪些方法可以在请求中使用）</li>
+<li>Access-Control-Allow-Headers</li>
+</ul>
+
+<p>我们只要简单的在返回的报文头中加入<code>Access-Control-Allow-Origin</code>就行, 比如</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// *表示所有的客户端都能跨域请求到127.0.0.1:3000的数据</span>
+  <span class="c1">// 这里显示的设成特定的源, 如res.setHeader(‘Access-Control-Allow-Origin’, ‘http://127.0.0.1:9000’);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="err">‘</span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="o">*</span><span class="err">’</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="err">‘</span><span class="nx">Hello</span> <span class="nx">World</span><span class="err">\</span><span class="nx">n</span><span class="err">’</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="err">‘</span><span class="mf">127.0</span><span class="p">.</span><span class="mf">0.1</span><span class="err">’</span><span class="p">);</span>
+</code></pre></div>
+<p>至于浏览器端的实现，我们需要先区分几个概念:</p>
+
+<p><strong>simple method:</strong>: GET, HEAD, POST
+<strong>simple header:</strong>:</p>
+
+<blockquote>
+<p>A header is said to be a simple header if the header field name is an ASCII case-insensitive match for Accept, Accept-Language, or Content-Language or if it is an ASCII case-insensitive match for Content-Type and the header field value media type (excluding parameters) is an ASCII case-insensitive match for application/x-www-form-urlencoded, multipart/form-data, or text/plain.
+<strong>simple response header</strong>:
+A header is said to be a simple response header if the header field name is an ASCII case-insensitive match for one of the following:</p>
+</blockquote>
+
+<ul>
+<li>Cache-Control</li>
+<li>Content-Language</li>
+<li>Content-Type</li>
+<li>Expires</li>
+<li>Last-Modified</li>
+<li>Pragma</li>
+</ul>
+
+<p>那么对non-simple method是分两个步骤执行的:</p>
+
+<ol>
+<li>发送preflight请求</li>
+<li>如果<code>Access-Control-Allow-Origin</code>包含客户端Origin，再发送正式的请求</li>
+</ol>
+
+<p>以下是这种方法的浏览器支持情况(摘自<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing">wikipedia</a>):</p>
+
+<ul>
+<li>IE8, IE9 (部分支持, 使用XDomainRequest)</li>
+<li>IE &gt;= 10</li>
+<li>Firefox &gt;= 3</li>
+<li>Webkit 支持 (Safari &gt;= 4, Chrome &gt;= 3)</li>
+<li>Opera &gt; 12.00</li>
+<li> Opera Mini 不支持</li>
+</ul>
+<h3 id="oyr05zncs">jsonp<a class="anchorjs-link" href="#oyr05zncs"><span class="anchorjs-icon"></span></a></h3>
+<p>变相的使用<code>&lt;script&gt;</code>，地球人都知道，具体使用不赘述. 和CORS比较:</p>
+
+<p>jsonp有良好的兼容, 但是只支持get请求, 并且可能导致XSS攻击，安全性不如CORS; 而CORS支持其它的请求方法, 使用更加方便, 安全性高于JSONP(允许客户端自己解析响应的数据), 因为发送的是常规的XMLHttpRequest, 所以也更容易做错误处理.</p>
+<h3 id="ogty9jn5b">nginx反向代理<a class="anchorjs-link" href="#ogty9jn5b"><span class="anchorjs-icon"></span></a></h3>
+<p>这是我个人比较喜欢的方法，兼具jsonp和CORS的优点。具体做法:
+假如http://sitea.com要访问http://siteb.com/agency下的内容, 可以在nginx.conf中加入如下配置:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">location /agency {
+    proxy_pass   http://119.255.25.130/agency;
+}
+</code></pre></div><h3 id="occlm3kto">iframe, window.name<a class="anchorjs-link" href="#occlm3kto"><span class="anchorjs-icon"></span></a></h3>
+<p>比较绕，也不优雅, pass</p>
+
+<p>参考:</p>
+
+<p>[1] http://stackoverflow.com/questions/10636611/how-does-access-control-allow-origin-header-work</p>
+
+<p>[2] http://en.wikipedia.org/wiki/Cross-origin<em>resource</em>sharing</p>
+
+<p>[3] http://www.w3.org/TR/cors/#introduction</p>
+
+<p>[4] http://security.stackexchange.com/questions/8264/why-is-the-same-origin-policy-so-important</p>
+
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <!-- <script src="/assets/scripts/vendor/jquery.min.js"></script> -->
+<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
+<!-- <script src="/assets/scripts/vendor/scrollspy.js"></script> -->
+<script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>
