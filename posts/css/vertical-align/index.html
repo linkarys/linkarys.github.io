@@ -108,14 +108,14 @@
     <p>纯css垂直居中有若干种方案, 不过我们只会关注<strong>look forward</strong>或者最优的一两种方案,
 并且我们希望这种一两方案具有比较强的普适性, 能满足基本的浏览器兼容需求, 以及允许无限制的嵌套.
 本文将对这一目标进行一些探讨.</p>
-<h2 id="ot7rbj116">使用vertical-align来垂直居中<a class="anchorjs-link" href="#ot7rbj116"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="ojg8ot4eo">使用vertical-align来垂直居中<a class="anchorjs-link" href="#ojg8ot4eo"><span class="anchorjs-icon"></span></a></h2>
 <p>vertical-align有很多限制, 它只作用于inline, inline-block及table-cell上, 既然如此,
 我们怎么在普遍意义上使用vertical-align来垂直居中元素呢, 先看实现效果：</p>
-<h3 id="o9594toys">实现效果<a class="anchorjs-link" href="#o9594toys"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="orc39adei">实现效果<a class="anchorjs-link" href="#orc39adei"><span class="anchorjs-icon"></span></a></h3>
 <iframe width="300" height="240" src="/embed/vertical-align/vertical-align.html" frameborder="0" allowfullscreen></iframe>
 
 <p>弱弱的说一声, 其实这个同心圆是响应式的:)</p>
-<h3 id="o6ptfahyo">相关代码<a class="anchorjs-link" href="#o6ptfahyo"><span class="anchorjs-icon"></span></a></h3><h4 id="omu6dwo3d">HTML<a class="anchorjs-link" href="#omu6dwo3d"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center-wrap c1&quot;</span><span class="nt">&gt;</span>
+<h3 id="ohjlflvdp">相关代码<a class="anchorjs-link" href="#ohjlflvdp"><span class="anchorjs-icon"></span></a></h3><h4 id="o97sw5sdk">HTML<a class="anchorjs-link" href="#o97sw5sdk"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center-wrap c1&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center-content c2 center-wrap&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center-content c3 center-wrap&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center-content&quot;</span><span class="nt">&gt;</span>
@@ -124,7 +124,7 @@
     <span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</code></pre></div><h4 id="owmy8uprq">CSS<a class="anchorjs-link" href="#owmy8uprq"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.center-wrap</span> <span class="p">{</span>
+</code></pre></div><h4 id="oia0ynbdz">CSS<a class="anchorjs-link" href="#oia0ynbdz"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.center-wrap</span> <span class="p">{</span>
   <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
   <span class="k">font-size</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
   <span class="k">width</span><span class="o">:</span> <span class="m">70%</span><span class="p">;</span>
@@ -159,19 +159,19 @@
 这在内容只有单行的时候没有什么问题, 多行时间隙就会导致<code>line box</code>元素的高度和父级不一致, 产下如下悲剧:</p>
 
 <iframe width="300" height="240" src="/embed/vertical-align/vertical-align-break.html" frameborder="0" allowfullscreen></iframe>
-<h2 id="o48wfc4gm">使用flex垂直居中<a class="anchorjs-link" href="#o48wfc4gm"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="oq9kvni15">使用flex垂直居中<a class="anchorjs-link" href="#oq9kvni15"><span class="anchorjs-icon"></span></a></h2>
 <p>使用此法布局比较简单, 只要设置<code>display</code>, <code>align-items</code>, <code>justify-content</code>三个属性就可以了.有关flex布局的详情, 可以参阅鄙人的<a href="http://linkarys.github.io//css/flex/">flex 布局</a>.
 此处只列出最终实现代码和实现效果</p>
-<h3 id="obq590s6r">实现效果<a class="anchorjs-link" href="#obq590s6r"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="obhpbv0oc">实现效果<a class="anchorjs-link" href="#obhpbv0oc"><span class="anchorjs-icon"></span></a></h3>
 <iframe width="300" height="240" src="/embed/vertical-align/vertical-align-flex.html" frameborder="0" allowfullscreen></iframe>
-<h3 id="obh1g6y7d">相关代码<a class="anchorjs-link" href="#obh1g6y7d"><span class="anchorjs-icon"></span></a></h3><h4 id="ocfb4kq9q">HTML<a class="anchorjs-link" href="#ocfb4kq9q"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-container ct&quot;</span><span class="nt">&gt;</span>
+<h3 id="orb5yu3o3">相关代码<a class="anchorjs-link" href="#orb5yu3o3"><span class="anchorjs-icon"></span></a></h3><h4 id="oassby5rw">HTML<a class="anchorjs-link" href="#oassby5rw"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-container ct&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-item cs flex-container&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-item cg flex-container&quot;</span><span class="nt">&gt;</span>
         Lorem ipsum dolor sit amet.
       <span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</code></pre></div><h4 id="oy1q1c2rr">CSS<a class="anchorjs-link" href="#oy1q1c2rr"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
+</code></pre></div><h4 id="onguiusc">CSS<a class="anchorjs-link" href="#onguiusc"><span class="anchorjs-icon"></span></a></h4><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.flex-container</span> <span class="p">{</span>
 <span class="hll">    <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
 </span><span class="hll">    <span class="n">align</span><span class="o">-</span><span class="n">items</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
 </span><span class="hll">    <span class="k">justify</span><span class="o">-</span><span class="k">content</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
@@ -224,10 +224,7 @@
       </div>
     </div>
 
-    <!-- <script src="/assets/scripts/vendor/jquery.min.js"></script> -->
-<!-- <script src="/assets/scripts/vendor/bootstrap.js"></script> -->
-<!-- <script src="/assets/scripts/vendor/scrollspy.js"></script> -->
-<script src="/assets/scripts/main.js"></script>
+    <script src="/assets/scripts/main.js"></script>
 <footer class="site-footer">
 
   <div class="container">
