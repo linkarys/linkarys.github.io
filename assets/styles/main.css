@@ -1372,7 +1372,9 @@ a.post-link {
 .post-content > h2,
 .post-content > h3 {
   font-weight: bold; }
-.post-content > h4,
+.post-content > h4 {
+  font-weight: bold;
+  margin-bottom: 10px; }
 .post-content > h5,
 .post-content > h6 {
   margin-bottom: 0; }
