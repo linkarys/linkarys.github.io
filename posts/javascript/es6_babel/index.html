@@ -110,11 +110,11 @@
 
   <article class="post-content">
     <p>Babel可以把ES6代码转换成主流浏览器可以执行的ES5代码(当然转换结果并不完美, 支持也不完整). 好奇babel的转换过程, 所以对某些实现做下简单分析</p>
-<h2 id="otfro99tq">class<a class="anchorjs-link" href="#otfro99tq"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="oywqmtmzn">class<a class="anchorjs-link" href="#oywqmtmzn"><span class="anchorjs-icon"></span></a></h2>
 <p>平地一声雷, js终于是告别了没有<code>class</code>的历史！虽可喜, 然而现实依然骨感, 对于es6+, 尚且没有什么浏览器完整支持(截至2015.05.23), 为了提前体验到es6的新特性, 或者说让我们写出的代码更具前瞻性, 我们可能用babel将es6代码转换成es5.</p>
 
 <p>Babel用es5来模拟es6提出的class, 用到了几个关键函数，我们依次来看一下</p>
-<h3 id="ov2fxc70x">_createClass<a class="anchorjs-link" href="#ov2fxc70x"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="obgkgeul2">_createClass<a class="anchorjs-link" href="#obgkgeul2"><span class="anchorjs-icon"></span></a></h3>
 <p><code>_createClass</code>接受一个构造函数和一个包含key,value的json对象数组, 这些key, value通过<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.definedProperty</a>方法将其添加到构造函数的prototype属性中， 以实现每个构造函数的实例继承这些方法。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">_createClass</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">defineProperties</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
@@ -142,7 +142,7 @@
     <span class="k">return</span> <span class="nx">Constructor</span><span class="p">;</span>
   <span class="p">};</span>
 <span class="p">})();</span>
-</code></pre></div><h3 id="o4jcp3ptj">_inherits<a class="anchorjs-link" href="#o4jcp3ptj"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="oii0lpuv4">_inherits<a class="anchorjs-link" href="#oii0lpuv4"><span class="anchorjs-icon"></span></a></h3>
 <p>关于继承, 之前的一篇文章<a href="http://linkarys.github.io/posts/javascript/javascript-inherit/">javascript inherit</a>做了较详细的描述</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">_inherits</span><span class="p">(</span><span class="nx">subClass</span><span class="p">,</span> <span class="nx">superClass</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="err">‘</span><span class="kd">function</span><span class="err">’</span> <span class="o">&amp;&amp;</span> <span class="nx">superClass</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -162,14 +162,14 @@
   <span class="k">if</span> <span class="p">(</span><span class="nx">superClass</span><span class="p">)</span> <span class="nx">subClass</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">superClass</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">subClass</span><span class="p">));</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="o7akw8nwl">_classCallCheck<a class="anchorjs-link" href="#o7akw8nwl"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="ov6y2j2r6">_classCallCheck<a class="anchorjs-link" href="#ov6y2j2r6"><span class="anchorjs-icon"></span></a></h3>
 <p>比较简单, 应该是防止调用构造函数时通过call, apply, bind之类的方式绑定了不合理的this</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">_classCallCheck</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">Constructor</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">instance</span> <span class="k">instanceof</span> <span class="nx">Constructor</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="err">‘</span><span class="nx">Cannot</span> <span class="nx">call</span> <span class="nx">a</span> <span class="kr">class</span> <span class="nx">as</span> <span class="nx">a</span> <span class="kd">function</span><span class="err">’</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="o9tnz7raa">get<a class="anchorjs-link" href="#o9tnz7raa"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="oolmokmrx">get<a class="anchorjs-link" href="#oolmokmrx"><span class="anchorjs-icon"></span></a></h3>
 <p>在原型链中查找对应方法: 通过<code>Object.getPrototypeof</code>遍历原型链, 通过<code>Object.getOwnPropertyDescriptor</code>获取对应属性值——未找到则继续沿着原型链的方向查找, 这边还考虑到了定义了getter的情况</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// _x: Super.prototype, _x2: 要调用的父级方法, _x3: this(当前调用此方法的实例)</span>
 <span class="kd">var</span> <span class="nx">_get</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">_x</span><span class="p">,</span> <span class="nx">_x2</span><span class="p">,</span> <span class="nx">_x3</span><span class="p">)</span> <span class="p">{</span>
@@ -213,7 +213,7 @@
 <span class="p">};</span>
 </code></pre></div>
 <p><code>constructor</code>的自动调用实现是通过复制其中的代码到<code>Greeter</code>中实现的.</p>
-<h3 id="ohivxdh6">编译结果前后对照<a class="anchorjs-link" href="#ohivxdh6"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ohnhd8fvk">编译结果前后对照<a class="anchorjs-link" href="#ohnhd8fvk"><span class="anchorjs-icon"></span></a></h3>
 <p>最后来看一下示例代码和其对应的编译结果:</p>
 
 <p><strong>编译前:</strong></p>
@@ -314,7 +314,7 @@
 
   <span class="k">return</span> <span class="nx">Man</span><span class="p">;</span>
 <span class="p">})(</span><span class="nx">Human</span><span class="p">);</span>
-</code></pre></div><h2 id="ofxerawfr">function<a class="anchorjs-link" href="#ofxerawfr"><span class="anchorjs-icon"></span></a></h2>
+</code></pre></div><h2 id="owervh22w">function<a class="anchorjs-link" href="#owervh22w"><span class="anchorjs-icon"></span></a></h2>
 <p>ES6对于函数的改进主要包括三点</p>
 
 <ol>

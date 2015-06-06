@@ -691,12 +691,10 @@ h1, h2, h3, h4, h5, h6 {
  * Blockquotes
  */
 blockquote {
-  color: #828282;
-  border-left: 4px solid #abc8e0;
-  line-height: 1.7;
-  border-color: #ABC8E0;
-  background: #f4faff;
-  padding: 10px; }
+  color: #888;
+  border-left: 5px solid #A9A9A9;
+  padding: 10px;
+  background: url("../images/blueprint-dark.png") #FCFCFC; }
   blockquote > :last-child {
     margin-bottom: 0; }
 
