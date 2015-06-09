@@ -1519,3 +1519,18 @@ a.post-link {
   width: 100%;
   top: 0;
   z-index: -1; }
+
+.post table {
+  width: 100%;
+  margin-bottom: 15px;
+  border-collapse: collapse; }
+  .post table > thead > tr > td,
+  .post table > thead > tr > th,
+  .post table > tbody > tr > td,
+  .post table > tbody > tr > th {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 1px 2px; }
+  .post table > thead > tr > th {
+    white-space: nowrap;
+    padding: 1px 5px; }

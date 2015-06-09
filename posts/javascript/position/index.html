@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>坐标 & 位置</title>
+  <meta name="description" content="这是一个非常基础, 涉及很广但又容易混淆的地方, 但是莫要担心, 哥们我将尝试在本文中将其解释清楚(原谅我可能最终也没能讲清楚, 此文会在后续继续补充更新).">
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="canonical" href="/posts/javascript/position">
+  <link rel="alternate" type="application/atom+xml" title="linkarys" href="/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="container">
+
+    <a class="site-title" href="/">linkarys</a>
+
+    <nav class="site-nav">
+  <!--     <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+ -->
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于我</a>
+          
+        
+          
+          <a class="page-link" href="/css/">css</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/javascript/">Javascript</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+ -->
+       <div class="page-links">
+          
+            
+            <a  href="/javascript/">Javascript</a>
+            
+          
+            
+            <a  href="/css/">CSS</a>
+            
+          
+            
+            <a  href="/about/">About</a>
+            
+          
+        </div>
+
+
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="container container-post">
+      <div class="page-content">
+          <div class="post col-md-9">
+              <header class="post-header">
+    <h1 class="post-title">坐标 & 位置</h1>
+    <p class="post-meta">Jun 7, 2015 • linkarys</p>
+    <ul class="tags">
+      
+        
+        <li><a class="tag" href="javascript:void(0)">frontend</a></li>
+        
+      
+        
+        <li><a class="tag" href="javascript:void(0)">position</a></li>
+        
+      
+    </ul>
+    
+  </header>
+
+  <article class="post-content">
+    <p>这是一个非常基础, 涉及很广但又容易混淆的地方, 但是莫要担心, 哥们我将尝试在本文中将其解释清楚(原谅我可能最终也没能讲清楚, 此文会在后续继续补充更新).</p>
+<h2 id="o3cua2yk7">准备<a class="anchorjs-link" href="#o3cua2yk7"><span class="anchorjs-icon"></span></a></h2>
+<p>首先我们先要有一些基础的储备才能愉快的谈论这个问题.</p>
+<h3 id="okf1zcbiz">基础概念<a class="anchorjs-link" href="#okf1zcbiz"><span class="anchorjs-icon"></span></a></h3><h4 id="opgzazavy">viewport<a class="anchorjs-link" href="#opgzazavy"><span class="anchorjs-icon"></span></a></h4>
+<blockquote>
+<p>The viewport is the part of the webpage that the user can currently see. The scrollbars move the viewport to show other parts of the page.</p>
+</blockquote>
+
+<p>在标准中, viewportWidth = window.innerWidth, viewportHeight = window.innerHeight (和滚动无关)</p>
+<h4 id="olli0vazb">盒模型<a class="anchorjs-link" href="#olli0vazb"><span class="anchorjs-icon"></span></a></h4>
+<p><img src="/assets/images/position/boxmodel.png" alt="boxmodel"></p>
+
+<p><code>width, min-width, max-width, height, min-height, max-height</code>的设定值影响的对象和<code>box-sizing</code>的值设定有关:</p>
+
+<table><thead>
+<tr>
+<th>box-sizing</th>
+<th>控制的对象</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content-box</td>
+<td>content edge</td>
+</tr>
+<tr>
+<td>padding-box</td>
+<td>padding edge</td>
+</tr>
+<tr>
+<td>border-box</td>
+<td>border edge</td>
+</tr>
+</tbody></table>
+<h3 id="omz5dgdqm">坐标关系<a class="anchorjs-link" href="#omz5dgdqm"><span class="anchorjs-icon"></span></a></h3><h4 id="o5fgwk37p">元素的长宽属性<a class="anchorjs-link" href="#o5fgwk37p"><span class="anchorjs-icon"></span></a></h4>
+<table><thead>
+<tr>
+<th>项目</th>
+<th>特性</th>
+<th>说明</th>
+<th>计算</th>
+<th>触发重绘</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cssWidth, cssHeight</td>
+<td>读写, float</td>
+<td>content edge的尺寸, 不含padding</td>
+<td>getComputedStyle(elem).width,  getComputedStyle(elem).height</td>
+<td>否</td>
+</tr>
+<tr>
+<td>clientWidth, clientHeight</td>
+<td>只读, rounded</td>
+<td>padding edge的尺寸, 不含滚动条</td>
+<td>clientWidth = cssWidth + padding - scrollbarWidth</td>
+<td>否</td>
+</tr>
+<tr>
+<td>offsetWidth, offsetHeight</td>
+<td>只读, rounded</td>
+<td>border edge的心坟(滚动条在边框以内)的可视部分</td>
+<td>如果是块级元素, offsetWidth = cssWidth + padding + border</td>
+<td>是</td>
+</tr>
+<tr>
+<td>scrollWidth, scrollHeight</td>
+<td>只读, rounded</td>
+<td>内容的大小, 包含padding和当前隐藏滚动区域之外的部分</td>
+<td>不能从CSS直接计算, 取决于内容; <br/> 无滚动条,无隐藏滚动区域时, clientWidth === scrollWidth</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<h4 id="o733h4ifc">引用一个牛逼的说明<a class="anchorjs-link" href="#o733h4ifc"><span class="anchorjs-icon"></span></a></h4>
+<iframe width="100%" height="500" src="//jsfiddle.net/y8Y32/25/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<h4 id="orjfg41yv">实际的案例<a class="anchorjs-link" href="#orjfg41yv"><span class="anchorjs-icon"></span></a></h4>
+<iframe width="100%" height="530" src="//jsfiddle.net/linkarys/kgs1czrq/1/embedded/result,css,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>在chrome中 43测试, 对于<code>display:inline</code>的元素, <code>cssWidth</code>, <code>cssHeight</code>始终为auto(即便设置了width, height值), <code>clientWidth</code>, <code>clientHeight</code>, <code>scrollWidth</code>, <code>scrollHeight</code>始终为0, <code>offsetWidth</code>, <code>offsetHeight</code>为有效值</p>
+<h4 id="oco31wrrf">window的长宽属性<a class="anchorjs-link" href="#oco31wrrf"><span class="anchorjs-icon"></span></a></h4>
+<p>一图胜千言:</p>
+
+<p><img src="/assets/images/position/firefoxInnerVsOuterHeight.png" alt="firefoxInnerVsOuterHeight"></p>
+<h4 id="o3ywcwvfi">event的坐标<a class="anchorjs-link" href="#o3ywcwvfi"><span class="anchorjs-icon"></span></a></h4>
+<table><thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientX &amp;&amp; clientY</td>
+<td>相对于page的鼠标偏移量（不包含滚动偏移）</td>
+<td></td>
+</tr>
+<tr>
+<td>offsetX &amp;&amp; offsetY</td>
+<td>相对于结点padding edge的鼠标偏移量</td>
+<td>experimental technology</td>
+</tr>
+<tr>
+<td>pageX &amp;&amp; pageY</td>
+<td>相对于viewport的鼠标偏移量（包含滚动偏移）</td>
+<td>Non-standard</td>
+</tr>
+<tr>
+<td>screenX &amp;&amp; screenY</td>
+<td>相对于屏幕的鼠标偏移量（意味着拖动浏览器会影响取值）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="oyvsep8zh">相对位置<a class="anchorjs-link" href="#oyvsep8zh"><span class="anchorjs-icon"></span></a></h3><h4 id="oenpwy68s">Element.offsetParent<a class="anchorjs-link" href="#oenpwy68s"><span class="anchorjs-icon"></span></a></h4>
+<p>返回一个指向最近的（closest，指包含层级上的最近）包含该元素的定位元素（position值不为static的元素, 即: <code>getComputedStyle(elem).position !== &#39;static&#39;</code>）, 如果没有定位的元素，则offsetParent为最近的table 元素对象或根元素(标准模式下为html; quirks模式下为body), 当元素的 style.display 设置为 &quot;none&quot; 时，offsetParent返回null</p>
+
+<blockquote>
+<p>在Webkit中，如果元素为隐藏的（该元素或其祖先元素的 style.display 为 &quot;none&quot;），或者该元素的style.position被设为 &quot;fixed&quot;，则该属性返回 null。
+在IE 9中，如果该元素的 style.position 被设置为 &quot;fixed&quot;，则该属性返回null（display:none 无影响）</p>
+</blockquote>
+<h4 id="oltrqo3dq">Element.offsetLeft(offsetTop)<a class="anchorjs-link" href="#oltrqo3dq"><span class="anchorjs-icon"></span></a></h4>
+<p>相对于Element.offsetParent的位置, 对于块级元素来说, 指的是元素的border box相对于其offsetParent的位置; 对于inline元素, offsetTop, offsetLeft指的是第一个border box相对于offsetParent的位置的位置, offsetWidth, offsetHeight指的其边界盒子的尺寸(通过getBoundingClientRect获得)</p>
+
+<p>下面的例子引用mdn, div盒子的边框高为蓝色, 红框表示span的边界
+<iframe width="100%" height="100" src="//jsfiddle.net/linkarys/cehp80c4/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<h3 id="onupipjg6">常用API<a class="anchorjs-link" href="#onupipjg6"><span class="anchorjs-icon"></span></a></h3><h4 id="ocl96e7x8">getComputedStyle(element[, pseudoElt]);<a class="anchorjs-link" href="#ocl96e7x8"><span class="anchorjs-icon"></span></a></h4>
+<blockquote>
+<p>gives the values of all the CSS properties of an element after applying the active stylesheets and resolving any basic computation those values may contain.</p>
+</blockquote>
+
+<p>需要注意的是getComputedStyle返回的是<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/resolved_value">resolved value</a>, 也就是说在大多数情况下, getComputedStyle返回的是<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/computed_value">computed value</a>, 对于一些遗留的属性(如width, height)返回的是<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/used_value">used value</a>.</p>
+
+<ul>
+<li><code>specified value</code>(计算值): <a href="http://www.w3.org/TR/CSS2/cascade.html#specified-value">CSS 2.0</a>说, 每一个属性都有一个<code>specified value</code>, 它的获取顺序是:
+
+<ol>
+<li>如果样式表中指定, 使用样式表指定的;</li>
+<li>如果值为inherited, 使用父结点的<code>computed value</code>;</li>
+<li>如果值为initial, 使用CSS规范中针对这个元素的这个属性的初始值</li>
+</ol></li>
+<li><code>computed value</code>(计算值): <a href="http://www.w3.org/TR/CSS21/cascade.html#computed-value">CSS 2.0</a>引入, 作为当时属性计算的最后一步, 最主要用处是继承。如一个元素的属性值为 font-size:16px 和 padding-top:2em, 则 padding-top 的计算值为 32px (字体大小的2倍).</li>
+<li><code>used value</code>(应用值): <a href="http://www.w3.org/TR/CSS21/cascade.html#used-value">CSS 2.1</a>引入, 完成所有计算后最终使用的值, 比如设置elem.style.width = &#39;auto&#39;(或者10%), 那么getComputedStyle(elem).width为998.796875px(举例而言), 而不是auto(或者10%)</li>
+<li><code>actual values</code>(应用值): <code>used value</code>原则上是用于渲染的值, 但是客户端不一定有这样的条件去使用这样的值, 比如黑白显示器无法显示彩色.</li>
+</ul>
+
+<blockquote>
+<p>对于不依赖于布局的 CSS 属性 (例如 display, font-size, line-height)计算值与应用值一样，否则就会不一样</p>
+</blockquote>
+
+<p>以下关于<code>computed value</code>和<code>used value</code>的对比引自<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/used_value">mdn</a>:</p>
+
+<div style="border: 1px solid red; margin-bottom: 15px;">
+  没有明确的宽度。指定的宽度: auto (默认). 计算的宽度: auto. 应用的宽度: 998px (举例而言)。
+  <div style="border: 1px solid green; width: 50%;">
+    明确的宽度: 50%. 指定的宽度: 50%. 计算的宽度: 50%. 应用的宽度: 447px<br>
+    <div style="border: 1px solid blue; width: inherit;">
+      明确的宽度: inherit. 指定的宽度: 50%. 计算的宽度: 50%. 应用的宽度: 221px .</div>
+  </div>
+</div>
+<h4 id="omuv2mslw">Element.getClientRects()<a class="anchorjs-link" href="#omuv2mslw"><span class="anchorjs-icon"></span></a></h4>
+<blockquote>
+<p>returns a collection of rectangles that indicate the bounding rectangles for each box in a client.</p>
+</blockquote>
+
+<p>返回clientRect对象集合，该对象是与该元素相关的CSS边框。每个ClientRect对象包含一组描述该边框的只读属性——left、top、right和bottom（现在的浏览器一般还包含width, height属性）单位为像素(精度上可能出现小数级别的偏移)。
+left、top、right和bottom是相对于viewport而言。
+对于内联元素, 多行的返回的元素个数等于行数, 对于inline-block和block元素, css规范规定只返回一个clientRect(老版本IE没有遵守)</p>
+
+<p>以下同样是引自mdn的一个说明（蓝色父元素的边框, 绿色为子元素的边框, 红色clientRects的边框-可能覆盖其它边框）:</p>
+
+<iframe width="100%" height="630" src="//jsfiddle.net/linkarys/mh6s452n/embedded/result,css,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<h4 id="owe9r301w">Element.getBoundingClientRect()<a class="anchorjs-link" href="#owe9r301w"><span class="anchorjs-icon"></span></a></h4>
+<blockquote>
+<p>returns the size of an element and its position relative to the viewport.</p>
+</blockquote>
+
+<p>返回一个DOMRect对象, 包含元素相对于viewport的尺寸和位置——含left, top, right, bottom四个属性(IE&gt;=9会有width, heigth属性);</p>
+
+<p><strong>需要注意的是, 这里包含了scrolling的偏移量, 如果想获取相对于页面的绝对位置只要加上当前对应的scrolling偏移值就行</strong></p>
+
+<p>参考:<br/>
+[1] https://developer.mozilla.org<br/>
+[2] http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively<br/>
+[3] http://stackoverflow.com/questions/2939693/what-is-view-port-in-html<br/></p>
+
+  </article>
+
+
+            <div class="copy-right">原创文章, 转载请注明出处</div>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'linkarys'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!-- <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+          </div>
+          <div class="post-navigator col-md-3"></div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/main.js"></script>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <h2 class="footer-heading">linkarys</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:linkarys@gmail.com">linkarys@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/linkarys">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">linkarys</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+  </body>
+
+</html>
