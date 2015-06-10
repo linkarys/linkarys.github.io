@@ -110,7 +110,7 @@
 
   <article class="post-content">
     <p>网络都在说如何解决跨域问题? 但是对于导致跨域的问题的同源策略却探讨不足, 略粗暴啊-_-!</p>
-<h2 id="o8mkilp1n">同源<a class="anchorjs-link" href="#o8mkilp1n"><span class="anchorjs-icon"></span></a></h2><h3 id="oa5vqysk3">什么是同源<a class="anchorjs-link" href="#oa5vqysk3"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="o7pt344bl">同源<a class="anchorjs-link" href="#o7pt344bl"><span class="anchorjs-icon"></span></a></h2><h3 id="onotyo8rx">什么是同源<a class="anchorjs-link" href="#onotyo8rx"><span class="anchorjs-icon"></span></a></h3>
 <p>同源有三个要求:</p>
 
 <ul>
@@ -124,16 +124,16 @@
 <p>以如store.company.com向company.com发送XHR请求时，在以下情况可以通过同源检测:</p>
 
 <ol>
-<li>在store.company.com中设置document.domain = ‘company.com’.</li>
+<li>在store.company.com中设置document.domain = &#39;company.com&#39;.</li>
 <li>需要是火狐浏览器 (是的, 在<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">MDN</a>上有描述, 但是在chrome下同样会报同源错误, 其它浏览器未测试)</li>
 </ol>
-<h3 id="ox1xwysvs">同源策略会限制什么<a class="anchorjs-link" href="#ox1xwysvs"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="ocp5sx2df">同源策略会限制什么<a class="anchorjs-link" href="#ocp5sx2df"><span class="anchorjs-icon"></span></a></h3>
 <ul>
 <li>Ajax(XHR)请求</li>
 <li>WebGL textures</li>
 <li>使用drawImage嵌入canvas中的图片(images drawn to a canvas using drawImage)</li>
 </ul>
-<h3 id="oedtkf378">同源策略不限制什么<a class="anchorjs-link" href="#oedtkf378"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o54hcu1fc">同源策略不限制什么<a class="anchorjs-link" href="#o54hcu1fc"><span class="anchorjs-icon"></span></a></h3>
 <p>基于标签的跨域请求基本都不限制(可以这么理解: 对于静态资源一般是不限制的):
 - script
 - img
@@ -141,7 +141,7 @@
 - object, embed, applet
 - video, audio
 - frame, iframe (<a href="https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options">X-Frame-Options</a>头信息可以控制此限制)</p>
-<h3 id="oku9trrn3">哪些行为在不同的浏览器中存在差异(未测试)<a class="anchorjs-link" href="#oku9trrn3"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="oed4x3lzd">哪些行为在不同的浏览器中存在差异(未测试)<a class="anchorjs-link" href="#oed4x3lzd"><span class="anchorjs-icon"></span></a></h3>
 <ul>
 <li>link</li>
 <li>font-face (google fonts在响应头中加了<code>Access-Control-Allow-Origin: *</code>, 详细见下图)</li>
@@ -150,22 +150,27 @@
 <p><strong>google fonts返回的头信息:</strong></p>
 
 <p><img src="/assets/images/same-origin/google-fonts.png" alt="google fonts"></p>
-<h3 id="o3xg5z0qy">cookie的同源策略<a class="anchorjs-link" href="#o3xg5z0qy"><span class="anchorjs-icon"></span></a></h3>
-<p>cookie中的同源只关注域名，忽略协议和端口。而且子域和父域允许相互读写。</p>
+<h3 id="oelxol4q6">cookie的同源策略<a class="anchorjs-link" href="#oelxol4q6"><span class="anchorjs-icon"></span></a></h3>
+<p>cookie中的同源只关注域名，忽略协议和端口。而且子域和父域允许互写(可读取本域设置给对方的cookie值)。
+具体请参考<a href="http://tools.ietf.org/html/rfc6265">RFC6265</a></p>
 
 <p><strong>domain.com写cookie到所有子域:</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="err">‘</span><span class="nx">parent_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="nx">domain</span><span class="o">=</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">com</span><span class="err">’</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="s1">&#39;parent_id=10; domain=.domain.com&#39;</span><span class="p">;</span>
 </code></pre></div>
+<p>此时parent_id=10在sub.domain.com和domain.com中都能读到, 但是如果在sub.domain.com中修改了<code>parent_id</code>的值, 浏览器会在sub.domain.com中再添加一个同名的cookie值, 并且该值在domain.com中无法读到</p>
+
 <p><strong>sub.domain.com写cookie到其父域:</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="err">‘</span><span class="nx">child_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="nx">domain</span><span class="o">=</span><span class="nx">domain</span><span class="p">.</span><span class="nx">com</span><span class="err">’</span><span class="p">;</span>
-</code></pre></div><h3 id="ovi2ykb5g">为什么会有同源策略<a class="anchorjs-link" href="#ovi2ykb5g"><span class="anchorjs-icon"></span></a></h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="o">=</span><span class="s1">&#39;child_id=10; domain=domain.com&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>此时child_id=10在sub.domain.com和domain.com中都能读到, 但是如果在domain.com中修改了<code>child_id</code>的值, 浏览器会在domain.com中再添加一个同名的cookie值, 并且该值在sub.domain.com中无法读到</p>
+<h3 id="oy4at7enh">为什么会有同源策略<a class="anchorjs-link" href="#oy4at7enh"><span class="anchorjs-icon"></span></a></h3>
 <p>当然，为了网络安全! 那么没有同源策略会有哪些影响？我从<a href="http://security.stackexchange.com/questions/8264/why-is-the-same-origin-policy-so-important">网上</a>摘录了一个场景:</p>
 
 <blockquote>
 <p>Assume you are logged into Facebook and visit a malicious website in another browser tab. Without the same origin policy JavaScript on that website could do anything to your Facebook account that you are allowed to do. For example read private messages, post status updates, analyse the HTML DOM-tree after you entered your password before submitting the form.</p>
 </blockquote>
-<h2 id="oomb6f6t">浏览器是怎么做的<a class="anchorjs-link" href="#oomb6f6t"><span class="anchorjs-icon"></span></a></h2>
-<p>需要注意的是，客户端发送的请求不在同源策略的限制中, 服务器端响应的数据才有跨域限制的问题, 而且本质上response已经到达本地，只不过浏览器在网络层做了一下校验, 看看服务器端是否允许此客户端访问这个页面, 不是的话浏览器会触发<code>XMLHttpRequest</code>’s <code>error</code>事件，然后拒绝把响应的数据交给请求该数据的js, 我们看一下以下例子:</p>
+<h2 id="okfybagvo">浏览器是怎么做的<a class="anchorjs-link" href="#okfybagvo"><span class="anchorjs-icon"></span></a></h2>
+<p>需要注意的是，客户端发送的请求不在同源策略的限制中, 服务器端响应的数据才有跨域限制的问题, 而且本质上response已经到达本地，只不过浏览器在网络层做了一下校验, 看看服务器端是否允许此客户端访问这个页面, 不是的话浏览器会触发<code>XMLHttpRequest</code>&#39;s <code>error</code>事件，然后拒绝把响应的数据交给请求该数据的js, 我们看一下以下例子:</p>
 
 <p><strong>在www.xiami.com发送ajax请求到www.me:3000, 提示跨域错误:</strong></p>
 
@@ -178,7 +183,7 @@
 <p>上边的解释可以说明大部分情况, 但是并不完整, 在具体说明之前我们需要了解一下CORS(<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Cross-Origin Resource Sharing</a>), 以及CORS标准新添加的一些新的HTTP headers。</p>
 
 <p>简单的说, CORS可以让客户端在已授权的情况下给远程服务器发送请求(部分验证在服务器端, 但是绝大多数在浏览器端完成).</p>
-<h3 id="o2udth9xc">CORS新添加的headers<a class="anchorjs-link" href="#o2udth9xc"><span class="anchorjs-icon"></span></a></h3><h4 id="ovmengsfg">Request headers<a class="anchorjs-link" href="#ovmengsfg"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="o9xsyzxg0">CORS新添加的headers<a class="anchorjs-link" href="#o9xsyzxg0"><span class="anchorjs-icon"></span></a></h3><h4 id="onf9yztue">Request headers<a class="anchorjs-link" href="#onf9yztue"><span class="anchorjs-icon"></span></a></h4>
 <ul>
 <li>Origin (告诉服务器请求的来源)</li>
 <li>Access-Control-Request-Method (用于提交preflight的OPTIONS请求, 告诉服务器实际的请求用的是什么HTTP方法)</li>
@@ -186,7 +191,7 @@
 </ul>
 
 <p><strong>以上的三个headers浏览器自动添加, 不允许手动修改!</strong></p>
-<h4 id="oy2fllxh7">Response header<a class="anchorjs-link" href="#oy2fllxh7"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="omx92yvfm">Response header<a class="anchorjs-link" href="#omx92yvfm"><span class="anchorjs-icon"></span></a></h4>
 <ul>
 <li>Access-Control-Allow-Origin（指定哪些源可以请求到数据）</li>
 <li>Access-Control-Allow-Credentials (用来确定实际的请求是否可以使用凭证)</li>
@@ -195,17 +200,17 @@
 <li>Access-Control-Allow-Methods（用于响应preflight的OPTIONS请求, 指定哪些方法可以在正式请求中使用, <strong>对preflight, 除get, post, head之外的请求方法默认禁止</strong>）</li>
 <li>Access-Control-Allow-Headers（用于响应preflight的OPTIONS请求, 指定客户端可以在头中指定哪些字段, <strong>对preflight, 除浏览器自动添加的headers, 所有其它的headers默认是禁止</strong>）</li>
 </ul>
-<h3 id="oe1ml8k6j">几个概念<a class="anchorjs-link" href="#oe1ml8k6j"><span class="anchorjs-icon"></span></a></h3><h4 id="ogmybkdcl">Simple method:<a class="anchorjs-link" href="#ogmybkdcl"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="o5hi02yiz">几个概念<a class="anchorjs-link" href="#o5hi02yiz"><span class="anchorjs-icon"></span></a></h3><h4 id="o92lc103x">Simple method:<a class="anchorjs-link" href="#o92lc103x"><span class="anchorjs-icon"></span></a></h4>
 <ul>
 <li>GET</li>
 <li>HEAD</li>
 <li>POST</li>
 </ul>
-<h4 id="o9108rhh">Simple header<a class="anchorjs-link" href="#o9108rhh"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oyr5jonvx">Simple header<a class="anchorjs-link" href="#oyr5jonvx"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>A header is said to be a simple header if the header field name is an ASCII case-insensitive match for Accept, Accept-Language, or Content-Language or if it is an ASCII case-insensitive match for Content-Type and the header field value media type (excluding parameters) is an ASCII case-insensitive match for application/x-www-form-urlencoded, multipart/form-data, or text/plain.</p>
 </blockquote>
-<h4 id="of9coxmse">Simple response header<a class="anchorjs-link" href="#of9coxmse"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oqlityo3i">Simple response header<a class="anchorjs-link" href="#oqlityo3i"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>A header is said to be a simple response header if the header field name is an ASCII case-insensitive match for one of the following:</p>
 </blockquote>
@@ -218,7 +223,7 @@
 <li>Last-Modified</li>
 <li>Pragma</li>
 </ul>
-<h4 id="o156i7qrb">Simple requests<a class="anchorjs-link" href="#o156i7qrb"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oy8ynowsd">Simple requests<a class="anchorjs-link" href="#oy8ynowsd"><span class="anchorjs-icon"></span></a></h4>
 <ol>
 <li>请求的方法是get, post, head(类似get, 不过只发送状态行和头部)三者之一, 如果是post的话, 头部的Content-Type值为application/x-www-form-urlencoded, multipart/form-data, text/plain三者之一</li>
 <li>没有设置自定义的HTTP头(自定义请求一般用X打头)</li>
@@ -239,14 +244,14 @@
 </span><span class="hll">  <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;Content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;multipart/form-data&#39;</span><span class="p">);</span>
 </span>  <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">})();</span>
-</code></pre></div><h4 id="oyg5bu174">Preflighted requests<a class="anchorjs-link" href="#oyg5bu174"><span class="anchorjs-icon"></span></a></h4>
+</code></pre></div><h4 id="o7wdqolua">Preflighted requests<a class="anchorjs-link" href="#o7wdqolua"><span class="anchorjs-icon"></span></a></h4>
 <p>为了防止跨域请求无端对服务器数据造成损坏, 部分CORS请求并不是直接就可以向服务器发送的, 这时浏览器会先向服务器发送一个请求方法为OPTIONS的preflight的请求, 服务器收到这个请求后, 通过校验其中的信息来决定是否允许当前客户端进一步发起CORS请求, 然后将判断结果返回给浏览器。浏览器根据返回内容来决定是否进行下一步真实的请求。服务器对此次OPTIONS的请求的返回内容中还可以指示浏览器, 是否在下次请求携带相关的Cookie或者Http Authentication数据。</p>
 
 <p>满足以下条件的请求会发送preflighted请求</p>
 
 <ol>
 <li>请求的方法不是get, post, head三者之一;</li>
-<li>请求访求是post, 但是Content-Type不是application/x-www-form-urlencoded, multipart/form-data, text/plain三者之一</li>
+<li>请求的方法是post, 但是Content-Type不是application/x-www-form-urlencoded, multipart/form-data, text/plain三者之一</li>
 <li>设置了自定义的HTTP头</li>
 </ol>
 
@@ -269,7 +274,7 @@
 <p>这时我们可以看到浏览器实际上发送了两个请求(假如第一个OPTIONS请求报错, 第二个正式请求将不再发送):</p>
 
 <p><img src="/assets/images/same-origin/preflight.png" alt="preflight"></p>
-<h4 id="ou9lymd5x">Requests with credentials<a class="anchorjs-link" href="#ou9lymd5x"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oygnap5cd">Requests with credentials<a class="anchorjs-link" href="#oygnap5cd"><span class="anchorjs-icon"></span></a></h4>
 <p>默认情况下, 跨域ajax请求浏览器不会把凭证一起发过去, 当发起一个需要凭证(多指cookie)的请求时, 需要设置一个特殊的标志<code>withCredentials</code>指示浏览器发送凭证。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">(),</span>
@@ -288,9 +293,9 @@
 <li>对于preflight请求, 第一次OPTIONS请求不发送cookie信息, 正式请求时才发送cookie信息</li>
 <li>服务器端返回的头信息中需要设置<code>Access-Control-Allow-Credentials</code>为true. 否则浏览器将拒绝使用返回的数据（具体见下文）</li>
 </ol>
-<h2 id="olffp1q19">如何跨站访问数据<a class="anchorjs-link" href="#olffp1q19"><span class="anchorjs-icon"></span></a></h2><h3 id="ort8bubmu">CORS<a class="anchorjs-link" href="#ort8bubmu"><span class="anchorjs-icon"></span></a></h3>
+<h2 id="ohcqy9p72">如何跨站访问数据<a class="anchorjs-link" href="#ohcqy9p72"><span class="anchorjs-icon"></span></a></h2><h3 id="oyw7pb47g">CORS<a class="anchorjs-link" href="#oyw7pb47g"><span class="anchorjs-icon"></span></a></h3>
 <p>具体实现可以在服务器端返回的报文中设置特定headers（下文例子以nodejs为例）, 也可以通过更改apache, nginx等的配置来实现</p>
-<h4 id="ossp0oa89">简单请求(simple request)<a class="anchorjs-link" href="#ossp0oa89"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o47vj4jk0">简单请求(simple request)<a class="anchorjs-link" href="#o47vj4jk0"><span class="anchorjs-icon"></span></a></h4>
 <p>对于简单请求我们只要简单的在返回的报文头中加入<code>Access-Control-Allow-Origin</code>就行, 比如</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
 
@@ -300,7 +305,7 @@
   <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello World\n&#39;</span><span class="p">);</span>
 <span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">);</span>
-</code></pre></div><h4 id="ou48v4lkv">preflight请求<a class="anchorjs-link" href="#ou48v4lkv"><span class="anchorjs-icon"></span></a></h4>
+</code></pre></div><h4 id="ouck7egfy">preflight请求<a class="anchorjs-link" href="#ouck7egfy"><span class="anchorjs-icon"></span></a></h4>
 <p>CORS新增加的很多header都于prefilght有关, 我们可以直接看一个完整一点的例子.</p>
 
 <p>假设客户端的请求是这样的:</p>
@@ -347,7 +352,7 @@
       <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
       <span class="k">break</span><span class="p">;</span>
   <span class="p">}</span>
-</code></pre></div><h4 id="ocj81w2qy">需要凭证的请求<a class="anchorjs-link" href="#ocj81w2qy"><span class="anchorjs-icon"></span></a></h4>
+</code></pre></div><h4 id="oq0ulsbpx">需要凭证的请求<a class="anchorjs-link" href="#oq0ulsbpx"><span class="anchorjs-icon"></span></a></h4>
 <p>和简单请求相比, 此时<code>Access-Control-Allow-Origin</code>不能设置为使用通配符<code>*</code>, 需要明确的指定; 响应头中需要设置<code>Access-Control-Allow-Credentials</code>为true, 以下是代码示例.</p>
 
 <p><strong>假设请求是Simple request:</strong></p>
@@ -412,7 +417,7 @@
   <span class="p">}</span>
 
 <span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">);</span>
-</code></pre></div><h4 id="o3qo6zo5q">浏览器支持情况<a class="anchorjs-link" href="#o3qo6zo5q"><span class="anchorjs-icon"></span></a></h4>
+</code></pre></div><h4 id="o38alatu0">浏览器支持情况<a class="anchorjs-link" href="#o38alatu0"><span class="anchorjs-icon"></span></a></h4>
 <p>看起来不是特别理想, 以下摘自<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing">wikipedia</a>:</p>
 
 <ul>
@@ -423,17 +428,17 @@
 <li>Opera &gt; 12.00</li>
 <li>Opera Mini 不支持</li>
 </ul>
-<h3 id="ox5yauzkg">JSONP<a class="anchorjs-link" href="#ox5yauzkg"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="o2gb5j4u2">JSONP<a class="anchorjs-link" href="#o2gb5j4u2"><span class="anchorjs-icon"></span></a></h3>
 <p>变相的使用<code>&lt;script&gt;</code>, 非常普遍的用法, 具体不赘述. 它和CORS比较:</p>
 
 <p>jsonp有良好的兼容, 但是只支持get请求, 并且可能导致XSS攻击, 安全性不如CORS; 而CORS支持其它的请求方法, 使用更加方便, 安全性高于JSONP(允许客户端自己解析响应的数据), 因为发送的是常规的XMLHttpRequest, 所以也更容易做错误处理.</p>
-<h3 id="o1gbjl8y6">nginx反向代理<a class="anchorjs-link" href="#o1gbjl8y6"><span class="anchorjs-icon"></span></a></h3>
+<h3 id="oa6g4q998">nginx反向代理<a class="anchorjs-link" href="#oa6g4q998"><span class="anchorjs-icon"></span></a></h3>
 <p>这是我个人比较喜欢的方法, 兼具jsonp和CORS的优点。具体做法:
 假如http://sitea.com要访问http://siteb.com/agency下的内容, 可以在nginx.conf中加入如下配置:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">location /agency {
     proxy_pass   http://119.255.25.130/agency;
 }
-</code></pre></div><h3 id="om1t48bo5">iframe, window.name<a class="anchorjs-link" href="#om1t48bo5"><span class="anchorjs-icon"></span></a></h3>
+</code></pre></div><h3 id="od1cdmsvf">iframe, window.name<a class="anchorjs-link" href="#od1cdmsvf"><span class="anchorjs-icon"></span></a></h3>
 <p>比较绕，也不优雅, pass</p>
 
 <p>参考:</p>
