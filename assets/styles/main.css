@@ -636,7 +636,7 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font-family: "Helvetica neue", Helvetica, Tahoma, "lantinghei sc", "Microsoft Yahei", sans-serif;
+  font-family: "Helvetica", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Lantinghei SC", "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
@@ -1325,6 +1325,9 @@ h2 {
 h2 {
   margin: 2rem 0 1rem;
   line-height: 1.8; }
+
+p {
+  word-break: break-all; }
 
 .article {
   margin-bottom: 20px;
