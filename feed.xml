@@ -5,8 +5,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 13 Aug 2015 20:44:01 +0800</pubDate>
-    <lastBuildDate>Thu, 13 Aug 2015 20:44:01 +0800</lastBuildDate>
+    <pubDate>Thu, 13 Aug 2015 20:45:08 +0800</pubDate>
+    <lastBuildDate>Thu, 13 Aug 2015 20:45:08 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -19,7 +19,7 @@
 &lt;/p&gt;
 
 &lt;p&gt;当然了，这样用户体验并不好, 由此也促使了&lt;code&gt;&amp;lt;meta name=&amp;quot;viewport&amp;quot;&amp;gt;&lt;/code&gt;标签诞生。&lt;/p&gt;
-&lt;h2 id=&quot;oopv1kwcx&quot;&gt;device width &amp;amp; height&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oopv1kwcx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;od00974zk&quot;&gt;device width &amp;amp; height&lt;a class=&quot;anchorjs-link&quot; href=&quot;#od00974zk&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;meta name=&amp;quot;viewport&amp;quot;&amp;gt;&lt;/code&gt;只对移动端浏览器有作用，并且width属性只有目标的网站的宽度小于980px, 或者为响应式布局才有需要。
 我们经常可以看到这样的语句：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;viewport&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;width=device-width&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -30,7 +30,7 @@
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;viewport&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;width=375&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;注:单位不是必需的，并且无论写了什么单位, 它始终为px，并且有些属性之前存在制约关系, 比如设置了initial-scale=1, 再设置width小于设备的横向css宽度将没有作用（下文细说）&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;oesxjaxsm&quot;&gt;scale&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oesxjaxsm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;o9el4y8qe&quot;&gt;scale&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9el4y8qe&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;涉及四个值, 前三个的范围都是从0到10:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -39,7 +39,7 @@
 &lt;li&gt;initial-scale: 一些情况下会被推断为1，此时浏览器会将每个css像素和viewport像素一一对应&lt;/li&gt;
 &lt;li&gt;user-scalable: 控制用户能否缩放， 值为yes或no&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;oa7lxdoh1&quot;&gt;值推断和冲突&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oa7lxdoh1&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oovfmim36&quot;&gt;值推断和冲突&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oovfmim36&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;存在这么几种情况:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -47,7 +47,7 @@
 &lt;li&gt;当设置initial-scale为1时，width默认为device-width, height默认为device-height&lt;/li&gt;
 &lt;li&gt;当width设置小于设备横向css宽度时，页面会被放大, 即些时initial-scale的值不会为1（强制设置initial-scale为1将使刚刚设置的width无效)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;o37wyw858&quot;&gt;w3c做了什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o37wyw858&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;olbd10ek2&quot;&gt;w3c做了什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olbd10ek2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;meta标签最初是由apple公司提出来的，最终w3c也决定去实现标准化。但是w3c提出的方案并不是添加一个meta的标签，而是将其加入到css中，类似这样：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;k&quot;&gt;@viewport&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;device-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -85,15 +85,15 @@
       <item>
         <title>坐标 &amp; 位置</title>
         <description>&lt;p&gt;这是一个非常基础, 涉及很广但又容易混淆的地方, 但是莫要担心, 哥们我将尝试在本文中将其解释清楚(原谅我可能最终也没能讲清楚, 此文会在后续继续补充更新).&lt;/p&gt;
-&lt;h2 id=&quot;oefyiu7ju&quot;&gt;准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oefyiu7ju&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;owu7r8l0s&quot;&gt;准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owu7r8l0s&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;首先我们先要有一些基础的储备才能愉快的谈论这个问题.&lt;/p&gt;
-&lt;h3 id=&quot;o9p26akto&quot;&gt;基础概念&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9p26akto&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ok4bvvj4n&quot;&gt;viewport&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ok4bvvj4n&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;okvyh5unt&quot;&gt;基础概念&lt;a class=&quot;anchorjs-link&quot; href=&quot;#okvyh5unt&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ox7rkrh05&quot;&gt;viewport&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ox7rkrh05&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The viewport is the part of the webpage that the user can currently see. The scrollbars move the viewport to show other parts of the page.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;在标准中, viewportWidth = window.innerWidth, viewportHeight = window.innerHeight (和滚动无关)&lt;/p&gt;
-&lt;h4 id=&quot;o26wgwa2e&quot;&gt;盒模型&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o26wgwa2e&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;odv29iufg&quot;&gt;盒模型&lt;a class=&quot;anchorjs-link&quot; href=&quot;#odv29iufg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/images/position/boxmodel.png&quot; alt=&quot;boxmodel&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;width, min-width, max-width, height, min-height, max-height&lt;/code&gt;的设定值影响的对象和&lt;code&gt;box-sizing&lt;/code&gt;的值设定有关:&lt;/p&gt;
@@ -117,7 +117,7 @@
 &lt;td&gt;border edge&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
-&lt;h3 id=&quot;o53j3zhxg&quot;&gt;坐标关系&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o53j3zhxg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;oqfe4uwc6&quot;&gt;元素的长宽属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqfe4uwc6&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;oxjjkdbrr&quot;&gt;坐标关系&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxjjkdbrr&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;oufzne7g&quot;&gt;元素的长宽属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oufzne7g&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;项目&lt;/th&gt;
@@ -156,7 +156,7 @@
 &lt;td&gt;否&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
-&lt;h4 id=&quot;obt8w5lh1&quot;&gt;附：那些触发重绘的属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#obt8w5lh1&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;otyqe41a2&quot;&gt;附：那些触发重绘的属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#otyqe41a2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;clientHeight, clientLeft, clientTop, clientWidth, focus(), getBoundingClientRect(), getClientRects(), innerText, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, outerText, scrollByLines(), scrollByPages(), scrollHeight, scrollIntoView(), scrollIntoViewIfNeeded(), scrollLeft, scrollTop, scrollWidth
 Frame, Image
 height, width
@@ -170,17 +170,17 @@ SVGUse
 instanceRoot
 window
 getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPointFromNodeToPage(), webkitConvertPointFromPageToNode()&lt;/p&gt;
-&lt;h4 id=&quot;obarp721d&quot;&gt;引用一个牛逼的说明&lt;a class=&quot;anchorjs-link&quot; href=&quot;#obarp721d&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;od0t590n8&quot;&gt;引用一个牛逼的说明&lt;a class=&quot;anchorjs-link&quot; href=&quot;#od0t590n8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;iframe width=&quot;100%&quot; height=&quot;500&quot; src=&quot;//jsfiddle.net/y8Y32/25/embedded/result,js,html,css&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-&lt;h4 id=&quot;o9egtuc8l&quot;&gt;实际的案例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9egtuc8l&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;o94obr7tl&quot;&gt;实际的案例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o94obr7tl&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;iframe width=&quot;100%&quot; height=&quot;530&quot; src=&quot;//jsfiddle.net/linkarys/kgs1czrq/1/embedded/result,css,html,js&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;在chrome中 43测试, 对于&lt;code&gt;display:inline&lt;/code&gt;的元素, &lt;code&gt;cssWidth&lt;/code&gt;, &lt;code&gt;cssHeight&lt;/code&gt;始终为auto(即便设置了width, height值), &lt;code&gt;clientWidth&lt;/code&gt;, &lt;code&gt;clientHeight&lt;/code&gt;, &lt;code&gt;scrollWidth&lt;/code&gt;, &lt;code&gt;scrollHeight&lt;/code&gt;始终为0, &lt;code&gt;offsetWidth&lt;/code&gt;, &lt;code&gt;offsetHeight&lt;/code&gt;为有效值&lt;/p&gt;
-&lt;h4 id=&quot;oblwbjrp3&quot;&gt;window的长宽属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oblwbjrp3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;osz1yd0bw&quot;&gt;window的长宽属性&lt;a class=&quot;anchorjs-link&quot; href=&quot;#osz1yd0bw&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;一图胜千言:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/position/firefoxInnerVsOuterHeight.png&quot; alt=&quot;firefoxInnerVsOuterHeight&quot;&gt;&lt;/p&gt;
-&lt;h4 id=&quot;o1j5wngeg&quot;&gt;event的坐标&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1j5wngeg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;ozzagtxxn&quot;&gt;event的坐标&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ozzagtxxn&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;项目&lt;/th&gt;
@@ -209,19 +209,19 @@ getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPoint
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
-&lt;h3 id=&quot;o37qbfjt9&quot;&gt;相对位置&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o37qbfjt9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ogf74rp6g&quot;&gt;Element.offsetParent&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogf74rp6g&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;oi33o3skh&quot;&gt;相对位置&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oi33o3skh&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;olowzmbwq&quot;&gt;Element.offsetParent&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olowzmbwq&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;返回一个指向最近的（closest，指包含层级上的最近）包含该元素的定位元素（position值不为static的元素, 即: &lt;code&gt;getComputedStyle(elem).position !== &amp;#39;static&amp;#39;&lt;/code&gt;）, 如果没有定位的元素，则offsetParent为最近的table 元素对象或根元素(标准模式下为html; quirks模式下为body), 当元素的 style.display 设置为 &amp;quot;none&amp;quot; 时，offsetParent返回null&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;在Webkit中，如果元素为隐藏的（该元素或其祖先元素的 style.display 为 &amp;quot;none&amp;quot;），或者该元素的style.position被设为 &amp;quot;fixed&amp;quot;，则该属性返回 null。
 在IE 9中，如果该元素的 style.position 被设置为 &amp;quot;fixed&amp;quot;，则该属性返回null（display:none 无影响）&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;o1ef4nwn&quot;&gt;Element.offsetLeft(offsetTop)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1ef4nwn&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;oatmszxfd&quot;&gt;Element.offsetLeft(offsetTop)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oatmszxfd&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;相对于Element.offsetParent的位置, 对于块级元素来说, 指的是元素的border box相对于其offsetParent的位置; 对于inline元素, offsetTop, offsetLeft指的是第一个border box相对于offsetParent的位置的位置, offsetWidth, offsetHeight指的其边界盒子的尺寸(通过getBoundingClientRect获得)&lt;/p&gt;
 
 &lt;p&gt;下面的例子引用mdn, div盒子的边框高为蓝色, 红框表示span的边界
 &lt;iframe width=&quot;100%&quot; height=&quot;100&quot; src=&quot;//jsfiddle.net/linkarys/cehp80c4/embedded/result,html,js&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
-&lt;h3 id=&quot;o8065r5ll&quot;&gt;常用API&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o8065r5ll&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ofaycvncj&quot;&gt;getComputedStyle(element[, pseudoElt]);&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ofaycvncj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;ozscce24h&quot;&gt;常用API&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ozscce24h&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ofq8oy3cd&quot;&gt;getComputedStyle(element[, pseudoElt]);&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ofq8oy3cd&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;gives the values of all the CSS properties of an element after applying the active stylesheets and resolving any basic computation those values may contain.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -255,7 +255,7 @@ getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPoint
       明确的宽度: inherit. 指定的宽度: 50%. 计算的宽度: 50%. 应用的宽度: 221px .&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;h4 id=&quot;o3851os4w&quot;&gt;Element.getClientRects()&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o3851os4w&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;o6vavldv8&quot;&gt;Element.getClientRects()&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o6vavldv8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;returns a collection of rectangles that indicate the bounding rectangles for each box in a client.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -267,7 +267,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;p&gt;以下同样是引自mdn的一个说明（蓝色父元素的边框, 绿色为子元素的边框, 红色clientRects的边框-可能覆盖其它边框）:&lt;/p&gt;
 
 &lt;iframe width=&quot;100%&quot; height=&quot;630&quot; src=&quot;//jsfiddle.net/linkarys/mh6s452n/embedded/result,css,html,js&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-&lt;h4 id=&quot;o2lul1wl6&quot;&gt;Element.getBoundingClientRect()&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o2lul1wl6&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;otsb02jir&quot;&gt;Element.getBoundingClientRect()&lt;a class=&quot;anchorjs-link&quot; href=&quot;#otsb02jir&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;returns the size of an element and its position relative to the viewport.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -299,7 +299,7 @@ left、top、right和bottom是相对于viewport而言。
       <item>
         <title>同源 &amp; 跨域</title>
         <description>&lt;p&gt;网络都在说如何解决跨域问题? 但是对于导致跨域的问题的同源策略却探讨不足, 略粗暴啊-_-!&lt;/p&gt;
-&lt;h2 id=&quot;owptwhanx&quot;&gt;同源&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owptwhanx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;oazz5s0o4&quot;&gt;什么是同源&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oazz5s0o4&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;oxc1hzxve&quot;&gt;同源&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxc1hzxve&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;ogdgw85or&quot;&gt;什么是同源&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogdgw85or&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;同源有三个要求:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -316,13 +316,13 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;在store.company.com中设置document.domain = &amp;#39;company.com&amp;#39;.&lt;/li&gt;
 &lt;li&gt;需要是火狐浏览器 (是的, 在&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy&quot;&gt;MDN&lt;/a&gt;上有描述, 但是在chrome下同样会报同源错误, 其它浏览器未测试)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;oygpvo2uw&quot;&gt;同源策略会限制什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oygpvo2uw&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;o4aurgqne&quot;&gt;同源策略会限制什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4aurgqne&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Ajax(XHR)请求&lt;/li&gt;
 &lt;li&gt;WebGL textures&lt;/li&gt;
 &lt;li&gt;使用drawImage嵌入canvas中的图片(images drawn to a canvas using drawImage)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;ogj5626zc&quot;&gt;同源策略不限制什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogj5626zc&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oi71763mj&quot;&gt;同源策略不限制什么&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oi71763mj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;基于标签的跨域请求基本都不限制(可以这么理解: 对于静态资源一般是不限制的):
 - script
 - img
@@ -330,7 +330,7 @@ left、top、right和bottom是相对于viewport而言。
 - object, embed, applet
 - video, audio
 - frame, iframe (&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options&quot;&gt;X-Frame-Options&lt;/a&gt;头信息可以控制此限制)&lt;/p&gt;
-&lt;h3 id=&quot;oajx0t43b&quot;&gt;哪些行为在不同的浏览器中存在差异(未测试)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oajx0t43b&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oitkuqsdz&quot;&gt;哪些行为在不同的浏览器中存在差异(未测试)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oitkuqsdz&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;link&lt;/li&gt;
 &lt;li&gt;font-face (google fonts在响应头中加了&lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;, 详细见下图)&lt;/li&gt;
@@ -339,7 +339,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;p&gt;&lt;strong&gt;google fonts返回的头信息:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/same-origin/google-fonts.png&quot; alt=&quot;google fonts&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;owz4purtc&quot;&gt;cookie的同源策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owz4purtc&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oxwcwpyr6&quot;&gt;cookie的同源策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxwcwpyr6&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;cookie中的同源只关注域名，忽略协议和端口。而且子域和父域允许互写(可读取本域设置给对方的cookie值)。
 具体请参考&lt;a href=&quot;http://tools.ietf.org/html/rfc6265&quot;&gt;RFC6265&lt;/a&gt;&lt;/p&gt;
 
@@ -352,13 +352,13 @@ left、top、right和bottom是相对于viewport而言。
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cookie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;child_id=10; domain=domain.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;此时child_id=10在sub.domain.com和domain.com中都能读到, 但是如果在domain.com中修改了&lt;code&gt;child_id&lt;/code&gt;的值, 浏览器会在domain.com中再添加一个同名的cookie值, 并且该值在sub.domain.com中无法读到&lt;/p&gt;
-&lt;h3 id=&quot;olk7lgm9a&quot;&gt;为什么会有同源策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olk7lgm9a&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ohwzc65l&quot;&gt;为什么会有同源策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ohwzc65l&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;当然，为了网络安全! 那么没有同源策略会有哪些影响？我从&lt;a href=&quot;http://security.stackexchange.com/questions/8264/why-is-the-same-origin-policy-so-important&quot;&gt;网上&lt;/a&gt;摘录了一个场景:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Assume you are logged into Facebook and visit a malicious website in another browser tab. Without the same origin policy JavaScript on that website could do anything to your Facebook account that you are allowed to do. For example read private messages, post status updates, analyse the HTML DOM-tree after you entered your password before submitting the form.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;osil56tlf&quot;&gt;浏览器是怎么做的&lt;a class=&quot;anchorjs-link&quot; href=&quot;#osil56tlf&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oun15n8kj&quot;&gt;浏览器是怎么做的&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oun15n8kj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;需要注意的是，客户端发送的请求不在同源策略的限制中, 服务器端响应的数据才有跨域限制的问题, 而且本质上response已经到达本地，只不过浏览器在网络层做了一下校验, 看看服务器端是否允许此客户端访问这个页面, 不是的话浏览器会触发&lt;code&gt;XMLHttpRequest&lt;/code&gt;&amp;#39;s &lt;code&gt;error&lt;/code&gt;事件，然后拒绝把响应的数据交给请求该数据的js, 我们看一下以下例子:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;在www.xiami.com发送ajax请求到www.me:3000, 提示跨域错误:&lt;/strong&gt;&lt;/p&gt;
@@ -372,7 +372,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;p&gt;上边的解释可以说明大部分情况, 但是并不完整, 在具体说明之前我们需要了解一下CORS(&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin&quot;&gt;Cross-Origin Resource Sharing&lt;/a&gt;), 以及CORS标准新添加的一些新的HTTP headers。&lt;/p&gt;
 
 &lt;p&gt;简单的说, CORS可以让客户端在已授权的情况下给远程服务器发送请求(部分验证在服务器端, 但是绝大多数在浏览器端完成).&lt;/p&gt;
-&lt;h3 id=&quot;o45at22qm&quot;&gt;CORS新添加的headers&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o45at22qm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;o83lmj6g5&quot;&gt;Request headers&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o83lmj6g5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;o6d2c32rc&quot;&gt;CORS新添加的headers&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o6d2c32rc&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;odvkrgy6j&quot;&gt;Request headers&lt;a class=&quot;anchorjs-link&quot; href=&quot;#odvkrgy6j&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Origin (告诉服务器请求的来源)&lt;/li&gt;
 &lt;li&gt;Access-Control-Request-Method (用于提交preflight的OPTIONS请求, 告诉服务器实际的请求用的是什么HTTP方法)&lt;/li&gt;
@@ -380,7 +380,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;以上的三个headers浏览器自动添加, 不允许手动修改!&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;od5x0s6ft&quot;&gt;Response header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#od5x0s6ft&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;ojaqlkbi5&quot;&gt;Response header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojaqlkbi5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Access-Control-Allow-Origin（指定哪些源可以请求到数据）&lt;/li&gt;
 &lt;li&gt;Access-Control-Allow-Credentials (用来确定实际的请求是否可以使用凭证)&lt;/li&gt;
@@ -389,17 +389,17 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;Access-Control-Allow-Methods（用于响应preflight的OPTIONS请求, 指定哪些方法可以在正式请求中使用, &lt;strong&gt;对preflight, 除get, post, head之外的请求方法默认禁止&lt;/strong&gt;）&lt;/li&gt;
 &lt;li&gt;Access-Control-Allow-Headers（用于响应preflight的OPTIONS请求, 指定客户端可以在头中指定哪些字段, &lt;strong&gt;对preflight, 除浏览器自动添加的headers, 所有其它的headers默认是禁止&lt;/strong&gt;）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;o19kauuwh&quot;&gt;几个概念&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o19kauuwh&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;o5i748gje&quot;&gt;Simple method:&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o5i748gje&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;oyq7ilgrw&quot;&gt;几个概念&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oyq7ilgrw&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;olfdfok3j&quot;&gt;Simple method:&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olfdfok3j&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;GET&lt;/li&gt;
 &lt;li&gt;HEAD&lt;/li&gt;
 &lt;li&gt;POST&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;o5v9ih5xi&quot;&gt;Simple header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o5v9ih5xi&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;oph6a7mi4&quot;&gt;Simple header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oph6a7mi4&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A header is said to be a simple header if the header field name is an ASCII case-insensitive match for Accept, Accept-Language, or Content-Language or if it is an ASCII case-insensitive match for Content-Type and the header field value media type (excluding parameters) is an ASCII case-insensitive match for application/x-www-form-urlencoded, multipart/form-data, or text/plain.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;o24meiz00&quot;&gt;Simple response header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o24meiz00&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;okzawt1uc&quot;&gt;Simple response header&lt;a class=&quot;anchorjs-link&quot; href=&quot;#okzawt1uc&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A header is said to be a simple response header if the header field name is an ASCII case-insensitive match for one of the following:&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -412,7 +412,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;Last-Modified&lt;/li&gt;
 &lt;li&gt;Pragma&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;ocgub6lij&quot;&gt;Simple requests&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ocgub6lij&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;oldcwg7gy&quot;&gt;Simple requests&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oldcwg7gy&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;请求的方法是get, post, head(类似get, 不过只发送状态行和头部)三者之一, 如果是post的话, 头部的Content-Type值为application/x-www-form-urlencoded, multipart/form-data, text/plain三者之一&lt;/li&gt;
 &lt;li&gt;没有设置自定义的HTTP头(自定义请求一般用X打头)&lt;/li&gt;
@@ -433,7 +433,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;/span&gt;&lt;span class=&quot;hll&quot;&gt;  &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRequestHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-type&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;multipart/form-data&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;olwh5smth&quot;&gt;Preflighted requests&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olwh5smth&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o2ia0mhyl&quot;&gt;Preflighted requests&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o2ia0mhyl&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;为了防止跨域请求无端对服务器数据造成损坏, 部分CORS请求并不是直接就可以向服务器发送的, 这时浏览器会先向服务器发送一个请求方法为OPTIONS的preflight的请求, 服务器收到这个请求后, 通过校验其中的信息来决定是否允许当前客户端进一步发起CORS请求, 然后将判断结果返回给浏览器。浏览器根据返回内容来决定是否进行下一步真实的请求。服务器对此次OPTIONS的请求的返回内容中还可以指示浏览器, 是否在下次请求携带相关的Cookie或者Http Authentication数据。&lt;/p&gt;
 
 &lt;p&gt;满足以下条件的请求会发送preflighted请求&lt;/p&gt;
@@ -463,7 +463,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;p&gt;这时我们可以看到浏览器实际上发送了两个请求(假如第一个OPTIONS请求报错, 第二个正式请求将不再发送):&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/same-origin/preflight.png&quot; alt=&quot;preflight&quot;&gt;&lt;/p&gt;
-&lt;h4 id=&quot;ofca6e0x4&quot;&gt;Requests with credentials&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ofca6e0x4&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;o6dtttuad&quot;&gt;Requests with credentials&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o6dtttuad&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;默认情况下, 跨域ajax请求浏览器不会把凭证一起发过去, 当发起一个需要凭证(多指cookie)的请求时, 需要设置一个特殊的标志&lt;code&gt;withCredentials&lt;/code&gt;指示浏览器发送凭证。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
@@ -482,9 +482,9 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;对于preflight请求, 第一次OPTIONS请求不发送cookie信息, 正式请求时才发送cookie信息&lt;/li&gt;
 &lt;li&gt;服务器端返回的头信息中需要设置&lt;code&gt;Access-Control-Allow-Credentials&lt;/code&gt;为true. 否则浏览器将拒绝使用返回的数据（具体见下文）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;oqx5b259u&quot;&gt;如何跨站访问数据&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqx5b259u&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;osybjskql&quot;&gt;CORS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#osybjskql&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;oqiwjk2fp&quot;&gt;如何跨站访问数据&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqiwjk2fp&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;opxhcihb8&quot;&gt;CORS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#opxhcihb8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;具体实现可以在服务器端返回的报文中设置特定headers（下文例子以nodejs为例）, 也可以通过更改apache, nginx等的配置来实现&lt;/p&gt;
-&lt;h4 id=&quot;ot9geqdch&quot;&gt;简单请求(simple request)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ot9geqdch&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;ozmgrnd4f&quot;&gt;简单请求(simple request)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ozmgrnd4f&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;对于简单请求我们只要简单的在返回的报文头中加入&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;就行, 比如&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
@@ -494,7 +494,7 @@ left、top、right和bottom是相对于viewport而言。
   &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World\n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;owxumy2wg&quot;&gt;preflight请求&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owxumy2wg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;orcacpk9n&quot;&gt;preflight请求&lt;a class=&quot;anchorjs-link&quot; href=&quot;#orcacpk9n&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;CORS新增加的很多header都于prefilght有关, 我们可以直接看一个完整一点的例子.&lt;/p&gt;
 
 &lt;p&gt;假设客户端的请求是这样的:&lt;/p&gt;
@@ -541,7 +541,7 @@ left、top、right和bottom是相对于viewport而言。
       &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;oo0s7g7yr&quot;&gt;需要凭证的请求&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oo0s7g7yr&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;oeu6hfnu4&quot;&gt;需要凭证的请求&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oeu6hfnu4&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;和简单请求相比, 此时&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;不能设置为使用通配符&lt;code&gt;*&lt;/code&gt;, 需要明确的指定; 响应头中需要设置&lt;code&gt;Access-Control-Allow-Credentials&lt;/code&gt;为true, 以下是代码示例.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;假设请求是Simple request:&lt;/strong&gt;&lt;/p&gt;
@@ -606,7 +606,7 @@ left、top、right和bottom是相对于viewport而言。
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;og4ypp8u3&quot;&gt;浏览器支持情况&lt;a class=&quot;anchorjs-link&quot; href=&quot;#og4ypp8u3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o4bf92rtt&quot;&gt;浏览器支持情况&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4bf92rtt&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;看起来不是特别理想, 以下摘自&lt;a href=&quot;http://en.wikipedia.org/wiki/Cross-origin_resource_sharing&quot;&gt;wikipedia&lt;/a&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -617,17 +617,17 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;Opera &amp;gt; 12.00&lt;/li&gt;
 &lt;li&gt;Opera Mini 不支持&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;ondb92vgq&quot;&gt;JSONP&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ondb92vgq&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ovkn29k20&quot;&gt;JSONP&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ovkn29k20&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;变相的使用&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;, 非常普遍的用法, 具体不赘述. 它和CORS比较:&lt;/p&gt;
 
 &lt;p&gt;jsonp有良好的兼容, 但是只支持get请求, 并且可能导致XSS攻击, 安全性不如CORS; 而CORS支持其它的请求方法, 使用更加方便, 安全性高于JSONP(允许客户端自己解析响应的数据), 因为发送的是常规的XMLHttpRequest, 所以也更容易做错误处理.&lt;/p&gt;
-&lt;h3 id=&quot;oqf0jfzvx&quot;&gt;nginx反向代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqf0jfzvx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;o8q2ab0o2&quot;&gt;nginx反向代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o8q2ab0o2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这是我个人比较喜欢的方法, 兼具jsonp和CORS的优点。具体做法:
 假如http://sitea.com要访问http://siteb.com/agency下的内容, 可以在nginx.conf中加入如下配置:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;location /agency {
     proxy_pass   http://119.255.25.130/agency;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;om51suyjb&quot;&gt;iframe, window.name&lt;a class=&quot;anchorjs-link&quot; href=&quot;#om51suyjb&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;onubtpir2&quot;&gt;iframe, window.name&lt;a class=&quot;anchorjs-link&quot; href=&quot;#onubtpir2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;比较绕，也不优雅, pass&lt;/p&gt;
 
 &lt;p&gt;参考:&lt;/p&gt;
@@ -662,11 +662,11 @@ left、top、right和bottom是相对于viewport而言。
       <item>
         <title>Something about Babel &amp; ES6</title>
         <description>&lt;p&gt;Babel可以把ES6代码转换成主流浏览器可以执行的ES5代码(当然转换结果并不完美, 支持也不完整). 好奇babel的转换过程, 所以对某些实现做下简单分析&lt;/p&gt;
-&lt;h2 id=&quot;o13g3em7i&quot;&gt;class&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o13g3em7i&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oa36wfp9x&quot;&gt;class&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oa36wfp9x&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;平地一声雷, js终于是告别了没有&lt;code&gt;class&lt;/code&gt;的历史！虽可喜, 然而现实依然骨感, 对于es6+, 尚且没有什么浏览器完整支持(截至2015.05.23), 为了提前体验到es6的新特性, 或者说让我们写出的代码更具前瞻性, 我们可能用babel将es6代码转换成es5.&lt;/p&gt;
 
 &lt;p&gt;Babel用es5来模拟es6提出的class, 用到了几个关键函数，我们依次来看一下&lt;/p&gt;
-&lt;h3 id=&quot;o4bztk4p5&quot;&gt;_createClass&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4bztk4p5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ot984td1c&quot;&gt;_createClass&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ot984td1c&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;_createClass&lt;/code&gt;接受一个构造函数和一个包含key,value的json对象数组, 这些key, value通过&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty&quot;&gt;Object.definedProperty&lt;/a&gt;方法将其添加到构造函数的prototype属性中， 以实现每个构造函数的实例继承这些方法。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_createClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defineProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -694,7 +694,7 @@ left、top、right和bottom是相对于viewport而言。
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;oxblhqej&quot;&gt;_inherits&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxblhqej&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;ord4oijul&quot;&gt;_inherits&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ord4oijul&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;关于继承, 之前的一篇文章&lt;a href=&quot;http://linkarys.github.io/posts/javascript/javascript-inherit/&quot;&gt;javascript inherit&lt;/a&gt;做了较详细的描述&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_inherits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;superClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;superClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;superClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -714,14 +714,14 @@ left、top、right和bottom是相对于viewport而言。
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;superClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;subClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;__proto__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;superClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getPrototypeOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;ogqz5sqp9&quot;&gt;_classCallCheck&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogqz5sqp9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;ot0c8toap&quot;&gt;_classCallCheck&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ot0c8toap&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;比较简单, 应该是防止调用构造函数时通过call, apply, bind之类的方式绑定了不合理的this&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_classCallCheck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Cannot&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;oikwm6utm&quot;&gt;get&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oikwm6utm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;o2dk6gogf&quot;&gt;get&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o2dk6gogf&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在原型链中查找对应方法: 通过&lt;code&gt;Object.getPrototypeof&lt;/code&gt;遍历原型链, 通过&lt;code&gt;Object.getOwnPropertyDescriptor&lt;/code&gt;获取对应属性值——未找到则继续沿着原型链的方向查找, 这边还考虑到了定义了getter的情况&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// _x: Super.prototype, _x2: 要调用的父级方法, _x3: this(当前调用此方法的实例)&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_get&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -765,7 +765,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code&gt;constructor&lt;/code&gt;的自动调用实现是通过复制其中的代码到&lt;code&gt;Greeter&lt;/code&gt;中实现的.&lt;/p&gt;
-&lt;h3 id=&quot;o83vj6p69&quot;&gt;编译结果前后对照&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o83vj6p69&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;opydvh98a&quot;&gt;编译结果前后对照&lt;a class=&quot;anchorjs-link&quot; href=&quot;#opydvh98a&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;最后来看一下示例代码和其对应的编译结果:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;编译前:&lt;/strong&gt;&lt;/p&gt;
@@ -866,7 +866,7 @@ left、top、right和bottom是相对于viewport而言。
 
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Man&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;})(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Human&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o55mol6e2&quot;&gt;function&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o55mol6e2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o9umhexf2&quot;&gt;function&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9umhexf2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;ES6对于函数的改进主要包括三点&lt;/p&gt;
 
 &lt;ol&gt;
@@ -930,13 +930,13 @@ left、top、right和bottom是相对于viewport而言。
       <item>
         <title>Javascript模式</title>
         <description>&lt;p&gt;老生常谈, 做下总结。似乎在ES6之前, js并不算一个完备的面向对象的语言, 本文总结的可能有效期也比较有限, 但是核心思想应该是不变的。当然, 我们并不是为了模式而模式, 要知道很多模式是基于静态语言提出的, 在js中并一定有市场, 也只有在某类模式能够优雅地解决某种需求时, 才有使用的意义.&lt;/p&gt;
-&lt;h2 id=&quot;ozmxud32j&quot;&gt;单例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ozmxud32j&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;o27987q3z&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o27987q3z&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;omniokvqh&quot;&gt;单例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#omniokvqh&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;omn9q4elj&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#omn9q4elj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;计数&lt;/li&gt;
 &lt;li&gt;全局配置&lt;/li&gt;
 &lt;li&gt;作为模块通信的桥梁&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;o5pob9c67&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o5pob9c67&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oxi7wdagr&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxi7wdagr&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;个人觉得以下是个比较好的实现, 可以省略new, 外界没法直接访问和修改instance.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -954,18 +954,18 @@ left、top、right和bottom是相对于viewport而言。
     &lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;onyeaomr2&quot;&gt;工厂&lt;a class=&quot;anchorjs-link&quot; href=&quot;#onyeaomr2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ojtui1il5&quot;&gt;工厂&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojtui1il5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;根据字符串指定的类型在运行时创建对象的方法&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;o2dznme9&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o2dznme9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ose93899a&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ose93899a&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在静态语言中用的比较多, 工厂模式有以下目标:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;创建相似对象时执行重复操作&lt;/li&gt;
 &lt;li&gt;编译时不知道具体类型的情况下， 为工厂客户提供一种创建对象的接口(动态语言没有这个烦恼)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;oruvu27xt&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oruvu27xt&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MobileFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;o1ligcuqn&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1ligcuqn&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MobileFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;constr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
@@ -1023,7 +1023,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;construtor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;construtor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;bln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;construtor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o3dc1vkcd&quot;&gt;迭代器&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o3dc1vkcd&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ogm9bgoli&quot;&gt;迭代器&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogm9bgoli&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;提供一个API来遍历和操纵复杂的自定义数据结构。 在迭代模式中,通常有一个包含某种数据集合的对象。该数据可能存储在一个复杂数据结构内部,而提供一种简单的方法能够访问数据结构中的每一个元素。对象的消费者并不需要知道如何组织数据,所有需要做的就是取出单个数据进行工作。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1052,15 +1052,15 @@ left、top、right和bottom是相对于viewport而言。
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;og0w1lz3k&quot;&gt;装饰者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#og0w1lz3k&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ojdr433vw&quot;&gt;装饰者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojdr433vw&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;通过从预定义装饰者对象中添加功能, 从而在运行时调整对象。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;目的：运行时动态添加附加功能到对象中&lt;/p&gt;
-&lt;h3 id=&quot;ojmm5x4i2&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojmm5x4i2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oqmpdmgom&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqmpdmgom&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;个人觉得在作组件化的时候会比较有用, 因为有些组件间的差异很小, 这个时候你不会希望再建一个类似的组件, 而通过传入大量的配置参数和解决其实对使用者和开发者来说都不算友好, 同时需求的增加, 后期的维护和扩展都将是一个问题&lt;/p&gt;
-&lt;h3 id=&quot;obl164mp1&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#obl164mp1&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;o5aj8aghs&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o5aj8aghs&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;以下代码是个人理解, 不理解这么简单的例子《JavascScript模式》一书, 选择用列表或者继承来实现&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -1089,15 +1089,15 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;nx&quot;&gt;sale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fedtax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quebec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// { price: 20 }&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o8vd1412t&quot;&gt;策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o8vd1412t&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ov8galmcx&quot;&gt;策略&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ov8galmcx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;选择最佳策略以处理特定任务&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;没有特别之处, 只不过给一个经常用的方案取了一个名字&lt;/p&gt;
-&lt;h3 id=&quot;oprlph8x8&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oprlph8x8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ocjry9he3&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ocjry9he3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;表单验证&lt;/p&gt;
-&lt;h3 id=&quot;o1aqbn768&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1aqbn768&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;oosa2ywp8&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oosa2ywp8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
         &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -1158,11 +1158,11 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;errors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// [ &amp;#39;the value can\&amp;#39;t be empty&amp;#39;, &amp;#39;the value can only contains numbers and characters&amp;#39; ]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;oc7k705xy&quot;&gt;外观(facade)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oc7k705xy&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;omjitpgd7&quot;&gt;外观(facade)&lt;a class=&quot;anchorjs-link&quot; href=&quot;#omjitpgd7&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;通过把常用方法包装到一个新方法中，从而提供一个列为便利的API。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;ov7yzocwk&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ov7yzocwk&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;og5jvvhnc&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#og5jvvhnc&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;同样没有特别之处, 同样只是取了一个名字。&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -1176,23 +1176,23 @@ left、top、right和bottom是相对于viewport而言。
     &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stopPropagation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ogyejegb3&quot;&gt;代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogyejegb3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ogdcd7n13&quot;&gt;代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogdcd7n13&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;通过包装一个对象以控制对它的访问，其主要方法是将访问聚焦为组或公当真正必要的时候才执行访问, 从而避免了高昂的操作开销&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;o80qbw0aj&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o80qbw0aj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;o9l2ww7je&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9l2ww7je&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这个模式还是不错的, 具体应用可以是通过一个代理来合并请求: 设置一个超时时间(如50ms), 把这个时间段内的请求合并成一个以提高性能(可以同时把请求的结果缓存起来).&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;另一应用是延迟初始化: 如果初始化本体对象开销很大, 并且这个对象使用频率并不高。在这种情况下, 代理可以通过替换本体对象的接口来解决这个问题, 代理接收初始化请求, 但是直到该本体对象明确的将被实际使用之前, 代理不会将该请求传递给本体对象.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;oo3rkx4u5&quot;&gt;中介者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oo3rkx4u5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;o47q53rht&quot;&gt;中介者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o47q53rht&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对象之间互相不直接“通话”, 而是仅通过一个中介者对象进行通信, 从而促进形成松散耦合&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;op4vkppot&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#op4vkppot&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oqp7woo26&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqp7woo26&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;对象之间的直接通信可能会导致不良的紧耦合, 当对象间紧密耦合的时候, 代码的维护和扩展将变得十分困难, 中介者的目的是缓解这个问题, 并促进形成松耦合.&lt;/p&gt;
-&lt;h3 id=&quot;ooy6nnwb&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ooy6nnwb&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ofkgtagqm&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ofkgtagqm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这是一个游戏的代码示例, 每次玩家play的时候都需要更新一次计分板, 但是我们并不让玩家直接更新计分板而是通过中介(mediator)来更新计分板, 以达到降低代码耦合底的需要&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 玩家&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1251,15 +1251,15 @@ left、top、right和bottom是相对于viewport而言。
   &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onkeypress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;finished...&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;onzuamus3&quot;&gt;观察者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#onzuamus3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o432ky4q0&quot;&gt;观察者&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o432ky4q0&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;通过创建可观者的对象，当发生一个感兴趣的事件时可将该事件通过千给所有观察者, 从而促进形成松散耦合.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;和中介相比, 观察者并不是一个对象去调用另一个对象的方法, 观察者是一个对象订阅另一个对象的特定活动并在状态变化后获得通知.&lt;/p&gt;
-&lt;h3 id=&quot;o8jrbzhty&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o8jrbzhty&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oxbda88t3&quot;&gt;使用场景&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxbda88t3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;杂志订阅等, 这里我们把中介示例中的那个游戏用观察者模式重写一下&lt;/p&gt;
-&lt;h3 id=&quot;ox3bq21pj&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ox3bq21pj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ocdctng1m&quot;&gt;示例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ocdctng1m&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;以下代码大多数源于《JavaScript》源码一书, 为让它能在控制台直接运行, 做了轻微简化。下面的代码对于观察者模式应该还算个不错的例子, 不过也不是没有改进的空间, 比如&lt;code&gt;makePublish&lt;/code&gt;方法采用复制的方案来实现继承, 有一定性能损失, &lt;code&gt;publisher&lt;/code&gt; 的实现不够清晰。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Players&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1427,9 +1427,9 @@ left、top、right和bottom是相对于viewport而言。
       <item>
         <title>一些前端优化的方案</title>
         <description>&lt;p&gt;这是个比较大的题, 我准备分几个阶段完成——放心吧不是那老掉牙的雅虎军规.&lt;/p&gt;
-&lt;h2 id=&quot;oveybl9dm&quot;&gt;工具准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oveybl9dm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;o543i37fj&quot;&gt;工具准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o543i37fj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;说到前端优化, 没有个测量工具显得太不(没)专(B)业(格). 迫于此种压力, 我们要先准备几个像样的工具.&lt;/p&gt;
-&lt;h3 id=&quot;obt4gmtrb&quot;&gt;Benchmark&lt;a class=&quot;anchorjs-link&quot; href=&quot;#obt4gmtrb&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ozer61ye8&quot;&gt;Benchmark&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ozer61ye8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;!-- ## 优化方案
 
 ### Chunked Transfer Coding
@@ -1451,7 +1451,7 @@ left、top、right和bottom是相对于viewport而言。
       <item>
         <title>Javascript继承</title>
         <description>&lt;p&gt;说到Javascript, 继承永远是我们无法绕过去的坑。很长时间我们都认为js没有类继承, 终于在ES6发布的时候, js无类继承成了一句过时的话, 而在此之前历史上出现过许多关于js继承的方案, 本文旨在对比较重要(or常用)的几种方案做一下总结 (好吧, 有些可能就要过时了)。&lt;/p&gt;
-&lt;h2 id=&quot;oewc2gg04&quot;&gt;基于类的承继&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oewc2gg04&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;otdjaw3o9&quot;&gt;基于类的承继&lt;a class=&quot;anchorjs-link&quot; href=&quot;#otdjaw3o9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;这种代表未来的东西必需放在最前面, 来看一段来自&lt;a href=&quot;https://gist.github.com/lpsBetty/2cadbb7f2e37888ad322&quot;&gt;gist&lt;/a&gt;上的代码, 代码比较直白, 但是多数浏览器尚不支持此类语法, 如果想本地跑一下可以使用&lt;a href=&quot;https://github.com/google/traceur-compiler&quot;&gt;traceur&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//class constructor&lt;/span&gt;
@@ -1482,9 +1482,9 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;area&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 25&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;area&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 100&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;oknac5psa&quot;&gt;基于原型的继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oknac5psa&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ohosdv4n7&quot;&gt;基于原型的继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ohosdv4n7&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;这应该是目前js中使用最多的继承方法&lt;/p&gt;
-&lt;h3 id=&quot;ocr3k79er&quot;&gt;原始版本&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ocr3k79er&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oueljemf3&quot;&gt;原始版本&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oueljemf3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;先看一下最基础的继承:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
@@ -1499,7 +1499,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sayHi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;// hi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;o2hse9izg&quot;&gt;使用代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o2hse9izg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;ojnfdb9wg&quot;&gt;使用代理&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojnfdb9wg&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;上面的方法众所周知, 看起来挺好, 问题在于每次继承都需要创建一个&lt;code&gt;P&lt;/code&gt;的实例对象, 假如这个对象很大, 那么 将对性能产生负面影响. 所以有人提出了以下改进方案:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
@@ -1523,7 +1523,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;隔离, 如果直接用&lt;code&gt;C.prototype = P.prototype&lt;/code&gt;, 也能实现继承, 而且性能最高, 但是此时&lt;code&gt;C.prototype&lt;/code&gt;和&lt;code&gt;P.prototype&lt;/code&gt;指向一个内存地址, 修改&lt;code&gt;C.prototype&lt;/code&gt;意味着同时修改了&lt;code&gt;P.prototype&lt;/code&gt;, 这当然不是我们想看到的, 所以我们添加了一个中间函数.&lt;/li&gt;
 &lt;li&gt;性能, 因为&lt;code&gt;F&lt;/code&gt;为空函数, 因此创建其对应实例的消耗比较低.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;orbggxrta&quot;&gt;封装&lt;a class=&quot;anchorjs-link&quot; href=&quot;#orbggxrta&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ow7ywpl96&quot;&gt;封装&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ow7ywpl96&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;OK, 基于以上所述, 我们可以做一下封装:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;inherit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
@@ -1552,7 +1552,7 @@ left、top、right和bottom是相对于viewport而言。
   &lt;span class=&quot;c1&quot;&gt;// 我们需要纠正之 (换句话说, 目前Object.getPrototypeOf(C) ==== Function.prototype)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;__proto__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这时Object.getPrototypeOf(C) === P;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;ot2nnr8iv&quot;&gt;缓存临时函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ot2nnr8iv&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&quot;oz4m2lmx4&quot;&gt;缓存临时函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oz4m2lmx4&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;以上道格拉斯提出的方法一度被奉为经典, 但也不是没有改进的余地, 因为这边的中间函数还是每次继承的时候都需要创建一次临时构造函数&lt;code&gt;F&lt;/code&gt;, 因此, 又有人提出了以下方案:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;inherit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
@@ -1566,9 +1566,9 @@ left、top、right和bottom是相对于viewport而言。
 &lt;span class=&quot;p&quot;&gt;}());&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;此处用立即执行函数创建了一个闭包, &lt;code&gt;F&lt;/code&gt;只需在inherit函数表达式初化时创建一次.&lt;/p&gt;
-&lt;h3 id=&quot;o8jt1klde&quot;&gt;延伸&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o8jt1klde&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ooktqztm5&quot;&gt;延伸&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ooktqztm5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;有人实现了一个Kclass, 此法在ES6时代显然过时, 不过具体实现还是值得一看(略有改动)&lt;/p&gt;
-&lt;h4 id=&quot;owx2bno3c&quot;&gt;效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owx2bno3c&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Man&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h4 id=&quot;o59h2novr&quot;&gt;效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o59h2novr&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Man&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;__construtor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Man constructor&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -1594,7 +1594,7 @@ left、top、right和bottom是相对于viewport而言。
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;man&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;                &lt;span class=&quot;c1&quot;&gt;// xiaoming&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sman&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;               &lt;span class=&quot;c1&quot;&gt;// I am xiaoming&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o44hx9h28&quot;&gt;实现&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o44hx9h28&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Klass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;protos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o7s2hhqdv&quot;&gt;实现&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o7s2hhqdv&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Klass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;protos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -1627,7 +1627,7 @@ left、top、right和bottom是相对于viewport而言。
 
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;owsah5ovx&quot;&gt;基于对象的继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owsah5ovx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;ohcvlxa1l&quot;&gt;基于对象的继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ohcvlxa1l&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;直接看例子吧&lt;/p&gt;
 
 &lt;p&gt;ES5及以上,  我们可以使用Object.create&lt;/p&gt;
@@ -1648,13 +1648,13 @@ left、top、right和bottom是相对于viewport而言。
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;o57svgz8v&quot;&gt;借用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o57svgz8v&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&quot;omi79tmvm&quot;&gt;借用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#omi79tmvm&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;比较简单, 使用&lt;code&gt;call&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt;实现, 略过&lt;/p&gt;
-&lt;h2 id=&quot;oxbq9bjrx&quot;&gt;通过复制属性实现继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oxbq9bjrx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;o13cbgiqi&quot;&gt;通过复制属性实现继承&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o13cbgiqi&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;这也是比较常用的方式, 浅复制比较简单, 略过&lt;/p&gt;
-&lt;h3 id=&quot;ogsaxiumh&quot;&gt;浅复制&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogsaxiumh&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oecckxhwr&quot;&gt;浅复制&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oecckxhwr&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;略过&lt;/p&gt;
-&lt;h3 id=&quot;o45xzge2&quot;&gt;深复制&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o45xzge2&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;deepExtend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;ogyytofqt&quot;&gt;深复制&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogyytofqt&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;deepExtend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;childTypeStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -1739,15 +1739,15 @@ left、top、right和bottom是相对于viewport而言。
 &lt;li&gt;instanceof是怎么计算的&lt;/li&gt;
 &lt;li&gt;javascript的原型链&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;oag4extry&quot;&gt;知识准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oag4extry&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;od2gmm8nj&quot;&gt;知识准备&lt;a class=&quot;anchorjs-link&quot; href=&quot;#od2gmm8nj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;首先要明确构造函数本身并不使用自身的prototype属性, 这个属性是给它的实例对象用的, 而构造函数本身又是一个对象, 所以它会使用它的构造函数的prototype属性(-_-..)&lt;/p&gt;
-&lt;h3 id=&quot;ohchlpnuf&quot;&gt;instanceof&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ohchlpnuf&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ojgwt6vh8&quot;&gt;instanceof&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojgwt6vh8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;就是说, 只要右侧构造函数的prototype属性能在左侧的对象的原型链中找到, 那么就返回true, 否则就返回false.&lt;/p&gt;
-&lt;h3 id=&quot;owidlq73p&quot;&gt;javascript原型链&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owidlq73p&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ole6ngvdv&quot;&gt;javascript原型链&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ole6ngvdv&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;首先我们要知道在实例对象的原型 (&lt;strong&gt;[[Prototype]]&lt;/strong&gt;, 说明: 下文的&lt;strong&gt;[[Prototype]]&lt;/strong&gt;和&lt;code&gt;__proto__&lt;/code&gt;指同一个东西) 是指向其构造函数的prototype属性的, 而构造的函数的prototype属性又可以当成另一个实例对象, 这个实例对象的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;)又指向其构造函数的prototype属性, 如此反复一直到达世界的尽头: &lt;strong&gt;Object.prototype&lt;/strong&gt;(&lt;code&gt;Object.prototype.__proto__&lt;/code&gt;指向&lt;code&gt;null&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;知道了这一点就可以祭出下面这张著名的图了:&lt;/strong&gt;&lt;/p&gt;
@@ -1755,11 +1755,11 @@ left、top、right和bottom是相对于viewport而言。
 &lt;p&gt;&lt;img src=&quot;/assets/images/javascript-object-layout.jpg&quot; alt=&quot;javascript object layout&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;注: 图中的&lt;code&gt;__proto__&lt;/code&gt;指的即是实例对象的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;), 它是一个私有属性, 现代浏览器中将其暴露给用户, 修改这个值会改变继承关系&lt;/p&gt;
-&lt;h2 id=&quot;ods9l7u79&quot;&gt;分析&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ods9l7u79&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;owsosk2zi&quot;&gt;分析&lt;a class=&quot;anchorjs-link&quot; href=&quot;#owsosk2zi&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;上面的图一时没看清也没关系，我们来具体分析一下。&lt;/p&gt;
-&lt;h3 id=&quot;omkw81fe8&quot;&gt;x instanceof Function&lt;a class=&quot;anchorjs-link&quot; href=&quot;#omkw81fe8&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oc8bcso26&quot;&gt;x instanceof Function&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oc8bcso26&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Object, Number, String, Array, Function(恩！包括它自己), Date等都属于构造函数, 而所有构造函数都是由Function创建的, 所以它的原型(&lt;code&gt;__proto__&lt;/code&gt;)指向Function.prototype。所以对于Object instanceof Function,  Function instanceof Function, 根据instanceof的定义此处应当返回true&lt;/p&gt;
-&lt;h3 id=&quot;ome4mpga1&quot;&gt;x instanceof Object&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ome4mpga1&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;olqgdm8w6&quot;&gt;x instanceof Object&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olqgdm8w6&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;我们已经知道构造函数(Object, Function等)的原型(&lt;strong&gt;[[Prototype]]&lt;/strong&gt;)指向Function.prototype,
 而Function.prototype是一个函数对象，这个函数对象的&lt;code&gt;__proto__&lt;/code&gt;指向Object.prototype. 因此对于Object instanceof Object, Function instanceof Object, 右侧Object.prototype可以在左侧的原型链中找到，计算结果为true&lt;/p&gt;
 
@@ -1773,7 +1773,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;a href=&quot;http://es5.github.io/#x15.3.4&quot;&gt;Properties of the Function Prototype Object&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;有人说这是为了一致性, &lt;strong&gt;因为Number.Prototye是个Number对象, String.Prototype是个String对象, 以此类推, Function.Prototype当然要是个Funciton对象&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;o4amikj5o&quot;&gt;练习&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4amikj5o&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oy154hmcy&quot;&gt;练习&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oy154hmcy&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;OK, 好像都懂了, 看看以下代码的执行结果是什么?&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 
@@ -1842,7 +1842,7 @@ left、top、right和bottom是相对于viewport而言。
         <title>javascript this值的探讨</title>
         <description>&lt;p&gt;关于这个问题, 网上已有很有文章.&lt;br&gt;
 本文将尽量使用统一的理论去概括所有this取值的情况, 有不当之处欢迎指正。&lt;/p&gt;
-&lt;h2 id=&quot;o3yan1f0w&quot;&gt;原则&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o3yan1f0w&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;olj96czq0&quot;&gt;原则&lt;a class=&quot;anchorjs-link&quot; href=&quot;#olj96czq0&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;this值的确定是执行上下文环境(Execution context)的一部分&lt;/li&gt;
 &lt;li&gt;只有在执行上下文环境发生改变时this才会发生改变&lt;/li&gt;
@@ -1861,7 +1861,7 @@ left、top、right和bottom是相对于viewport而言。
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;call, apply, bind&lt;/code&gt;可动态改变this值(本文不讨论这种情况)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;oflzlv14s&quot;&gt;实例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oflzlv14s&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;ol28kwcf3&quot;&gt;全局环境&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ol28kwcf3&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h2 id=&quot;oa3qnoqjx&quot;&gt;实例&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oa3qnoqjx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;o4nlenf7j&quot;&gt;全局环境&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4nlenf7j&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
@@ -1877,7 +1877,7 @@ obj.b = this;
 console.log(obj.b);
 &lt;/code&gt;
 容易看出这是在执行全局代码，this指向顶层对象(浏览器环境指向window)&lt;/p&gt;
-&lt;h3 id=&quot;o4v6cncrx&quot;&gt;方法调用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4v6cncrx&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;oc5t8k6t9&quot;&gt;方法调用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oc5t8k6t9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -1887,7 +1887,7 @@ console.log(obj.b);
 &lt;span class=&quot;c1&quot;&gt;// foo&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;bar调用时, 上下文发生改变, this重新赋值, 指向调用者foo&lt;/p&gt;
-&lt;h3 id=&quot;oenjn4tws&quot;&gt;普通函数调用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oenjn4tws&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;o9e1u2dmj&quot;&gt;普通函数调用&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o9e1u2dmj&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
@@ -1909,14 +1909,14 @@ console.log(obj.b);
 &lt;span class=&quot;c1&quot;&gt;// window in browser / {} in nodejs.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;道理同上, 可以理解成&lt;code&gt;window.bar();&lt;/code&gt;, 指向调用者window&lt;/p&gt;
-&lt;h3 id=&quot;o1yxdjw0w&quot;&gt;函数作为事件处理程序&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1yxdjw0w&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+&lt;h3 id=&quot;ojqtk6v1r&quot;&gt;函数作为事件处理程序&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ojqtk6v1r&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// 当点击页面时log body的DOM对象&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;上下文改变, onclick事件是由body触发的(fire), 因此this指向body的DOM对象&lt;/p&gt;
-&lt;h3 id=&quot;oyzw6c5vu&quot;&gt;构造函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oyzw6c5vu&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;obvpvemsd&quot;&gt;构造函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#obvpvemsd&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
@@ -1924,7 +1924,7 @@ console.log(obj.b);
 &lt;span class=&quot;c1&quot;&gt;// foo&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;this指向新对象foo本身&lt;/p&gt;
-&lt;h3 id=&quot;oun21y18o&quot;&gt;嵌套函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oun21y18o&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oit9krhla&quot;&gt;嵌套函数&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oit9krhla&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;这是需要注意的地方, 内层函数应当成普通函数处理, 其内部的this将指向顶层对象.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -1983,14 +1983,14 @@ console.log(obj.b);
         <description>&lt;p&gt;纯css垂直居中有若干种方案, 不过我们只会关注&lt;strong&gt;look forward&lt;/strong&gt;或者最优的一两种方案,
 并且我们希望这种一两方案具有比较强的普适性, 能满足基本的浏览器兼容需求, 以及允许无限制的嵌套.
 本文将对这一目标进行一些探讨.&lt;/p&gt;
-&lt;h2 id=&quot;o56g8sjv9&quot;&gt;使用vertical-align来垂直居中&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o56g8sjv9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oyrcifsis&quot;&gt;使用vertical-align来垂直居中&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oyrcifsis&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;vertical-align有很多限制, 它只作用于inline, inline-block及table-cell上, 既然如此,
 我们怎么在普遍意义上使用vertical-align来垂直居中元素呢, 先看实现效果：&lt;/p&gt;
-&lt;h3 id=&quot;o1zoaia5r&quot;&gt;实现效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o1zoaia5r&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oeq600joh&quot;&gt;实现效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oeq600joh&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 &lt;p&gt;弱弱的说一声, 其实这个同心圆是响应式的:)&lt;/p&gt;
-&lt;h3 id=&quot;ot378c8r9&quot;&gt;相关代码&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ot378c8r9&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;oajr4g758&quot;&gt;HTML&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oajr4g758&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-wrap c1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;h3 id=&quot;ouwt0az0l&quot;&gt;相关代码&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ouwt0az0l&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ov36sdq83&quot;&gt;HTML&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ov36sdq83&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-wrap c1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content c2 center-wrap&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content c3 center-wrap&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;center-content&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -1999,7 +1999,7 @@ console.log(obj.b);
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o3ip88xm7&quot;&gt;CSS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o3ip88xm7&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.center-wrap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;o4qwtp7dy&quot;&gt;CSS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#o4qwtp7dy&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.center-wrap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;70%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -2034,19 +2034,19 @@ console.log(obj.b);
 这在内容只有单行的时候没有什么问题, 多行时间隙就会导致&lt;code&gt;line box&lt;/code&gt;元素的高度和父级不一致, 产下如下悲剧:&lt;/p&gt;
 
 &lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align-break.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;h2 id=&quot;ocnqkizu5&quot;&gt;使用flex垂直居中&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ocnqkizu5&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ogzvnaerl&quot;&gt;使用flex垂直居中&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ogzvnaerl&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;使用此法布局比较简单, 只要设置&lt;code&gt;display&lt;/code&gt;, &lt;code&gt;align-items&lt;/code&gt;, &lt;code&gt;justify-content&lt;/code&gt;三个属性就可以了.有关flex布局的详情, 可以参阅鄙人的&lt;a href=&quot;http://linkarys.github.io//css/flex/&quot;&gt;flex 布局&lt;/a&gt;.
 此处只列出最终实现代码和实现效果&lt;/p&gt;
-&lt;h3 id=&quot;oddwbfk7i&quot;&gt;实现效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oddwbfk7i&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;oddq8yn3e&quot;&gt;实现效果&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oddq8yn3e&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;iframe width=&quot;300&quot; height=&quot;240&quot; src=&quot;/embed/vertical-align/vertical-align-flex.html&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;h3 id=&quot;oyvdlfcpa&quot;&gt;相关代码&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oyvdlfcpa&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;ohuvgm98i&quot;&gt;HTML&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ohuvgm98i&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-container ct&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;h3 id=&quot;oqpje7p05&quot;&gt;相关代码&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oqpje7p05&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;oyqw9f12m&quot;&gt;HTML&lt;a class=&quot;anchorjs-link&quot; href=&quot;#oyqw9f12m&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-container ct&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-item cs flex-container&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flex-item cg flex-container&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
         Lorem ipsum dolor sit amet.
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;odhmv5idp&quot;&gt;CSS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#odhmv5idp&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&quot;ooayhdj6q&quot;&gt;CSS&lt;a class=&quot;anchorjs-link&quot; href=&quot;#ooayhdj6q&quot;&gt;&lt;span class=&quot;anchorjs-icon&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.flex-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;hll&quot;&gt;    &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;span class=&quot;hll&quot;&gt;    &lt;span class=&quot;n&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;span class=&quot;hll&quot;&gt;    &lt;span class=&quot;k&quot;&gt;justify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;

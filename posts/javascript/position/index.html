@@ -112,15 +112,15 @@
 
   <article class="post-content">
     <p>这是一个非常基础, 涉及很广但又容易混淆的地方, 但是莫要担心, 哥们我将尝试在本文中将其解释清楚(原谅我可能最终也没能讲清楚, 此文会在后续继续补充更新).</p>
-<h2 id="oefyiu7ju">准备<a class="anchorjs-link" href="#oefyiu7ju"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="owu7r8l0s">准备<a class="anchorjs-link" href="#owu7r8l0s"><span class="anchorjs-icon"></span></a></h2>
 <p>首先我们先要有一些基础的储备才能愉快的谈论这个问题.</p>
-<h3 id="o9p26akto">基础概念<a class="anchorjs-link" href="#o9p26akto"><span class="anchorjs-icon"></span></a></h3><h4 id="ok4bvvj4n">viewport<a class="anchorjs-link" href="#ok4bvvj4n"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="okvyh5unt">基础概念<a class="anchorjs-link" href="#okvyh5unt"><span class="anchorjs-icon"></span></a></h3><h4 id="ox7rkrh05">viewport<a class="anchorjs-link" href="#ox7rkrh05"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>The viewport is the part of the webpage that the user can currently see. The scrollbars move the viewport to show other parts of the page.</p>
 </blockquote>
 
 <p>在标准中, viewportWidth = window.innerWidth, viewportHeight = window.innerHeight (和滚动无关)</p>
-<h4 id="o26wgwa2e">盒模型<a class="anchorjs-link" href="#o26wgwa2e"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="odv29iufg">盒模型<a class="anchorjs-link" href="#odv29iufg"><span class="anchorjs-icon"></span></a></h4>
 <p><img src="/assets/images/position/boxmodel.png" alt="boxmodel"></p>
 
 <p><code>width, min-width, max-width, height, min-height, max-height</code>的设定值影响的对象和<code>box-sizing</code>的值设定有关:</p>
@@ -144,7 +144,7 @@
 <td>border edge</td>
 </tr>
 </tbody></table>
-<h3 id="o53j3zhxg">坐标关系<a class="anchorjs-link" href="#o53j3zhxg"><span class="anchorjs-icon"></span></a></h3><h4 id="oqfe4uwc6">元素的长宽属性<a class="anchorjs-link" href="#oqfe4uwc6"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="oxjjkdbrr">坐标关系<a class="anchorjs-link" href="#oxjjkdbrr"><span class="anchorjs-icon"></span></a></h3><h4 id="oufzne7g">元素的长宽属性<a class="anchorjs-link" href="#oufzne7g"><span class="anchorjs-icon"></span></a></h4>
 <table><thead>
 <tr>
 <th>项目</th>
@@ -183,7 +183,7 @@
 <td>否</td>
 </tr>
 </tbody></table>
-<h4 id="obt8w5lh1">附：那些触发重绘的属性<a class="anchorjs-link" href="#obt8w5lh1"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="otyqe41a2">附：那些触发重绘的属性<a class="anchorjs-link" href="#otyqe41a2"><span class="anchorjs-icon"></span></a></h4>
 <p>clientHeight, clientLeft, clientTop, clientWidth, focus(), getBoundingClientRect(), getClientRects(), innerText, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, outerText, scrollByLines(), scrollByPages(), scrollHeight, scrollIntoView(), scrollIntoViewIfNeeded(), scrollLeft, scrollTop, scrollWidth
 Frame, Image
 height, width
@@ -197,17 +197,17 @@ SVGUse
 instanceRoot
 window
 getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPointFromNodeToPage(), webkitConvertPointFromPageToNode()</p>
-<h4 id="obarp721d">引用一个牛逼的说明<a class="anchorjs-link" href="#obarp721d"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="od0t590n8">引用一个牛逼的说明<a class="anchorjs-link" href="#od0t590n8"><span class="anchorjs-icon"></span></a></h4>
 <iframe width="100%" height="500" src="//jsfiddle.net/y8Y32/25/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-<h4 id="o9egtuc8l">实际的案例<a class="anchorjs-link" href="#o9egtuc8l"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o94obr7tl">实际的案例<a class="anchorjs-link" href="#o94obr7tl"><span class="anchorjs-icon"></span></a></h4>
 <iframe width="100%" height="530" src="//jsfiddle.net/linkarys/kgs1czrq/1/embedded/result,css,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>在chrome中 43测试, 对于<code>display:inline</code>的元素, <code>cssWidth</code>, <code>cssHeight</code>始终为auto(即便设置了width, height值), <code>clientWidth</code>, <code>clientHeight</code>, <code>scrollWidth</code>, <code>scrollHeight</code>始终为0, <code>offsetWidth</code>, <code>offsetHeight</code>为有效值</p>
-<h4 id="oblwbjrp3">window的长宽属性<a class="anchorjs-link" href="#oblwbjrp3"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="osz1yd0bw">window的长宽属性<a class="anchorjs-link" href="#osz1yd0bw"><span class="anchorjs-icon"></span></a></h4>
 <p>一图胜千言:</p>
 
 <p><img src="/assets/images/position/firefoxInnerVsOuterHeight.png" alt="firefoxInnerVsOuterHeight"></p>
-<h4 id="o1j5wngeg">event的坐标<a class="anchorjs-link" href="#o1j5wngeg"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="ozzagtxxn">event的坐标<a class="anchorjs-link" href="#ozzagtxxn"><span class="anchorjs-icon"></span></a></h4>
 <table><thead>
 <tr>
 <th>项目</th>
@@ -236,19 +236,19 @@ getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPoint
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="o37qbfjt9">相对位置<a class="anchorjs-link" href="#o37qbfjt9"><span class="anchorjs-icon"></span></a></h3><h4 id="ogf74rp6g">Element.offsetParent<a class="anchorjs-link" href="#ogf74rp6g"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="oi33o3skh">相对位置<a class="anchorjs-link" href="#oi33o3skh"><span class="anchorjs-icon"></span></a></h3><h4 id="olowzmbwq">Element.offsetParent<a class="anchorjs-link" href="#olowzmbwq"><span class="anchorjs-icon"></span></a></h4>
 <p>返回一个指向最近的（closest，指包含层级上的最近）包含该元素的定位元素（position值不为static的元素, 即: <code>getComputedStyle(elem).position !== &#39;static&#39;</code>）, 如果没有定位的元素，则offsetParent为最近的table 元素对象或根元素(标准模式下为html; quirks模式下为body), 当元素的 style.display 设置为 &quot;none&quot; 时，offsetParent返回null</p>
 
 <blockquote>
 <p>在Webkit中，如果元素为隐藏的（该元素或其祖先元素的 style.display 为 &quot;none&quot;），或者该元素的style.position被设为 &quot;fixed&quot;，则该属性返回 null。
 在IE 9中，如果该元素的 style.position 被设置为 &quot;fixed&quot;，则该属性返回null（display:none 无影响）</p>
 </blockquote>
-<h4 id="o1ef4nwn">Element.offsetLeft(offsetTop)<a class="anchorjs-link" href="#o1ef4nwn"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="oatmszxfd">Element.offsetLeft(offsetTop)<a class="anchorjs-link" href="#oatmszxfd"><span class="anchorjs-icon"></span></a></h4>
 <p>相对于Element.offsetParent的位置, 对于块级元素来说, 指的是元素的border box相对于其offsetParent的位置; 对于inline元素, offsetTop, offsetLeft指的是第一个border box相对于offsetParent的位置的位置, offsetWidth, offsetHeight指的其边界盒子的尺寸(通过getBoundingClientRect获得)</p>
 
 <p>下面的例子引用mdn, div盒子的边框高为蓝色, 红框表示span的边界
 <iframe width="100%" height="100" src="//jsfiddle.net/linkarys/cehp80c4/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
-<h3 id="o8065r5ll">常用API<a class="anchorjs-link" href="#o8065r5ll"><span class="anchorjs-icon"></span></a></h3><h4 id="ofaycvncj">getComputedStyle(element[, pseudoElt]);<a class="anchorjs-link" href="#ofaycvncj"><span class="anchorjs-icon"></span></a></h4>
+<h3 id="ozscce24h">常用API<a class="anchorjs-link" href="#ozscce24h"><span class="anchorjs-icon"></span></a></h3><h4 id="ofq8oy3cd">getComputedStyle(element[, pseudoElt]);<a class="anchorjs-link" href="#ofq8oy3cd"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>gives the values of all the CSS properties of an element after applying the active stylesheets and resolving any basic computation those values may contain.</p>
 </blockquote>
@@ -282,7 +282,7 @@ getComputedStyle(), scrollBy(), scrollTo(), scrollX, scrollY, webkitConvertPoint
       明确的宽度: inherit. 指定的宽度: 50%. 计算的宽度: 50%. 应用的宽度: 221px .</div>
   </div>
 </div>
-<h4 id="o3851os4w">Element.getClientRects()<a class="anchorjs-link" href="#o3851os4w"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="o6vavldv8">Element.getClientRects()<a class="anchorjs-link" href="#o6vavldv8"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>returns a collection of rectangles that indicate the bounding rectangles for each box in a client.</p>
 </blockquote>
@@ -294,7 +294,7 @@ left、top、right和bottom是相对于viewport而言。
 <p>以下同样是引自mdn的一个说明（蓝色父元素的边框, 绿色为子元素的边框, 红色clientRects的边框-可能覆盖其它边框）:</p>
 
 <iframe width="100%" height="630" src="//jsfiddle.net/linkarys/mh6s452n/embedded/result,css,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-<h4 id="o2lul1wl6">Element.getBoundingClientRect()<a class="anchorjs-link" href="#o2lul1wl6"><span class="anchorjs-icon"></span></a></h4>
+<h4 id="otsb02jir">Element.getBoundingClientRect()<a class="anchorjs-link" href="#otsb02jir"><span class="anchorjs-icon"></span></a></h4>
 <blockquote>
 <p>returns the size of an element and its position relative to the viewport.</p>
 </blockquote>
