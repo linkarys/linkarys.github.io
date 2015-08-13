@@ -119,7 +119,7 @@
 </p>
 
 <p>当然了，这样用户体验并不好, 由此也促使了<code>&lt;meta name=&quot;viewport&quot;&gt;</code>标签诞生。</p>
-<h2 id="ogpb2f95y">device width &amp; height<a class="anchorjs-link" href="#ogpb2f95y"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="omu0g0nj1">device width &amp; height<a class="anchorjs-link" href="#omu0g0nj1"><span class="anchorjs-icon"></span></a></h2>
 <p><code>&lt;meta name=&quot;viewport&quot;&gt;</code>只对移动端浏览器有作用，并且width属性只有目标的网站的宽度小于980px, 或者为响应式布局才有需要。
 我们经常可以看到这样的语句：</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width&quot;</span><span class="nt">&gt;</span>
@@ -128,13 +128,14 @@
 
 <p>对于iphone6而言，由于其横向的css像素为375px, 所以以上的代码相当于</p>
 
-<p>附：
-width取值范围：200 - 10000
+<p><strong>附：</strong></p>
+
+<p>width取值范围：200 - 10000
 height取值范围: 223 - 10000 （目前对于height值的设定并不是特别符合预期）</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=375&quot;</span><span class="nt">&gt;</span>
 </code></pre></div>
 <p><strong>注:单位不是必需的，并且无论写了什么单位, 它始终为px，并且有些属性之前存在制约关系, 比如设置了initial-scale=1, 再设置width小于设备的横向css宽度将没有作用（下文细说）</strong></p>
-<h2 id="oz1qrkg8h">scale<a class="anchorjs-link" href="#oz1qrkg8h"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="oatsc6tla">scale<a class="anchorjs-link" href="#oatsc6tla"><span class="anchorjs-icon"></span></a></h2>
 <p>涉及四个值, 前三个的范围都是从0到10:</p>
 
 <ul>
@@ -143,7 +144,7 @@ height取值范围: 223 - 10000 （目前对于height值的设定并不是特别
 <li>initial-scale: 一些情况下会被推断为1，此时浏览器会将每个css像素和viewport像素一一对应</li>
 <li>user-scalable: 控制用户能否缩放， 值为yes或no</li>
 </ul>
-<h2 id="olixmd85j">值推断和冲突<a class="anchorjs-link" href="#olixmd85j"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="ofmpv6bjv">值推断和冲突<a class="anchorjs-link" href="#ofmpv6bjv"><span class="anchorjs-icon"></span></a></h2>
 <p>存在这么几种情况:</p>
 
 <ol>
@@ -151,7 +152,7 @@ height取值范围: 223 - 10000 （目前对于height值的设定并不是特别
 <li>当设置initial-scale为1时，width默认为device-width, height默认为device-height</li>
 <li>当width设置小于设备横向css宽度时，页面会被放大, 即些时initial-scale的值不会为1（强制设置initial-scale为1将使刚刚设置的width无效)</li>
 </ol>
-<h2 id="op02tkm0o">w3c做了什么<a class="anchorjs-link" href="#op02tkm0o"><span class="anchorjs-icon"></span></a></h2>
+<h2 id="o6eh50xug">w3c做了什么<a class="anchorjs-link" href="#o6eh50xug"><span class="anchorjs-icon"></span></a></h2>
 <p>meta标签最初是由apple公司提出来的，最终w3c也决定去实现标准化。但是w3c提出的方案并不是添加一个meta的标签，而是将其加入到css中，类似这样：</p>
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="k">@viewport</span> <span class="p">{</span>
     <span class="nt">width</span><span class="o">:</span> <span class="nt">device-width</span><span class="o">;</span>
